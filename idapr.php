@@ -63,7 +63,7 @@
 
 <textarea id="pre"></textarea>
 
-<p>Select a theme: <select onchange="selectTheme()" id=select> <option selected>default</option> <option>3024-day</option> <option>3024-night</option> <option>abcdef</option> <option>ambiance</option> <option>ayu-dark</option> <option>ayu-mirage</option> <option>base16-dark</option> <option>base16-light</option> <option>bespin</option> <option>blackboard</option> <option>cobalt</option> <option>colorforth</option> <option>darcula</option> <option>dracula</option> <option>duotone-dark</option> <option>duotone-light</option> <option>eclipse</option> <option>elegant</option> <option>erlang-dark</option> <option>gruvbox-dark</option> <option>hopscotch</option> <option>icecoder</option> <option>idea</option> <option>isotope</option> <option>lesser-dark</option> <option>liquibyte</option> <option>lucario</option> <option>material</option> <option>material-darker</option> <option>material-palenight</option> <option>material-ocean</option> <option>mbo</option> <option>mdn-like</option> <option>midnight</option> <option>monokai</option> <option>moxer</option> <option>neat</option> <option>neo</option> <option>night</option> <option>nord</option> <option>oceanic-next</option> <option>panda-syntax</option> <option>paraiso-dark</option> <option>paraiso-light</option> <option>pastel-on-dark</option> <option>railscasts</option> <option>rubyblue</option> <option>seti</option> <option>shadowfox</option> <option>solarized dark</option> <option>solarized light</option> <option>the-matrix</option> <option>tomorrow-night-bright</option> <option>tomorrow-night-eighties</option> <option>ttcn</option> <option>twilight</option> <option>vibrant-ink</option> <option>xq-dark</option> <option>xq-light</option> <option>yeti</option> <option>yonce</option> <option>zenburn</option></select></p>
+<p>Select a theme: <select onchange="" id=select> <option selected>default</option> <option>3024-day</option> <option>3024-night</option> <option>abcdef</option> <option>ambiance</option> <option>ayu-dark</option> <option>ayu-mirage</option> <option>base16-dark</option> <option>base16-light</option> <option>bespin</option> <option>blackboard</option> <option>cobalt</option> <option>colorforth</option> <option>darcula</option> <option>dracula</option> <option>duotone-dark</option> <option>duotone-light</option> <option>eclipse</option> <option>elegant</option> <option>erlang-dark</option> <option>gruvbox-dark</option> <option>hopscotch</option> <option>icecoder</option> <option>idea</option> <option>isotope</option> <option>lesser-dark</option> <option>liquibyte</option> <option>lucario</option> <option>material</option> <option>material-darker</option> <option>material-palenight</option> <option>material-ocean</option> <option>mbo</option> <option>mdn-like</option> <option>midnight</option> <option>monokai</option> <option>moxer</option> <option>neat</option> <option>neo</option> <option>night</option> <option>nord</option> <option>oceanic-next</option> <option>panda-syntax</option> <option>paraiso-dark</option> <option>paraiso-light</option> <option>pastel-on-dark</option> <option>railscasts</option> <option>rubyblue</option> <option>seti</option> <option>shadowfox</option> <option>solarized dark</option> <option>solarized light</option> <option>the-matrix</option> <option>tomorrow-night-bright</option> <option>tomorrow-night-eighties</option> <option>ttcn</option> <option>twilight</option> <option>vibrant-ink</option> <option>xq-dark</option> <option>xq-light</option> <option>yeti</option> <option>yonce</option> <option>zenburn</option></select></p>
 <?php
 function main (){
 $file = 'i2.json';
@@ -97,9 +97,11 @@ main();
 
 ?>
 <script>
+pre= document.getElementById('pre');
+ input = document.getElementById("select");
 function load(){
 	debugger; 
-pre= document.getElementById('pre');
+
 var editor;
 pre.innerHTML='загрузка..';
 fetch('/trash/i2_formatted.json')
@@ -115,13 +117,28 @@ fetch('/trash/i2_formatted.json')
   });
 function  CodeMirrorRunner (el)
 {
- editor = CodeMirror.fromTextArea(el, {
- lineNumbers: true,
- styleActiveLine: true,
- matchBrackets: true 
-});
- var input = document.getElementById("select");
- function selectTheme() {
+window. editor = CodeMirror.fromTextArea(el, {
+ mode: {name: "javascript", json: true},
+ lineNumbers: true, 
+lineWrapping: true, 
+extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+ foldGutter: true, gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+ foldOptions: { widget: (from, to) => { 
+var count = undefined;
+// Get open / close token 
+var startToken = '{', endToken = '}';
+ var prevLine = window.editor_json.getLine(from.line);
+ if (prevLine.lastIndexOf('[') > prevLine.lastIndexOf('{')) {
+ startToken = '[', endToken = ']'; }
+// Get json content 
+var internal = window.editor_json.getRange(from, to);
+ var toParse = startToken + internal + endToken;
+// Get key count
+ try { var parsed = JSON.parse(toParse);
+ count = Object.keys(parsed).length; } catch(e) { } 
+return count ? `\u21A4${count}\u21A6` : '\u2194'; } } });
+ 
+  window.selectTheme= function() {
 	console.log(editor);
  var theme = input.options[input.selectedIndex].textContent;
  editor.setOption("theme", theme);
@@ -135,9 +152,11 @@ if (choice) {
 if (theme) { input.value = theme; selectTheme();
  } });
 }
+input.onchange = window.selectTheme()
 }//load
 try{
 load();}catch(e){
+	console.error(e);
 alert(e['message']);
 
 }
