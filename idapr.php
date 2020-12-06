@@ -1,4 +1,4 @@
-<pre id="pre"></pre>
+<textarea id="pre"></textarea>
 <?php
 function main (){
 $file = 'i2.json';
@@ -40,19 +40,21 @@ fetch('/trash/i2_formatted.json')
 .then(response => response.json())
 . then(obj =>{
 	debugger;
-		pre.innerHTML=JSON.stringify(obj,null,' ');
-		hljs.highlightBlock(pre);
+		pre.value=JSON.stringify(obj,null,' ');
+	//	hljs.highlightBlock(pre);
+	CodeMirrorRunner(pre)
 			})
 				.catch(function(error) {  
     log('Request failed', error)  
   });
-function  ca ()
+function  CodeMirrorRunner (el)
 {
-var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+var editor = CodeMirror.fromTextArea(el, {
  lineNumbers: true,
  styleActiveLine: true,
  matchBrackets: true 
-}); var input = document.getElementById("select");
+});
+ var input = document.getElementById("select");
 }
 }//load
 try{
@@ -65,6 +67,6 @@ alert(e['message']);
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/idea.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
  <!-- and it's easy to individually load additional languages --> 
-<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/go.min.js"></script>
-<script src="://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
+<script charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/go.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
 
