@@ -1,4 +1,69 @@
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/3024-day.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/3024-night.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/abcdef.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/ambiance.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/ayu-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/ayu-mirage.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/base16-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/bespin.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/base16-light.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/blackboard.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/cobalt.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/colorforth.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/dracula.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/duotone-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/duotone-light.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/eclipse.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/elegant.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/erlang-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/gruvbox-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/hopscotch.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/icecoder.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/isotope.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/lesser-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/liquibyte.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/lucario.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/material.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/material-darker.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/material-palenight.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/material-ocean.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/mbo.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/mdn-like.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/midnight.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/monokai.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/moxer.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/neat.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/neo.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/night.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/nord.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/oceanic-next.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/panda-syntax.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/paraiso-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/paraiso-light.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/pastel-on-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/railscasts.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/rubyblue.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/seti.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/shadowfox.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/solarized.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/the-matrix.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/ttcn.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/twilight.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/vibrant-ink.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/xq-dark.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/xq-light.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/yeti.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/idea.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/darcula.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/yonce.css">
+<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/zenburn.css">
+
 <textarea id="pre"></textarea>
+
+<p>Select a theme: <select onchange="selectTheme()" id=select> <option selected>default</option> <option>3024-day</option> <option>3024-night</option> <option>abcdef</option> <option>ambiance</option> <option>ayu-dark</option> <option>ayu-mirage</option> <option>base16-dark</option> <option>base16-light</option> <option>bespin</option> <option>blackboard</option> <option>cobalt</option> <option>colorforth</option> <option>darcula</option> <option>dracula</option> <option>duotone-dark</option> <option>duotone-light</option> <option>eclipse</option> <option>elegant</option> <option>erlang-dark</option> <option>gruvbox-dark</option> <option>hopscotch</option> <option>icecoder</option> <option>idea</option> <option>isotope</option> <option>lesser-dark</option> <option>liquibyte</option> <option>lucario</option> <option>material</option> <option>material-darker</option> <option>material-palenight</option> <option>material-ocean</option> <option>mbo</option> <option>mdn-like</option> <option>midnight</option> <option>monokai</option> <option>moxer</option> <option>neat</option> <option>neo</option> <option>night</option> <option>nord</option> <option>oceanic-next</option> <option>panda-syntax</option> <option>paraiso-dark</option> <option>paraiso-light</option> <option>pastel-on-dark</option> <option>railscasts</option> <option>rubyblue</option> <option>seti</option> <option>shadowfox</option> <option>solarized dark</option> <option>solarized light</option> <option>the-matrix</option> <option>tomorrow-night-bright</option> <option>tomorrow-night-eighties</option> <option>ttcn</option> <option>twilight</option> <option>vibrant-ink</option> <option>xq-dark</option> <option>xq-light</option> <option>yeti</option> <option>yonce</option> <option>zenburn</option></select></p>
 <?php
 function main (){
 $file = 'i2.json';
@@ -35,6 +100,7 @@ main();
 function load(){
 	debugger; 
 pre= document.getElementById('pre');
+var editor;
 pre.innerHTML='загрузка..';
 fetch('/trash/i2_formatted.json')
 .then(response => response.json())
@@ -49,12 +115,25 @@ fetch('/trash/i2_formatted.json')
   });
 function  CodeMirrorRunner (el)
 {
-var editor = CodeMirror.fromTextArea(el, {
+ editor = CodeMirror.fromTextArea(el, {
  lineNumbers: true,
  styleActiveLine: true,
  matchBrackets: true 
 });
  var input = document.getElementById("select");
+ function selectTheme() {
+	console.log(editor);
+ var theme = input.options[input.selectedIndex].textContent;
+ editor.setOption("theme", theme);
+ location.hash = "#" + theme;
+ } 
+var choice = (location.hash && location.hash.slice(1)) || (document.location.search && decodeURIComponent(document.location.search.slice(1))); 
+if (choice) {
+ input.value = choice; editor.setOption("theme", choice); 
+} CodeMirror.on(window, "hashchange", function() {
+ var theme = location.hash.slice(1); 
+if (theme) { input.value = theme; selectTheme();
+ } });
 }
 }//load
 try{
