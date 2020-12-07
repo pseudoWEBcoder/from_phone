@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>CodeMirror: Theme Demo</title>
+<title>CodeMirror</title>
 <meta charset="utf-8"/>
 <link rel=stylesheet href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/doc/docs.css">
 
@@ -86,28 +86,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/htmlmixed/htmlmixed.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/python/python.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/markdown/markdown.js"></script>
-<style>
-    .CodeMirror {
-        border: 1px solid black;
-        font-size: 13px
-    }
-</style>
-<div id=nav>
-    <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo
-                                                             src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/doc/logo.png"></a>
 
-    <ul>
-        <li><a href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/index.html">Home</a>
-        <li><a href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/doc/manual.html">Manual</a>
-        <li><a href="https://github.com/codemirror/codemirror">Code</a>
-    </ul>
-    <ul>
-        <li><a class=active href="#">Theme</a>
-    </ul>
-</div>
 
 <article>
-    <h2>Theme Demo</h2>
+    <h2>JSON</h2>
     <form><textarea id="code" name="code">
 function findSequence(goal) {
   function find(start, history) {
@@ -253,6 +235,18 @@ function findSequence(goal) {
             .then(response => response.json())
             .then(obj => {
                 debugger;
+                try {
+                    test = [];
+                    ok = obj.data.data.sort(function (a, b) {
+
+                        if (('comment' in a) && ('comment' in b) && ('num' in a.comment) && ('num' in b.comment) && ('smiles' in a.comment.num) && ('smiles' in b.comment.num)) {
+                            test.push({smiles: a.comment.num.smiles, text: a.comment.text});
+                            return b.comment.num.smiles - a.comment.num.smiles;
+                        } else return null;
+                    });
+                } catch {
+                }
+                console.log(test);
                 value = JSON.stringify(obj, null, ' ');
                 //	hljs.highlightBlock(pre);
                 editor.setValue(value);
