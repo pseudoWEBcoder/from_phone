@@ -1,3 +1,9 @@
+<!doctype html>
+
+<title>CodeMirror: Theme Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/doc/docs.css">
+
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/3024-day.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/3024-night.css">
@@ -60,132 +66,131 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/darcula.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/yonce.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/zenburn.css">
-<!--<script charset="UTF-8" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/go.min.js"></script>-->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/foldgutter.min.css"/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/foldcode.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/foldgutter.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/brace-fold.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/xml-fold.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/indent-fold.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/markdown-fold.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/fold/comment-fold.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/javascript/javascript.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/xml/xml.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/css/css.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/htmlmixed/htmlmixed.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/python/python.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/markdown/markdown.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css"/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/selection/active-line.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/edit/matchbrackets.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/javascript/javascript.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/selection/active-line.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/edit/matchbrackets.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/lib/codemirror.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/foldgutter.css"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/lib/codemirror.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/foldcode.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/foldgutter.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/brace-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/xml-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/indent-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/markdown-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/addon/fold/comment-fold.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/javascript/javascript.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/xml/xml.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/css/css.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/htmlmixed/htmlmixed.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/python/python.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/markdown/markdown.js"></script>
+<style>
+    .CodeMirror {
+        border: 1px solid black;
+        font-size: 13px
+    }
+</style>
+<div id=nav>
+    <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo
+                                                             src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/doc/logo.png"></a>
 
-<textarea id="pre"></textarea>
+    <ul>
+        <li><a href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/index.html">Home</a>
+        <li><a href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/doc/manual.html">Manual</a>
+        <li><a href="https://github.com/codemirror/codemirror">Code</a>
+    </ul>
+    <ul>
+        <li><a class=active href="#">Theme</a>
+    </ul>
+</div>
 
-<p>Select a theme: <select onchange="selectTheme()" id=select>
-        <option selected>default</option>
-        <option>3024-day</option>
-        <option>3024-night</option>
-        <option>abcdef</option>
-        <option>ambiance</option>
-        <option>ayu-dark</option>
-        <option>ayu-mirage</option>
-        <option>base16-dark</option>
-        <option>base16-light</option>
-        <option>bespin</option>
-        <option>blackboard</option>
-        <option>cobalt</option>
-        <option>colorforth</option>
-        <option>darcula</option>
-        <option>dracula</option>
-        <option>duotone-dark</option>
-        <option>duotone-light</option>
-        <option>eclipse</option>
-        <option>elegant</option>
-        <option>erlang-dark</option>
-        <option>gruvbox-dark</option>
-        <option>hopscotch</option>
-        <option>icecoder</option>
-        <option selected>idea</option>
-        <option>isotope</option>
-        <option>lesser-dark</option>
-        <option>liquibyte</option>
-        <option>lucario</option>
-        <option>material</option>
-        <option>material-darker</option>
-        <option>material-palenight</option>
-        <option>material-ocean</option>
-        <option>mbo</option>
-        <option>mdn-like</option>
-        <option>midnight</option>
-        <option>monokai</option>
-        <option>moxer</option>
-        <option>neat</option>
-        <option>neo</option>
-        <option>night</option>
-        <option>nord</option>
-        <option>oceanic-next</option>
-        <option>panda-syntax</option>
-        <option>paraiso-dark</option>
-        <option>paraiso-light</option>
-        <option>pastel-on-dark</option>
-        <option>railscasts</option>
-        <option>rubyblue</option>
-        <option>seti</option>
-        <option>shadowfox</option>
-        <option>solarized dark</option>
-        <option>solarized light</option>
-        <option>the-matrix</option>
-        <option>tomorrow-night-bright</option>
-        <option>tomorrow-night-eighties</option>
-        <option>ttcn</option>
-        <option>twilight</option>
-        <option>vibrant-ink</option>
-        <option>xq-dark</option>
-        <option>xq-light</option>
-        <option>yeti</option>
-        <option>yonce</option>
-        <option>zenburn</option>
-    </select></p>
-<?php
-function main (){
-$file = 'i2.json';
-if(!file_exists($file))
-	die('no file');
-$json = file_get_contents($file);
-$json = mb_convert_encoding($json, mb_detect_encoding($json), 'UTF-8');
-/*$Json= preg_replace('/^.*?(\{.+)$/','$1',$json);
-$Json = preg_replace('/[[:cntrl:]]/', '', $Json);*/
-$decode= json_decode($json,1);
-if(is_array($decode))
-	{
-		$mass = $decode['data']['data'];
-	usort($mass, function ($a,$b){
-		$k1= ($a['comment']['num']['smiles']*1);
-		$k2=($b['comment']['num']['smiles']*1);
-			if($k1 ==$k2)
-return false;
-return $k1 < $k2?1:-1;
-	//return > ($b['comment']['num']['smiles']*1)? 1:-1 ;
-	});
-	}
-$json_last_error_msg=json_last_error_msg();
-//var_dump(compact('mass'));
+<article>
+    <h2>Theme Demo</h2>
+    <form><textarea id="code" name="code">
+function findSequence(goal) {
+  function find(start, history) {
+    if (start == goal)
+      return history;
+    else if (start > goal)
+      return null;
+    else
+      return find(start + 5, "(" + history + " + 5)") ||
+             find(start * 3, "(" + history + " * 3)");
+  }
+  return find(1, "1");
+}</textarea></form>
 
-$petty =  json_encode(json_decode($json),JSON_PRETTY_PRINT,JSON_UNESCAPED_UNICODE);
-file_put_contents('i2_formatted.json',$petty); 
+    <p>Select a theme: <select onchange="selectTheme()" id=select>
+            <option selected>default</option>
+            <option>3024-day</option>
+            <option>3024-night</option>
+            <option>abcdef</option>
+            <option>ambiance</option>
+            <option>ayu-dark</option>
+            <option>ayu-mirage</option>
+            <option>base16-dark</option>
+            <option>base16-light</option>
+            <option>bespin</option>
+            <option>blackboard</option>
+            <option>cobalt</option>
+            <option>colorforth</option>
+            <option>darcula</option>
+            <option>dracula</option>
+            <option>duotone-dark</option>
+            <option>duotone-light</option>
+            <option>eclipse</option>
+            <option>elegant</option>
+            <option>erlang-dark</option>
+            <option>gruvbox-dark</option>
+            <option>hopscotch</option>
+            <option>icecoder</option>
+            <option>idea</option>
+            <option>isotope</option>
+            <option>lesser-dark</option>
+            <option>liquibyte</option>
+            <option>lucario</option>
+            <option>material</option>
+            <option>material-darker</option>
+            <option>material-palenight</option>
+            <option>material-ocean</option>
+            <option>mbo</option>
+            <option>mdn-like</option>
+            <option>midnight</option>
+            <option>monokai</option>
+            <option>moxer</option>
+            <option>neat</option>
+            <option>neo</option>
+            <option>night</option>
+            <option>nord</option>
+            <option>oceanic-next</option>
+            <option>panda-syntax</option>
+            <option>paraiso-dark</option>
+            <option>paraiso-light</option>
+            <option>pastel-on-dark</option>
+            <option>railscasts</option>
+            <option>rubyblue</option>
+            <option>seti</option>
+            <option>shadowfox</option>
+            <option>solarized dark</option>
+            <option>solarized light</option>
+            <option>the-matrix</option>
+            <option>tomorrow-night-bright</option>
+            <option>tomorrow-night-eighties</option>
+            <option>ttcn</option>
+            <option>twilight</option>
+            <option>vibrant-ink</option>
+            <option>xq-dark</option>
+            <option>xq-light</option>
+            <option>yeti</option>
+            <option>yonce</option>
+            <option>zenburn</option>
+        </select>
+    </p>
 
-}
-main();
-
-?>
-<script>
-    try {
-        pre = document.getElementById('pre');
-        input = document.getElementById("select");
-        window.editor = CodeMirror.fromTextArea(pre, {
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
             mode: {name: "javascript", json: true},
             lineNumbers: true,
             lineWrapping: true,
@@ -199,33 +204,40 @@ main();
             foldOptions: {
                 widget: (from, to) => {
                     var count = undefined;
-// Get open / close token 
+
+                    // Get open / close token
                     var startToken = '{', endToken = '}';
-                    var prevLine = window.editor_json.getLine(from.line);
+                    var prevLine = window.editor.getLine(from.line);
                     if (prevLine.lastIndexOf('[') > prevLine.lastIndexOf('{')) {
                         startToken = '[', endToken = ']';
                     }
-// Get json content 
-                    var internal = window.editor_json.getRange(from, to);
+
+                    // Get json content
+                    var internal = window.editor.getRange(from, to);
                     var toParse = startToken + internal + endToken;
-// Get key count
+
+                    // Get key count
                     try {
                         var parsed = JSON.parse(toParse);
                         count = Object.keys(parsed).length;
                     } catch (e) {
                     }
+
                     return count ? `\u21A4${count}\u21A6` : '\u2194';
                 }
             }
         });
+        var input = document.getElementById("select");
 
-        window.selectTheme = function () {
-            console.log(editor);
+        function selectTheme() {
             var theme = input.options[input.selectedIndex].textContent;
             editor.setOption("theme", theme);
             location.hash = "#" + theme;
         }
-        var choice = (location.hash && location.hash.slice(1)) || (document.location.search && decodeURIComponent(document.location.search.slice(1)));
+
+        var choice = (location.hash && location.hash.slice(1)) ||
+            (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
         if (choice) {
             input.value = choice;
             editor.setOption("theme", choice);
@@ -237,34 +249,16 @@ main();
                 selectTheme();
             }
         });
-
-        function load() {
-            debugger;
-
-            fetch('/i2_formatted.json')
-                .then(response => response.json())
-                .then(obj => {
-                    debugger;
-                    value = JSON.stringify(obj, null, ' ');
-                    //	hljs.highlightBlock(pre);
-                    editor.setValue(value);
-                })
-                .catch(function (error) {
-                    console.error('Request failed', error);
-                });
-
-            //  input.onchange = window.selectTheme
-        }//load
-
-        load();
-    } catch (e) {
-        console.error(e);
-        alert(e['message']);
-
-    }
-</script>\
-<!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">-->
-<!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/idea.min.css">-->
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>-->
-<!-- and it's easy to individually load additional languages -->
-
+        fetch('/i2_formatted.json')
+            .then(response => response.json())
+            .then(obj => {
+                debugger;
+                value = JSON.stringify(obj, null, ' ');
+                //	hljs.highlightBlock(pre);
+                editor.setValue(value);
+            })
+            .catch(function (error) {
+                console.error('Request failed', error);
+            });
+    </script>
+</article>
