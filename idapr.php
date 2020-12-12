@@ -179,7 +179,8 @@ function findSequence(goal) {
             extraKeys: {
                 "Ctrl-Q": function (cm) {
                     cm.foldCode(cm.getCursor());
-                }
+                },
+"F11": function(cm) { cm.setOption("fullScreen", !cm.getOption("fullScreen")); }, "Esc": function(cm) { if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false); }
             },
             foldGutter: true,
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
@@ -232,7 +233,9 @@ function findSequence(goal) {
             }
         });
 ;
-        fetch('/trash/i2_formatted.json')
+editor.setOption("fullScreen", true);
+        //fetch('/trash/i2_formatted.json')
+fetch('/trash/i3_formatted.json (1)')
             .then(response => response.json())
             .then(obj => {
                 debugger;
@@ -245,10 +248,12 @@ function findSequence(goal) {
                             return b.comment.num.smiles - a.comment.num.smiles;
                         } else return null;
                     });
+//alert (JSON.stringify(test));
                 } catch {
                 }
                 console.log(test);
-                value = JSON.stringify(obj, null, ' ');
+    //value = JSON.stringify(obj, null, ' ');
+                value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
                 //	hljs.highlightBlock(pre);
                 editor.setValue(value);
             })
