@@ -231,7 +231,8 @@ function findSequence(goal) {
                 selectTheme();
             }
         });
-        fetch('/i2_formatted.json')
+;
+        fetch('/trash/i2_formatted.json')
             .then(response => response.json())
             .then(obj => {
                 debugger;
