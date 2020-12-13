@@ -253,7 +253,8 @@ fetch('/trash/i3_formatted.json (1)')
                 }
                 console.log(test);
     //value = JSON.stringify(obj, null, ' ');
-                value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
+  value = JSON.stringify(ok, null, ' ');
+               // value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
                 //	hljs.highlightBlock(pre);
                 editor.setValue(value);
             })
