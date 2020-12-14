@@ -6,7 +6,22 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit20f0920fcfbf504d810aa848e270e666
 {
+    public static $prefixLengthsPsr4 = array (
+        'C' => 
+        array (
+            'Curl\\' => 5,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Curl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-curl-class/php-curl-class/src/Curl',
+        ),
+    );
+
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'IdiormMethodMissingException' => __DIR__ . '/..' . '/j4mie/idiorm/idiorm.php',
         'IdiormResultSet' => __DIR__ . '/..' . '/j4mie/idiorm/idiorm.php',
         'IdiormString' => __DIR__ . '/..' . '/j4mie/idiorm/idiorm.php',
@@ -17,6 +32,8 @@ class ComposerStaticInit20f0920fcfbf504d810aa848e270e666
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit20f0920fcfbf504d810aa848e270e666::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit20f0920fcfbf504d810aa848e270e666::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit20f0920fcfbf504d810aa848e270e666::$classMap;
 
         }, null, ClassLoader::class);
