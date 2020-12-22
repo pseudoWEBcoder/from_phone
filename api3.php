@@ -55,6 +55,20 @@ $ch, CURLOPT_POSTFIELDS,
                 ) {
                     return "FAIL: CURLOPT_POSTFIELDS[]" . $fields . ']';
                 }
+$headers = [
+':authority:'=>' idaprikol.ru',
+':method:'=>' POST',
+':path:'=>' /oauth/login',
+':scheme:'=>' https',
+'accept'=>' application/json, text/plain, accept-encoding: gzip, deflate, br',
+'accept-language'=>' ru',
+'content-length'=>mb_strlen($fields),
+'content-type'=>' application/json;charset=UTF-8'];
+if(!curl_setopt($ch,CURLOPT_HTTPHEADER,$headers))
+	    return "FAIL: CURLOPT_HTTPHEADER";
+            
+if(!curl_setopt($ch,CURLOPT_HEADER,$headers))
+	    return "FAIL: CURLOPT_HEADER";
             }
             if (!($response = curl_exec($ch))) {
                 return "FAIL: curl_exec()";
@@ -79,10 +93,11 @@ $ch, CURLOPT_POSTFIELDS,
 
 // Download from 'example.com' to 'example.txt'
 $host = 'https://idaprikol.ru';
-$data = array(
+$data = [
     'p' . 'ass' . 'word' => '49714971Hh',
-    'username' => 'eupseu@mail.ru'
-);
+    'username' => 'eupseu@mail.ru',
+'email'=> 'eupseu@mail.ru'
+];
 $url['login'] = '/oauth/login';
 $url['api'] = '/api/news?limit=490';
 echo '<ul>';
