@@ -169,6 +169,7 @@ function findSequence(goal) {
             <option>yonce</option>
             <option>zenburn</option>
         </select>
+<a href="#"id ="src">load src</a>
     </p>
 
     <script>
@@ -233,13 +234,21 @@ function findSequence(goal) {
             }
         });
 ;
+
 editor.setOption("fullScreen", true);
-        //fetch('/trash/i2_formatted.json')
-fetch('/trash/i3_formatted.json (1)')
-            .then(response => response.json())
+a= document.getElementById('src');
+url = '/trash/i3_formatted.json (1)';
+a.href= url;
+a.innerHTML=url;
+      
+fetch(url)
+            .then(response => response.text())
             .then(obj => {
                 debugger;
+alert('248');
                 try {
+	obj = JSON.parse(obj);
+	alert('251');
                     test = [];
                     ok = obj.data.data.sort(function (a, b) {
 
@@ -249,16 +258,21 @@ fetch('/trash/i3_formatted.json (1)')
                         } else return null;
                     });
 //alert (JSON.stringify(test));
-                } catch {
-                }
+              
                 console.log(test);
     //value = JSON.stringify(obj, null, ' ');
   value = JSON.stringify(ok, null, ' ');
                // value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
                 //	hljs.highlightBlock(pre);
                 editor.setValue(value);
+  } catch(e) {
+	alert('parse error \n'+e['message']);
+	editor.setValue(obj)
+	
+                }
             })
             .catch(function (error) {
+	alert('Request failed'+ error);
                 console.error('Request failed', error);
             });
     </script>

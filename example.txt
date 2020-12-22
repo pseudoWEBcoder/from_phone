@@ -1,0 +1,60 @@
+
+
+22.12.2020 08:09:44
+
+
+
+https://idaprikol.ru/oauth/login
+
+
+запрос:
+POST /oauth/login HTTP/1.1
+Host: idaprikol.ru
+Accept: */*
+Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; LAST_VISIT_AT=1608653342175; SID=s%3A8PVMHCYpZRLfqtlx8KS3eVKmveJL4_Xr.YzF%2FagmXtlJnfh5QmglEWziQm3K3eM8idlBsTRPnQuM; UID=d869390c470f68943539f42c33ac8aee2f5246c683557338cf8dca87b78d1671
+Content-Length: 45
+Content-Type: application/x-www-form-urlencoded
+
+
+##
+ответ:
+HTTP/1.1 400 Bad Request
+Server: nginx
+Date: Tue, 22 Dec 2020 18:09:45 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 221
+Connection: keep-alive
+Vary: X-HTTP-Method-Override, Accept-Encoding
+Set-Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Thu, 21 Jan 2021 18:09:45 GMT; HttpOnly; Secure
+Set-Cookie: SID=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+Set-Cookie: UID=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+X-Frame-Options: DENY
+ETag: W/"dd-ix7prRRj/fVswnl+QcbAxA"
+
+{"name":"MobileApiError","message":"Wrong auth type","propertyName":"body","propertyValue":{"error":"invalid_request","error_description":"Wrong auth type","status":400},"url":"http://api.ifunny.internal/v4/oauth2/token"}
+
+https://idaprikol.ru/api/news?limit=490
+
+
+запрос:
+GET /api/news?limit=490 HTTP/1.1
+Host: idaprikol.ru
+Accept: */*
+Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; LAST_VISIT_AT=1608653342175
+
+
+##
+ответ:
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 22 Dec 2020 18:09:46 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 20
+Connection: keep-alive
+Vary: Accept-Encoding
+Set-Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Thu, 21 Jan 2021 18:09:46 GMT; HttpOnly; Secure
+X-Frame-Options: DENY
+ETag: W/"14-qZ58jrz+w9g+1jAd8wUoHQ"
+Vary: Accept-Encoding
+
+{"data":{"data":[]}}

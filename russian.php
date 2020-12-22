@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
 $db = new SQLite3(__DIR__.'russian.sqlite3');
 $file=realpath ('/storage/emulated/0/Download/russian.dic/russian.dic/russian.dic');
 ini_set('memory_limit', '1024M');
