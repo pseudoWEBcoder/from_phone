@@ -31,11 +31,7 @@ function cURLdownload($url, $file, array $data = [])
         $COOKIEJAR = $COOKIEFILE;
         if ($fp) {
             fwrite($fp, PHP_EOL . PHP_EOL . $url . PHP_EOL . PHP_EOL . PHP_EOL);
-          /*  if (!curl_setopt($ch, CURLOPT_URL, $url)) {
-                fclose($fp); // to match fopen()
-                curl_close($ch); // to match curl_init()
-                return "FAIL: curl_setopt(CURLOPT_URL)";
-            }*/
+      
             $opts = [
 CURLOPT_URL=>$url,
                 CURLOPT_RETURNTRANSFER => true,
@@ -49,18 +45,12 @@ CURLOPT_URL=>$url,
                     return "FAIL: curl_setopt(" . $opt . ")";
                 }
             }
-            /*
-if( !curl_setopt($ch, CURLOPT_HEADER, true) ) return "FAIL: curl_setopt(CURLOPT_HEADER)";
-if( !curl_setopt($ch, CURLOPT_COOKIEFILE, $COOKIEFILE) ) return "FAIL: curl_setopt(CURLOPT_COOKIEFILE)";
-if( !curl_setopt($ch, CURLOPT_COOKIEJAR, $COOKIEFILE) ) return "FAIL: curl_setopt(CURLOPT_COOKIEJAR;)";
- */ if (
-                $data
-            ) {
+            if (
+                $data ) {
                 if (
                     !curl_setopt(
-                        $ch,
-                        CURLOPT_POSTFIELDS,
-                        $fields = http_build_query($data)
+$ch, CURLOPT_POSTFIELDS,
+                        $fields = json_encode($data)
                     )
                 ) {
                     return "FAIL: CURLOPT_POSTFIELDS[]" . $fields . ']';
@@ -74,7 +64,7 @@ if( !curl_setopt($ch, CURLOPT_COOKIEJAR, $COOKIEFILE) ) return "FAIL: curl_setop
             $header = substr($response, 0, $header_size);
             $body = substr($response, $header_size);
             $request_headers = curl_getinfo($ch, CURLINFO_HEADER_OUT);
-            fwrite($fp,  'запрос:'.PHP_EOL .$request_headers . $split . 'ответ:'.PHP_EOL . $response);
+            fwrite($fp,  'запрос:'.PHP_EOL .$request_headers.($fields?'fields:'.var_export($fields,1):''). $split . 'ответ:'.PHP_EOL . $response);
             curl_close($ch);
             fclose($fp);
 
