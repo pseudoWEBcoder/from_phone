@@ -31,10 +31,14 @@ sec-fetch-site: same-origin
 user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 OPR/71.0.3770.284
 x-requested-with: XMLHttpRequest';
 
-$explode = explode($headers, PHP_EOL);
+$explode = explode("\n", $headers);
 foreach ($explode as $i => $v) {
-    $V = explode($v, ':');
-    $curl->setHeader('Content-Type', 'application/json');
+    $V = explode(':', $v);
+    if (count($V) > 2) {
+        $curl->setHeader(':'._trim($V[1].':'), _trim($V[2]));
+    } else {
+        $curl->setHeader(_trim($V[0]), _trim($V[1]));
+    }
 }
 $curl->post($host . '/oauth/login', $data);
 $response = $curl->response;
@@ -52,4 +56,8 @@ $context = stream_context_create($opts);
 // Open the file using the HTTP headers set above
 $file = file_get_contents('https://idaprikol.ru/api/news?limit=490', false, $context);
 echo $file;
+function _trim($str ,$charlist = "\r\n\s\t " )
+{
+    return mb_strlen($str) ? trim($str,  $charlist) : $str;
+}
 ?>
