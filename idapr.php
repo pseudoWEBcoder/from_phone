@@ -171,12 +171,13 @@ function findSequence(goal) {
         </select>
 <a href="#"id ="src">load src</a>
     </p>
-
+<ol id="ul"></ol>
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
             mode: {name: "javascript", json: true},
             lineNumbers: true,
             lineWrapping: true,
+matchBrackets:true,
             extraKeys: {
                 "Ctrl-Q": function (cm) {
                     cm.foldCode(cm.getCursor());
@@ -234,10 +235,17 @@ function findSequence(goal) {
             }
         });
 ;
+debug= true;// выключить везде
+function _alert(message, required){
+	required=required||false;// принудительно для одного
+if(debug ||required)
+	alert(message);
+}
 
 editor.setOption("fullScreen", true);
 a= document.getElementById('src');
 url = '/trash/i3_formatted.json (1)';
+url = '/trash/news (2).json';
 a.href= url;
 a.innerHTML=url;
       
@@ -245,34 +253,73 @@ fetch(url)
             .then(response => response.text())
             .then(obj => {
                 debugger;
-alert('248');
+_alert('248');
                 try {
-	obj = JSON.parse(obj);
-	alert('251');
+	obj = obj1=JSON.parse(obj);
+	_alert('251');
                     test = [];
+sort= false;
+if(sort){
                     ok = obj.data.data.sort(function (a, b) {
 
                         if (('comment' in a) && ('comment' in b) && ('num' in a.comment) && ('num' in b.comment) && ('smiles' in a.comment.num) && ('smiles' in b.comment.num)) {
                             test.push({smiles: a.comment.num.smiles, text: a.comment.text});
                             return b.comment.num.smiles - a.comment.num.smiles;
                         } else return null;
-                    });
-//alert (JSON.stringify(test));
+                    });}
+//_alert (JSON.stringify(test));
               
                 console.log(test);
     //value = JSON.stringify(obj, null, ' ');
-  value = JSON.stringify(ok, null, ' ');
+  value = JSON.stringify(obj, null, ' ');
                // value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
                 //	hljs.highlightBlock(pre);
+_alert('268\n'+ value);
                 editor.setValue(value);
+ul = document.querySelector("#ul");
+types={0:{},bytype:{}};
+
+obj.data.data.forEach(function (v,i,arr){
+	keys = Object.keys(v) ;
+	types['0'][keys[0]]=(typeof types['0'][keys[0]]=="undefined")?1: types['0'][keys[0]]+1; 
+types['bytype'][v.type]= ((typeof types['bytype'][v.type]== "undefined")?1: types['bytype'][v.type]+1);
+li = document.createElement('li' ) ;
+if('comment' in v){
+	if('id' in v.comment){
+		li.setAttribute('id', v.comment.id);
+	}
+	}
+//li.innerHTML='<b>'+v['comment']['num']['smiles']+'</b> <code>'+v['comment']['text']+'</code>';
+li.innerHTML=item(v);
+ul.appendChild(li);
+})
+function item(v){
+	if(typeof v['type']== 'undefuned')
+		return '??';
+		else 
+			type = v['type'];
+		if(type=='reply_for_comment')
+			{
+				if('comment' in v){
+				str='<b>'+v['comment']['num']['smiles']+'</b> <code>'+v['comment']['text']+'</code>';
+		if('reply' in v){
+			
+				str+='<ul><li><b>'+v['reply']['num']['smiles']+'</b> <code>'+v['reply']['text']+'</code></li></ul>';
+			}
+			return str;
+				}
+		}
+		return type;
+}
+_alert(JSON.stringify(types,null,' '));
   } catch(e) {
-	alert('parse error \n'+e['message']);
+	_alert('parse error \n'+e['message'],true);
 	editor.setValue(obj)
 	
                 }
             })
             .catch(function (error) {
-	alert('Request failed'+ error);
+	_alert('Request failed'+ error, true);
                 console.error('Request failed', error);
             });
     </script>

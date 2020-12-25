@@ -67,7 +67,7 @@ $headers = [
 if(!curl_setopt($ch,CURLOPT_HTTPHEADER,$headers))
 	    return "FAIL: CURLOPT_HTTPHEADER";
             
-if(!curl_setopt($ch,CURLOPT_HEADER,$headers))
+if(!curl_setopt($ch,CURLOPT_HEADER,true))
 	    return "FAIL: CURLOPT_HEADER";
             }
             if (!($response = curl_exec($ch))) {
@@ -95,7 +95,7 @@ if(!curl_setopt($ch,CURLOPT_HEADER,$headers))
 $host = 'https://idaprikol.ru';
 $data = [
     'p' . 'ass' . 'word' => '49714971Hh',
-    'username' => 'eupseu@mail.ru',
+    //'username' => 'eupseu@mail.ru',
 'email'=> 'eupseu@mail.ru'
 ];
 $url['login'] = '/oauth/login';
@@ -113,3 +113,5 @@ die('</ul><hr/>');
 ?>
 
 
+<hr/>');
+?>
