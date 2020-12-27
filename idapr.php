@@ -86,6 +86,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/htmlmixed/htmlmixed.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/python/python.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/markdown/markdown.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 
 <article>
@@ -169,22 +171,39 @@ function findSequence(goal) {
             <option>yonce</option>
             <option>zenburn</option>
         </select>
-<a href="#"id ="src">load src</a>
+        <a href="#" id="src">load src</a>
     </p>
-<ol id="ul"></ol>
+    <a href="" id="collapseall">collapse all</a>
+    <a href="" id="expandall">Expand all</a>
+
+    <ol id="ul"></ol>
     <script>
+        downarrow = 'body > article > form > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code > div:nth-child(5) > div > div:nth-child(2) > div';
+        right_arrow = 'body > article > form > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code > div:nth-child(21) > div > div:nth-child(2) > div';
+        jQuery(document).ready(function () {
+            $(document).on('ckick', collapseall, function () {
+                jQuery()
+
+            })
+
+        })
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
             mode: {name: "javascript", json: true},
             lineNumbers: true,
             lineWrapping: true,
-matchBrackets:true,
+            matchBrackets: true,
             extraKeys: {
                 "Ctrl-Q": function (cm) {
                     cm.foldCode(cm.getCursor());
                 },
-"F11": function(cm) { cm.setOption("fullScreen", !cm.getOption("fullScreen")); }, "Esc": function(cm) { if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false); }
+                "F11": function (cm) {
+                    cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                }, "Esc": function (cm) {
+                    if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                }
             },
             foldGutter: true,
+
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
             foldOptions: {
                 widget: (from, to) => {
@@ -212,6 +231,10 @@ matchBrackets:true,
                 }
             }
         });
+        editor.setOption("extraKeys", {
+            "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+            "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm),
+        })
         var input = document.getElementById("select");
 
         function selectTheme() {
@@ -234,92 +257,95 @@ matchBrackets:true,
                 selectTheme();
             }
         });
-;
-debug= true;// выключить везде
-function _alert(message, required){
-	required=required||false;// принудительно для одного
-if(debug ||required)
-	alert(message);
-}
 
-editor.setOption("fullScreen", true);
-a= document.getElementById('src');
-url = '/trash/i3_formatted.json (1)';
-url = '/trash/news (2).json';
-a.href= url;
-a.innerHTML=url;
-      
-fetch(url)
+        debug = false;// выключить везде
+        function _alert(message, required) {
+            required = required || false;// принудительно для одного
+            if (debug || required)
+                alert(message);
+        }
+
+        editor.setOption("fullScreen", true);
+        a = document.getElementById('src');
+        url = '/trash/i3_formatted.json (1)';
+        url = '/trash/news (2).json';
+        url = '/news (2).json';
+        a.href = url;
+        a.innerHTML = url;
+
+        fetch(url)
             .then(response => response.text())
             .then(obj => {
                 debugger;
-_alert('248');
+                _alert('248');
                 try {
-	obj = obj1=JSON.parse(obj);
-	_alert('251');
+                    obj = obj1 = JSON.parse(obj);
+                    _alert('251', true);
                     test = [];
-sort= false;
-if(sort){
-                    ok = obj.data.data.sort(function (a, b) {
+                    sort = false;
+                    if (sort) {
+                        ok = obj.data.data.sort(function (a, b) {
 
-                        if (('comment' in a) && ('comment' in b) && ('num' in a.comment) && ('num' in b.comment) && ('smiles' in a.comment.num) && ('smiles' in b.comment.num)) {
-                            test.push({smiles: a.comment.num.smiles, text: a.comment.text});
-                            return b.comment.num.smiles - a.comment.num.smiles;
-                        } else return null;
-                    });}
+                            if (('comment' in a) && ('comment' in b) && ('num' in a.comment) && ('num' in b.comment) && ('smiles' in a.comment.num) && ('smiles' in b.comment.num)) {
+                                test.push({smiles: a.comment.num.smiles, text: a.comment.text});
+                                return b.comment.num.smiles - a.comment.num.smiles;
+                            } else return null;
+                        });
+                    }
 //_alert (JSON.stringify(test));
-              
-                console.log(test);
-    //value = JSON.stringify(obj, null, ' ');
-  value = JSON.stringify(obj, null, ' ');
-               // value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
-                //	hljs.highlightBlock(pre);
-_alert('268\n'+ value);
-                editor.setValue(value);
-ul = document.querySelector("#ul");
-types={0:{},bytype:{}};
 
-obj.data.data.forEach(function (v,i,arr){
-	keys = Object.keys(v) ;
-	types['0'][keys[0]]=(typeof types['0'][keys[0]]=="undefined")?1: types['0'][keys[0]]+1; 
-types['bytype'][v.type]= ((typeof types['bytype'][v.type]== "undefined")?1: types['bytype'][v.type]+1);
-li = document.createElement('li' ) ;
-if('comment' in v){
-	if('id' in v.comment){
-		li.setAttribute('id', v.comment.id);
-	}
-	}
+                    console.log(test);
+                    //value = JSON.stringify(obj, null, ' ');
+                    value = JSON.stringify(obj, null, ' ');
+                    // value = JSON.stringify(test.sort((a,b)=>{return b.smiles - a.smiles;}), null, ' ');
+                    //	hljs.highlightBlock(pre);
+                    _alert('268\n' + value);
+                    editor.setValue(value);
+                    ul = document.querySelector("#ul");
+                    types = {0: {}, bytype: {}};
+
+                    obj.data.data.forEach(function (v, i, arr) {
+                        keys = Object.keys(v);
+                        types['0'][keys[0]] = (typeof types['0'][keys[0]] == "undefined") ? 1 : types['0'][keys[0]] + 1;
+                        types['bytype'][v.type] = ((typeof types['bytype'][v.type] == "undefined") ? 1 : types['bytype'][v.type] + 1);
+                        li = document.createElement('li');
+                        if ('comment' in v) {
+                            if ('id' in v.comment) {
+                                li.setAttribute('id', v.comment.id);
+                            }
+                        }
 //li.innerHTML='<b>'+v['comment']['num']['smiles']+'</b> <code>'+v['comment']['text']+'</code>';
-li.innerHTML=item(v);
-ul.appendChild(li);
-})
-function item(v){
-	if(typeof v['type']== 'undefuned')
-		return '??';
-		else 
-			type = v['type'];
-		if(type=='reply_for_comment')
-			{
-				if('comment' in v){
-				str='<b>'+v['comment']['num']['smiles']+'</b> <code>'+v['comment']['text']+'</code>';
-		if('reply' in v){
-			
-				str+='<ul><li><b>'+v['reply']['num']['smiles']+'</b> <code>'+v['reply']['text']+'</code></li></ul>';
-			}
-			return str;
-				}
-		}
-		return type;
-}
-_alert(JSON.stringify(types,null,' '));
-  } catch(e) {
-	_alert('parse error \n'+e['message'],true);
-	editor.setValue(obj)
-	
+                        li.innerHTML = item(v);
+                        ul.appendChild(li);
+                    })
+
+                    function item(v) {
+                        if (typeof v['type'] == 'undefuned')
+                            return '??';
+                        else
+                            type = v['type'];
+                        if (type == 'reply_for_comment') {
+                            if ('comment' in v) {
+                                str = '<b>' + v['comment']['num']['smiles'] + '</b> <code>' + v['comment']['text'] + '</code>';
+                                if ('reply' in v) {
+
+                                    str += '<ul><li><b>' + v['reply']['num']['smiles'] + '</b> <code>' + v['reply']['text'] + '</code></li></ul>';
+                                }
+                                return str;
+                            }
+                        }
+                        return type;
+                    }
+
+                    _alert(JSON.stringify(types, null, ' '));
+                } catch (e) {
+                    _alert('parse error \n' + e['message'], true);
+                    editor.setValue(obj)
+
                 }
             })
             .catch(function (error) {
-	_alert('Request failed'+ error, true);
+                _alert('Request failed' + error, true);
                 console.error('Request failed', error);
             });
     </script>

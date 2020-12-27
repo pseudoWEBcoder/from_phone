@@ -40,11 +40,14 @@ foreach ($chunks = array_chunk($lines, 400) as $chunk_num => $chunk) {
             $ok = $request->save();
             echo 'item' . $num . ' at ' . ($cn = count($chunk)) . PHP_EOL;
 
+        } else {
+            echo 'item' . $num . ' at ' . ($cn = count($chunk)) . '.. skipt' . PHP_EOL;
+
         }
-        echo 'CHUNK ' . $chunk_num . ' at ' . ($cn = count($chunks)) . '  .. ' . (count($matches) ? 'skit' : ($ok ? 'OK' : 'FAIL')) . PHP_EOL;
     }
+    echo 'CHUNK ' . $chunk_num . ' at ' . ($cnn = count($chunks)) . '  .. ' . (count($matches) ? 'skit' : ($ok ? 'OK' : 'FAIL')) . PHP_EOL;
 }
-echo PHP_EOL . PHP_EOL . 'ok';
+echo PHP_EOL . PHP_EOL . 'ok' . PHP_EOL;
 //foreach (array_chunk($lines, 400) as $chunk) {
 //    { $sql = [];
 //        foreach ($chunk as $index => $word) {
