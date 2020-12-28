@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 
 
-23.12.2020 02:13:19
+28.12.2020 02:50:35
 
 
 
@@ -9,64 +8,27 @@ https://idaprikol.ru/oauth/login
 
 
 запрос:
-POST /oauth/login HTTP/1.1
+POST /oauth/login HTTP/2
 Host: idaprikol.ru
 Accept: */*
-Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; LAST_VISIT_AT=1608653342175
- application/json, text/plain, accept-encoding: gzip, deflate, br
-Content-Length: 50
+Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5
+Content-Length: 53
 Content-Type: application/x-www-form-urlencoded
 
-fields:'{"password":"49714971Hh","email":"eupseu@mail.ru"}'
+fields:'{"password":"49714971Hh","username":"eupseu@mail.ru"}'
 ##
 ответ:
-HTTP/1.1 401 Unauthorized
-Server: nginx
-Date: Wed, 23 Dec 2020 00:13:21 GMT
-Content-Type: application/json; charset=utf-8
-Content-Length: 84
-Connection: keep-alive
-Vary: X-HTTP-Method-Override, Accept-Encoding
-Set-Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Fri, 22 Jan 2021 00:13:21 GMT; HttpOnly; Secure
-X-Frame-Options: DENY
-ETag: W/"54-G7l5PCt7e7ER0egbaCnrcg"
+HTTP/2 401 
+server: nginx
+date: Sun, 27 Dec 2020 22:50:39 GMT
+content-type: application/json; charset=utf-8
+content-length: 84
+vary: X-HTTP-Method-Override, Accept-Encoding
+set-cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Tue, 26 Jan 2021 22:50:39 GMT; HttpOnly; Secure
+x-frame-options: DENY
+etag: W/"54-G7l5PCt7e7ER0egbaCnrcg"
 
 {"status":401,"type":"field_required","message":"field is required","field":"email"}
-
-https://idaprikol.ru/api/news?limit=490
-
-
-запрос:
-GET /api/news?limit=490 HTTP/1.1
-Host: idaprikol.ru
-Accept: */*
-Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; LAST_VISIT_AT=1608653342175
-
-
-##
-ответ:
-HTTP/1.1 200 OK
-Server: nginx
-Date: Wed, 23 Dec 2020 00:13:22 GMT
-Content-Type: application/json; charset=utf-8
-Content-Length: 20
-Connection: keep-alive
-Vary: Accept-Encoding
-Set-Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Fri, 22 Jan 2021 00:13:22 GMT; HttpOnly; Secure
-X-Frame-Options: DENY
-ETag: W/"14-qZ58jrz+w9g+1jAd8wUoHQ"
-Vary: Accept-Encoding
-=======
-
-
-23.12.2020 07:26:15
-
-
-
-https://idaprikol.ru/oauth/login
-
-
-
 
 https://idaprikol.ru/api/news?limit=490
 
@@ -75,21 +37,20 @@ https://idaprikol.ru/api/news?limit=490
 GET /api/news?limit=490 HTTP/2
 Host: idaprikol.ru
 Accept: */*
-Cookie: LAST_VISIT_AT=1608653342175; CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5
+Cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5
 
 
 ##
 ответ:
 HTTP/2 200 
 server: nginx
-date: Wed, 23 Dec 2020 15:27:44 GMT
+date: Sun, 27 Dec 2020 22:50:40 GMT
 content-type: application/json; charset=utf-8
 content-length: 20
 vary: Accept-Encoding
-set-cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Fri, 22 Jan 2021 15:27:44 GMT; HttpOnly; Secure
+set-cookie: CID=1bd83e9d324c5f8a8e97f54474f4804510345f9422e9fe05096e805782dc79c5; Max-Age=2592000; Path=/; Expires=Tue, 26 Jan 2021 22:50:40 GMT; HttpOnly; Secure
 x-frame-options: DENY
 etag: W/"14-qZ58jrz+w9g+1jAd8wUoHQ"
 vary: Accept-Encoding
->>>>>>> b0667df74986f96551921e90f536fe2313765e61
 
 {"data":{"data":[]}}

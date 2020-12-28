@@ -25,13 +25,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="переделал     просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm">
+      <change afterPath="$PROJECT_DIR$/helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/idapr.php" beforeDir="false" afterPath="$PROJECT_DIR$/idapr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news (2).json" beforeDir="false" afterPath="$PROJECT_DIR$/news (2).json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/russian-tolk.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/russian.php" beforeDir="false" afterPath="$PROJECT_DIR$/russian.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/russian.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api3.php" beforeDir="false" afterPath="$PROJECT_DIR$/api3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request.db" beforeDir="false" afterPath="$PROJECT_DIR$/request.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/russian-tolk.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/russian-tolk.sqlite3" afterDir="false" />
+    </list>
+    <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf">
+      <change beforePath="$PROJECT_DIR$/api_cookiefile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/api_cookiefile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/example.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpDebugGeneral" break_at_first_line="true" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="trash" id="a0305393-1c18-4061-9819-0c977aaa52a8" name="trash" use_path_mappings="true">
@@ -88,6 +91,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;XML" />
+    <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../json" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
@@ -190,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607308937200</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm">
+      <created>1609105565391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609105565391</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,12 +211,12 @@
     <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
   <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
+    <option name="COLUMN_ID_ORDER">
       <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
       </list>
     </option>
   </component>
@@ -220,7 +231,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -241,7 +252,8 @@
     <MESSAGE value="переделал но не доконца" />
     <MESSAGE value="фолдинг работает  &#10;тема работает &#10; но лишнее  меню и рамка" />
     <MESSAGE value="++" />
-    <option name="LAST_COMMIT_MESSAGE" value="++" />
+    <MESSAGE value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
+    <option name="LAST_COMMIT_MESSAGE" value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -279,6 +291,36 @@
           <url>file://$PROJECT_DIR$/russian.php</url>
           <line>29</line>
           <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/api3.php</url>
+          <line>104</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/api3.php</url>
+          <line>79</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/api3.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/helper.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/helper.php</url>
+          <line>51</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/helper.php</url>
+          <line>16</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,4 +1,9 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+ORM::configure('sqlite:' . realpath('./request.db'));
+ORM::configure('logger', function ($log_string, $query_time) {
+    echo '<div><pre>' . $log_string . ' in ' . '</pre>' . $query_time . '</div>';
+});
 
 function cURLcheckBasicFunctions()
 {
@@ -20,6 +25,7 @@ function cURLcheckBasicFunctions()
  */
 function cURLdownload($url, $file, array $data = [])
 {
+    $request = ORM::for_table('requests3')->create();
     $split = PHP_EOL . '##' . PHP_EOL;
     if (!cURLcheckBasicFunctions()) {
         return "UNAVAILABLE: cURL Basic Functions";
@@ -55,52 +61,36 @@ function cURLdownload($url, $file, array $data = [])
                 ) {
                     return "FAIL: CURLOPT_POSTFIELDS[]" . $fields . ']';
                 }
-<<<<<<< HEAD
-$headers = [
-':authority:'=>' idaprikol.ru',
-':method:'=>' POST',
-':path:'=>' /oauth/login',
-':scheme:'=>' https',
-'accept'=>' application/json, text/plain, accept-encoding: gzip, deflate, br',
-'accept-language'=>' ru',
-'content-length'=>mb_strlen($fields),
-'content-type'=>' application/json;charset=UTF-8'];
-if(!curl_setopt($ch,CURLOPT_HTTPHEADER,$headers))
-	    return "FAIL: CURLOPT_HTTPHEADER";
-            
-if(!curl_setopt($ch,CURLOPT_HEADER,true))
-	    return "FAIL: CURLOPT_HEADER";
-=======
-                $headers = [
-                    ':authority:' => ' idaprikol.ru',
-                    ':method:' => ' POST',
-                    ':path:' => ' /oauth/login',
-                    ':scheme:' => ' https',
-                    'accept' => ' application/json, text/plain, accept-encoding: gzip, deflate, br',
-                    'accept-language' => ' ru',
-                    'content-length' => mb_strlen($fields),
-                    'content-type' => ' application/json;charset=UTF-8'];
-                if (!curl_setopt($ch, CURLOPT_HTTPHEADER, $headers))
-                    return "FAIL: CURLOPT_HTTPHEADER";
-
-                if (!curl_setopt($ch, CURLOPT_HEADER, $headers))
-                    return "FAIL: CURLOPT_HEADER";
->>>>>>> b0667df74986f96551921e90f536fe2313765e61
             }
             if (!($response = curl_exec($ch))) {
-                $errno =  curl_errno($ch);
-                $error =  curl_error($ch);
+
                 return "FAIL: curl_exec()";
             }
+            $group_id = ORM::getDb()->query('SELECT MAX(group_id) as max FROM requests')->fetchAll()[0]['max'];
+            $errno = curl_errno($ch);
+            $error = curl_error($ch);
             $curl_info = curl_getinfo($ch);
             $header_size = $curl_info['header_size'];
             $header = substr($response, 0, $header_size);
             $body = substr($response, $header_size);
             $request_headers = curl_getinfo($ch, CURLINFO_HEADER_OUT);
             fwrite($fp, 'запрос:' . PHP_EOL . $request_headers . ($fields ? 'fields:' . var_export($fields, 1) : '') . $split . 'ответ:' . PHP_EOL . $response);
+            $info = curl_getinfo($ch);
             curl_close($ch);
             fclose($fp);
-
+            $info['file'] = __FILE__;
+            $method = preg_match('/^(\w+)/', $request_headers, $matches);
+            $request->url = $url;
+            $request->error = implode(PHP_EOL, [$errno, $error]);
+            $request->method = $matches[1];
+            $request->request_headers = var_export($request_headers, 1);
+            $request->request_body = var_export($fields, 1);
+            $request->response_status = $info['http_code'];
+            $request->response_headers = $header;
+            $request->response_body = $body;
+            $request->group_id = $group_id;
+            $request->data = json_encode($info);
+            $request->save();
             return "SUCCESS: $file [$url]";
         } else {
             return "FAIL: fopen()";
@@ -112,16 +102,10 @@ if(!curl_setopt($ch,CURLOPT_HEADER,true))
 
 // Download from 'example.com' to 'example.txt'
 $host = 'https://idaprikol.ru';
-$data = [
-<<<<<<< HEAD
+$data = array(
     'p' . 'ass' . 'word' => '49714971Hh',
-    //'username' => 'eupseu@mail.ru',
-'email'=> 'eupseu@mail.ru'
-=======
-    'username' => 'eupseu@mail.ru',
-    'p' . 'ass' . 'word' => '49714971Hh'
->>>>>>> b0667df74986f96551921e90f536fe2313765e61
-];
+    'username' => 'eupseu@mail.ru'
+);
 $url['login'] = '/oauth/login';
 $url['api'] = '/api/news?limit=490';
 echo '<ul>';
