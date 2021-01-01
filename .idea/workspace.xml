@@ -25,9 +25,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="переделал     просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm">
+      <change afterPath="$PROJECT_DIR$/helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api3.php" beforeDir="false" afterPath="$PROJECT_DIR$/api3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request.db" beforeDir="false" afterPath="$PROJECT_DIR$/request.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/russian-tolk.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/russian-tolk.sqlite3" afterDir="false" />
+    </list>
+    <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf">
+      <change beforePath="$PROJECT_DIR$/api_cookiefile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/api_cookiefile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/example.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +53,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpDebugGeneral" break_at_first_line="true" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="trash" id="a0305393-1c18-4061-9819-0c977aaa52a8" name="trash" use_path_mappings="true">
@@ -63,6 +70,14 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/j4mie/idiorm" />
       <path value="$PROJECT_DIR$/vendor/php-curl-class/php-curl-class" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
     </include_path>
   </component>
   <component name="ProjectId" id="1W8YSiSIvzwV6FFRyfDmrHpunnF" />
@@ -76,6 +91,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;XML" />
+    <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../json" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
@@ -85,12 +101,20 @@
       <recent name="C:\OSPanel\domains\trash" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.russian.php">
+    <configuration name="idapr.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/trash/idapr.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="menu.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/menu.php">
+      <method v="2" />
+    </configuration>
+    <configuration name="russian.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/russian.php">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.russian.php" />
+        <item itemvalue="JavaScript Debug.idapr.php" />
         <item itemvalue="PHP Script.menu.php" />
       </list>
     </recent_temporary>
@@ -170,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607308937200</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm">
+      <created>1609105565391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609105565391</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,12 +211,12 @@
     <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
   <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
+    <option name="COLUMN_ID_ORDER">
       <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
       </list>
     </option>
   </component>
@@ -200,7 +231,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -221,100 +252,11 @@
     <MESSAGE value="переделал но не доконца" />
     <MESSAGE value="фолдинг работает  &#10;тема работает &#10; но лишнее  меню и рамка" />
     <MESSAGE value="++" />
-    <option name="LAST_COMMIT_MESSAGE" value="++" />
+    <MESSAGE value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
+    <option name="LAST_COMMIT_MESSAGE" value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="853" y="446" width="922" height="594" key="#xdebugger.evaluate" timestamp="1608071808458">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="853" y="446" width="922" height="594" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1608071808458" />
-    <state width="553" height="466" key="DebuggerActiveHint" timestamp="1608072015524">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="553" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1608072015524" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1607309212906">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607309212906" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1608412157333">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608412157333" />
-    <state x="317" y="40" width="1367" height="851" key="FileDocumentManager.FileCacheConflict" timestamp="1607301237573">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="317" y="40" width="1367" height="851" key="FileDocumentManager.FileCacheConflict/0.0.1920.1040@0.0.1920.1040" timestamp="1607301237573" />
-    <state x="790" y="420" key="GitRewordDialog" timestamp="1607300943532">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="790" y="420" key="GitRewordDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607300943532" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.2.center" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.2.left" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state width="1877" height="348" key="GridCell.Tab.2.right" timestamp="1608071745653">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608071745653" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607907248308">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607907248308" />
-    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1607906892229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1607906892229" />
-    <state x="599" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607302387008">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="599" y="135" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607302387008" />
-    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1607902053730">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607902053730" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,14 +282,45 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/api.php</url>
-          <line>54</line>
-          <option name="timeStamp" value="23" />
+          <condition expression="$i&gt;400" language="PHP" />
+          <url>file://$PROJECT_DIR$/russian.php</url>
+          <line>33</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/api.php</url>
-          <line>34</line>
-          <option name="timeStamp" value="26" />
+          <url>file://$PROJECT_DIR$/russian.php</url>
+          <line>29</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/api3.php</url>
+          <line>104</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/api3.php</url>
+          <line>79</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/api3.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/helper.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/helper.php</url>
+          <line>51</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/helper.php</url>
+          <line>16</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
