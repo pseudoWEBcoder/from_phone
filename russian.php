@@ -2,11 +2,12 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-$db = new SQLite3($dbfile = __DIR__ . '/russian-tolk.sqlite3');
+$db = new SQLite3($dbfile = __DIR__ . '/russian-tolk1.sqlite3');
 $desktop = 'C:\Users\alal\Downloads\russian.dic (1)\russian.dic';
 $desktop = 'C:\Users\alal\Downloads\avidreaders.ru__tolkovyy-slovar-russkogo-yazyka-1.txt\avidreaders.ru__tolkovyy-slovar-russkogo-yazyka-1.txt';
 $mobile = '/storage/emulated/0/Download/russian.dic/russian.dic/russian.dic';
 $file = realpath(is_file($desktop) ? $desktop : $mobile);
+$mobile='/storage/emulated/0/Download/avidreaders.ru__tolkovyy-slovar-russkogo-yazyka-1.txt/avidreaders.ru__tolkovyy-slovar-russkogo-yazyka-1.txt';
 ini_set('memory_limit', '1024M');
 ///$file=realpath('line.txt'); 
 $lines = file($file);
@@ -24,13 +25,17 @@ $ok = $db->query('CREATE TABLE IF NOT EXISTS "russian-tolk" (
 $superok = $ok->finalize();
 echo '<pre>';
 ORM::configure('sqlite:' . realpath($dbfile));
+ORM::configure('logging', true);
 ORM::configure('logger', function ($log_string, $query_time) {
     echo '<div><pre>' . $log_string . ' in ' . '</pre>' . $query_time . '</div>';
 });
 $request = ORM::for_table('russian-tolk')->create();
 foreach ($chunks = array_chunk($lines, 400) as $chunk_num => $chunk) {
+	var_dump($chunk);
+die('denied'.__LINE__);
     foreach ($chunk as $num => $i) {
         if (preg_match('/^([А-Я]+)(.*?)\.(.+)$/', $i, $matches)) {
+	
             $request = ORM::for_table('russian-tolk')->create();
             $request->created = time();
             $request->word = $matches[1];
