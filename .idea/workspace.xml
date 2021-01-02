@@ -25,8 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3">
-      <change afterPath="$PROJECT_DIR$/news ().json" afterDir="false" />
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
@@ -196,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609105565391</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles">
+      <created>1609605450267</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609605450267</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +255,8 @@
     <MESSAGE value="++" />
     <MESSAGE value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
     <MESSAGE value="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3" />
-    <option name="LAST_COMMIT_MESSAGE" value="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3" />
+    <MESSAGE value="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles" />
+    <option name="LAST_COMMIT_MESSAGE" value="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

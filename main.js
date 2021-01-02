@@ -118,14 +118,15 @@
                     item(v, li, ul);
                 })
 
-                function Comment(json) {
+                function Comment(json, replies) {
                     let that = this;
                     that.el = null;
                     that.ul = 'ul';
+                    that._replies = replies;
                     that.ul_replies = 'replies';
                     Object.assign(that, json);
 //добавляет li в ul
-                    that.add = function (ul) {
+                    that.Add = function (ul) {
                         this.ul = ul || document.getElementById(this.ul);
 
                         let str, li;
@@ -138,42 +139,42 @@
                         this.ul.appendChild(li);
 
                     }
-                    that.smile = function () {
-                        if (this.exists()) {
+                    that.Smile = function () {
+                        if (this.Exists()) {
                             let smiles = this.el.querySelector('b');
                             smiles.innerHTML += parseInt(smiles.innerHTML) + 1;
                         } else {
-                            this.add();
+                            this.Add();
                         }
                     }
-                    that.reply = function () {
+                    that.Reply = function () {
                         let ul;
                         ul = this.el.getElementsByClassName(this.ul_replies)[0];
                         if (!ul) {
                             ul = document.createElement('ul');
-                            ul.setAttribute('class', his.ul_replies);
+                            ul.setAttribute('class', this.ul_replies);
                             this.el.appendChild(ul);
                         }
-                        alert(ul);
-                        this.add(ul);
+
+                        this.Add(ul);
 
                     }
-                    that.init = function () {
-                        if (!this.exists())
-                            this.add();
+                    that.Init = function () {
+                        if (!this.Exists())
+                            this.Add();
                         else {
-                            if (this.is_reply) {
-                                this.reply();
+                            if (this._replies) {
+                                this.Reply();
                             }
                             console.warn('not esists\n' + JSON.stringify(this));
                         }
                     }
-                    that.exists = function () {
+                    that.Exists = function () {
                         this.el = document.getElementById(this.id);
 
                         return this.el;
                     }
-                    that.init();
+                    that.Init();
                 }
 
                 function item(v, li, ul) {
@@ -188,7 +189,7 @@
                         }
                     }
                     if (type == 'reply_for_comment') {
-                        c = new Comment(v.comment, type);
+                        c = new Comment(v.comment, v.reply);
                         if ('comment' in v) {
                             if ('id' in v.comment) {
                             }
@@ -202,7 +203,7 @@
                         if ('comment' in v) {
                             if ('id' in v.comment) {
                                 c = new Comment(v.comment);
-                                c.smile()
+                                c.Smile()
                             }
                         }
                     }
