@@ -25,9 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news ().json" beforeDir="false" afterPath="$PROJECT_DIR$/news ().json" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609605450267</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает">
+      <created>1609609675223</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609609675223</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +264,9 @@
     <MESSAGE value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
     <MESSAGE value="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3" />
     <MESSAGE value="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles" />
+    <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replyes  не работает" />
+    <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает" />
+    <option name="LAST_COMMIT_MESSAGE" value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

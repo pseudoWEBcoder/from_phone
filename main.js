@@ -118,16 +118,17 @@
                     item(v, li, ul);
                 })
 
-                function Comment(json, replies) {
+                function Comment(json, root_comm_id, replies) {
                     let that = this;
                     that.el = null;
                     that.ul = 'ul';
                     that._replies = replies;
+                    that.root_comm_id = root_comm_id;
                     that.ul_replies = 'replies';
                     Object.assign(that, json);
 //добавляет li в ul
                     that.Add = function (ul) {
-                        this.ul = ul || document.getElementById(this.ul);
+                        this.ul = (document.getElementById('#' + this.root_comm_id) ? document.getElementById(this.root_comm_id).querySelector('ul.replies') : null) || ul || document.getElementById(this.ul);
 
                         let str, li;
                         str = '<b>' + this['num']['smiles'] + '</b> <code>' + this.text + '</code>';
@@ -155,8 +156,8 @@
                             ul.setAttribute('class', this.ul_replies);
                             this.el.appendChild(ul);
                         }
-
-                        this.Add(ul);
+                        let Replies = new Comment(this._replies, this._replies.root_comm_id, []);
+                        // this.Add(ul);
 
                     }
                     that.Init = function () {
@@ -189,7 +190,7 @@
                         }
                     }
                     if (type == 'reply_for_comment') {
-                        c = new Comment(v.comment, v.reply);
+                        c = new Comment(v.comment, v.reply.root_comm_id, v.reply);
                         if ('comment' in v) {
                             if ('id' in v.comment) {
                             }
