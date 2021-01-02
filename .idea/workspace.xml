@@ -25,17 +25,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm">
-      <change afterPath="$PROJECT_DIR$/helper.php" afterDir="false" />
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3">
+      <change afterPath="$PROJECT_DIR$/news ().json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api3.php" beforeDir="false" afterPath="$PROJECT_DIR$/api3.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request.db" beforeDir="false" afterPath="$PROJECT_DIR$/request.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/russian-tolk.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/russian-tolk.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
-    <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf">
-      <change beforePath="$PROJECT_DIR$/api_cookiefile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/api_cookiefile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/example.txt" afterDir="false" />
-    </list>
+    <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,7 +248,8 @@
     <MESSAGE value="фолдинг работает  &#10;тема работает &#10; но лишнее  меню и рамка" />
     <MESSAGE value="++" />
     <MESSAGE value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
-    <option name="LAST_COMMIT_MESSAGE" value="russian.txt &#10;добавил  орфографический  словварь  ожегова в  файл C:\OSPanel\domains\trash\russian-tolk.sqlite3 с помощью  russian.php  через   debug php file    в  phpstorm" />
+    <MESSAGE value="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3" />
+    <option name="LAST_COMMIT_MESSAGE" value="не рабочий комит - добавил базу  орфографического словаря    экспортировал ее в sql&#10; добавил логирование в  бд  requests3&#10; заполнил russian-tolk.sqlite3" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -284,12 +280,12 @@
         <line-breakpoint enabled="true" type="php">
           <condition expression="$i&gt;400" language="PHP" />
           <url>file://$PROJECT_DIR$/russian.php</url>
-          <line>33</line>
+          <line>38</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/russian.php</url>
-          <line>29</line>
+          <line>31</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -314,7 +310,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/helper.php</url>
-          <line>51</line>
+          <line>49</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
