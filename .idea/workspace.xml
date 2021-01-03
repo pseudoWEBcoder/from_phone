@@ -25,9 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="добавляются реплики но  в  ситуации  когда реплика к коменту которого нет реплика добавляется вкорень  это не  правильно">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="main js    реплики  -  отображается  для многих">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news (2).json" beforeDir="false" afterPath="$PROJECT_DIR$/news (2).json" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609681384044</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="main js    реплики  -  отображается  для многих">
+      <created>1609696024452</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1609696024452</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +292,8 @@
     <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replyes  не работает" />
     <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает" />
     <MESSAGE value="добавляются реплики но  в  ситуации  когда реплика к коменту которого нет реплика добавляется вкорень  это не  правильно" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавляются реплики но  в  ситуации  когда реплика к коменту которого нет реплика добавляется вкорень  это не  правильно" />
+    <MESSAGE value="main js    реплики  -  отображается  для многих" />
+    <option name="LAST_COMMIT_MESSAGE" value="main js    реплики  -  отображается  для многих" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
