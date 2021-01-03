@@ -1,5 +1,5 @@
 (function (window, document) {
-    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+     editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         mode: {name: "javascript", json: true},
         lineNumbers: true,
         lineWrapping: true,
@@ -74,7 +74,7 @@
     editor.setOption("fullScreen", true);
     a = document.getElementById('src');
     url = '/trash/i3_formatted.json (1)';
-    url = '/news (2).json';
+    url = '/trash/news (2).json';
     a.href = url;
     a.innerHTML = url;
     fetch(url)
