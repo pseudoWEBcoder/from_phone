@@ -128,7 +128,7 @@
                     Object.assign(that, json);
 //добавляет li в ul
                     that.Add = function (ul) {
-                        this.ul = (document.getElementById('#' + this.root_comm_id) ? document.getElementById(this.root_comm_id).querySelector('ul.replies') : null) || ul || document.getElementById(this.ul);
+                        this.ul = (document.getElementById(this.root_comm_id) ? document.getElementById(this.root_comm_id).querySelector('ul.replies') : null) || ul || document.getElementById(this.ul);
 
                         let str, li;
                         str = '<b>' + this['num']['smiles'] + '</b> <code>' + this.text + '</code>';
