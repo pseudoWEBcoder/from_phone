@@ -1,15 +1,15 @@
 (function (window, document) {
-    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: {name: "javascript", json: true},
-        lineNumbers: true,
-        lineWrapping: true,
-        matchBrackets: true,
-        extraKeys: {
-            "Ctrl-Q": function (cm) {
-                cm.foldCode(cm.getCursor());
-            },
-            "F11": function (cm) {
-                cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+     editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+         mode: {name: "javascript", json: true},
+         lineNumbers: true,
+         lineWrapping: true,
+         matchBrackets: true,
+         extraKeys: {
+             "Ctrl-Q": function (cm) {
+                 cm.foldCode(cm.getCursor());
+             },
+             "F11": function (cm) {
+                 cm.setOption("fullScreen", !cm.getOption("fullScreen"));
             }, "Esc": function (cm) {
                 if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
             }
