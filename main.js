@@ -150,13 +150,15 @@
                     }
                     that.Reply = function () {
                         let ul;
+                        if (!this.Exists())
+                            this.Add();
                         ul = this.el.getElementsByClassName(this.ul_replies)[0];
                         if (!ul) {
                             ul = document.createElement('ul');
                             ul.setAttribute('class', this.ul_replies);
                             this.el.appendChild(ul);
                         }
-                        let Replies = new Comment(this._replies, this._replies.root_comm_id, []);
+                        let Replies = new Comment(this._replies, this._replies.root_comm_id, false);
                         // this.Add(ul);
 
                     }
@@ -164,10 +166,11 @@
                         if (!this.Exists())
                             this.Add();
                         else {
-                            if (this._replies) {
-                                this.Reply();
-                            }
+
                             console.warn('not esists\n' + JSON.stringify(this));
+                        }
+                        if (this._replies) {
+                            this.Reply();
                         }
                     }
                     that.Exists = function () {
