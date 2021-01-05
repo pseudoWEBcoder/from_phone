@@ -25,8 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="main js    реплики  -  отображается  для многих">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idapr.php" beforeDir="false" afterPath="$PROJECT_DIR$/idapr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news (2).json" beforeDir="false" afterPath="$PROJECT_DIR$/news (2).json" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
@@ -235,7 +237,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609696024452</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="обновил news2">
+      <created>1609696510639</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1609696510639</updated>
+    </task>
+    <task id="LOCAL-00013" summary="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил">
+      <created>1609696752769</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1609696752769</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +309,9 @@
     <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает" />
     <MESSAGE value="добавляются реплики но  в  ситуации  когда реплика к коменту которого нет реплика добавляется вкорень  это не  правильно" />
     <MESSAGE value="main js    реплики  -  отображается  для многих" />
-    <option name="LAST_COMMIT_MESSAGE" value="main js    реплики  -  отображается  для многих" />
+    <MESSAGE value="обновил news2" />
+    <MESSAGE value="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил" />
+    <option name="LAST_COMMIT_MESSAGE" value="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -364,13 +382,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/main.js</url>
-          <line>195</line>
+          <line>218</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/main.js</url>
-          <line>172</line>
+          <line>195</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="57" />
         </line-breakpoint>
