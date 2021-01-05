@@ -1,15 +1,15 @@
 (function (window, document) {
      editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: {name: "javascript", json: true},
-        lineNumbers: true,
-        lineWrapping: true,
-        matchBrackets: true,
-        extraKeys: {
-            "Ctrl-Q": function (cm) {
-                cm.foldCode(cm.getCursor());
-            },
-            "F11": function (cm) {
-                cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+         mode: {name: "javascript", json: true},
+         lineNumbers: true,
+         lineWrapping: true,
+         matchBrackets: true,
+         extraKeys: {
+             "Ctrl-Q": function (cm) {
+                 cm.foldCode(cm.getCursor());
+             },
+             "F11": function (cm) {
+                 cm.setOption("fullScreen", !cm.getOption("fullScreen"));
             }, "Esc": function (cm) {
                 if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
             }
@@ -74,7 +74,7 @@
     editor.setOption("fullScreen", true);
     a = document.getElementById('src');
     url = '/trash/i3_formatted.json (1)';
-    url = '/trash/news (2).json';
+    url = '/news (2).json';
     a.href = url;
     a.innerHTML = url;
     fetch(url)
@@ -150,13 +150,15 @@
                     }
                     that.Reply = function () {
                         let ul;
+                        if (!this.Exists())
+                            this.Add();
                         ul = this.el.getElementsByClassName(this.ul_replies)[0];
                         if (!ul) {
                             ul = document.createElement('ul');
                             ul.setAttribute('class', this.ul_replies);
                             this.el.appendChild(ul);
                         }
-                        let Replies = new Comment(this._replies, this._replies.root_comm_id, []);
+                        let Replies = new Comment(this._replies, this._replies.root_comm_id, false);
                         // this.Add(ul);
 
                     }
@@ -164,10 +166,11 @@
                         if (!this.Exists())
                             this.Add();
                         else {
-                            if (this._replies) {
-                                this.Reply();
-                            }
+
                             console.warn('not esists\n' + JSON.stringify(this));
+                        }
+                        if (this._replies) {
+                            this.Reply();
                         }
                     }
                     that.Exists = function () {

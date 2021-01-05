@@ -25,10 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="main js    реплики  -  отображается  для многих">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news ().json" beforeDir="false" afterPath="$PROJECT_DIR$/news ().json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news (2).json" beforeDir="false" afterPath="$PROJECT_DIR$/news (2).json" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,8 +95,8 @@
       <recent name="C:\OSPanel\domains\trash" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.russian.php">
-    <configuration name="idapr.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/trash/idapr.php" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.idapr.php">
+    <configuration name="idapr.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://trash/idapr.php">
       <method v="2" />
     </configuration>
     <configuration name="menu.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/menu.php">
@@ -106,10 +105,15 @@
     <configuration name="russian.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/russian.php">
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.idapr.php" />
+      <item itemvalue="PHP Script.menu.php" />
+      <item itemvalue="PHP Script.russian.php" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.russian.php" />
         <item itemvalue="JavaScript Debug.idapr.php" />
+        <item itemvalue="PHP Script.russian.php" />
         <item itemvalue="PHP Script.menu.php" />
       </list>
     </recent_temporary>
@@ -210,7 +214,28 @@
       <option name="project" value="LOCAL" />
       <updated>1609609675223</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает">
+      <created>1609611640747</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1609611640747</updated>
+    </task>
+    <task id="LOCAL-00010" summary="добавляются реплики но  в  ситуации  когда реплика к коменту которого нет реплика добавляется вкорень  это не  правильно">
+      <created>1609681384044</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1609681384044</updated>
+    </task>
+    <task id="LOCAL-00011" summary="main js    реплики  -  отображается  для многих">
+      <created>1609696024452</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1609696024452</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +291,9 @@
     <MESSAGE value="удалил коментарии  &#10; подправил  путь  для ноута &#10;   рефакторинг  &#10;     функция smiles" />
     <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replyes  не работает" />
     <MESSAGE value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает" />
-    <option name="LAST_COMMIT_MESSAGE" value="рефакторинг  переименовал  вложенные функции на  такие же  с  заглавной буквы чтобы не  пересекались со свойствами из JSON&#10;сделал  replies  не работает" />
+    <MESSAGE value="добавляются реплики но  в  ситуации  когда реплика к коменту которого нет реплика добавляется вкорень  это не  правильно" />
+    <MESSAGE value="main js    реплики  -  отображается  для многих" />
+    <option name="LAST_COMMIT_MESSAGE" value="main js    реплики  -  отображается  для многих" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -334,6 +361,18 @@
           <url>file://$PROJECT_DIR$/helper.php</url>
           <line>16</line>
           <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/main.js</url>
+          <line>195</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/main.js</url>
+          <line>172</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
