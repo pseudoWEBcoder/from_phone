@@ -1,15 +1,15 @@
 (function (window, document) {
-     editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-         mode: {name: "javascript", json: true},
-         lineNumbers: true,
-         lineWrapping: true,
-         matchBrackets: true,
-         extraKeys: {
-             "Ctrl-Q": function (cm) {
-                 cm.foldCode(cm.getCursor());
-             },
-             "F11": function (cm) {
-                 cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+    editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: {name: "javascript", json: true},
+        lineNumbers: true,
+        lineWrapping: true,
+        matchBrackets: true,
+        extraKeys: {
+            "Ctrl-Q": function (cm) {
+                cm.foldCode(cm.getCursor());
+            },
+            "F11": function (cm) {
+                cm.setOption("fullScreen", !cm.getOption("fullScreen"));
             }, "Esc": function (cm) {
                 if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
             }
@@ -118,22 +118,39 @@
                     item(v, li, ul);
                 })
 
-                function Comment(json, root_comm_id, replies) {
+                function Comment(json, root_comm_id, replies, data) {
                     let that = this;
                     that.el = null;
                     that.ul = 'ul';
                     that._replies = replies;
                     that.root_comm_id = root_comm_id;
+                    that.data = data;
                     that.ul_replies = 'replies';
                     Object.assign(that, json);
 //добавляет li в ul
                     that.Add = function (ul) {
                         this.ul = (document.getElementById(this.root_comm_id) ? document.getElementById(this.root_comm_id).querySelector('ul.replies') : null) || ul || document.getElementById(this.ul);
+                        let date;
+                        if (this.data) {
+                            if (typeof this.data.date == 'undefined') {
+                                date = '';
+                            } else {
+                                date = new Date(this.data.date * 1000);
+                                if (date) {
+                                    date = date.toLocaleString();
+                                    D = document.createElement('span');
+                                    D.setAttribute('class', 'date text-muted');
+                                    D.innerHTML = date;
+                                    date = D.outerHTML
 
+                                }
+                            }
+                        }
                         let str, li;
-                        str = '<b>' + this['num']['smiles'] + '</b> <code>' + this.text + '</code>';
+                        str = '<b>' + this['num']['smiles'] + '</b> ' + date + ' <code>' + this.text + '</code>';
                         li = document.createElement('li');
                         li.innerHTML = str;
+
                         if ('id' in this) {
                             li.setAttribute('id', this.id);
                         }
@@ -143,7 +160,13 @@
                     that.Smile = function () {
                         if (this.Exists()) {
                             let smiles = this.el.querySelector('b');
-                            smiles.innerHTML += parseInt(smiles.innerHTML) + 1;
+                            let num, inc;
+                            num = smiles.innerHTML;
+                            inc = function () {
+                                smiles.innerHTML = parseInt(num) + 1;
+                            };
+                            setTimeout(inc, 1000);
+
                         } else {
                             this.Add();
                         }
@@ -158,17 +181,17 @@
                             ul.setAttribute('class', this.ul_replies);
                             this.el.appendChild(ul);
                         }
-                        let Replies = new Comment(this._replies, this._replies.root_comm_id, false);
+                        let Replies = new Comment(this._replies, this._replies.root_comm_id, false, this.data);
                         // this.Add(ul);
 
                     }
                     that.Init = function () {
                         if (!this.Exists())
                             this.Add();
-                        else {
-
-                            console.warn('not esists\n' + JSON.stringify(this));
-                        }
+                        // else {
+                        //
+                        //     console.warn('not esists\n' + JSON.stringify(this));
+                        // }
                         if (this._replies) {
                             this.Reply();
                         }
@@ -193,7 +216,7 @@
                         }
                     }
                     if (type == 'reply_for_comment') {
-                        c = new Comment(v.comment, v.reply.root_comm_id, v.reply);
+                        c = new Comment(v.comment, v.reply.root_comm_id, v.reply, v);
                         if ('comment' in v) {
                             if ('id' in v.comment) {
                             }
@@ -206,7 +229,7 @@
                     if (type == 'smile_for_comment') {
                         if ('comment' in v) {
                             if ('id' in v.comment) {
-                                c = new Comment(v.comment);
+                                c = new Comment(v.comment, null, null, v);
                                 c.Smile()
                             }
                         }
