@@ -25,9 +25,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил">
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="bootstrap &#10;news(2).json&#10;лайки с  задержкой &#10; дата  поста">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/idapr.php" beforeDir="false" afterPath="$PROJECT_DIR$/idapr.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news (2).json" beforeDir="false" afterPath="$PROJECT_DIR$/news (2).json" afterDir="false" />
     </list>
@@ -251,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609696752769</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="bootstrap &#10;news(2).json&#10;лайки с  задержкой &#10; дата  поста">
+      <created>1609869609038</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1609869609038</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,7 +317,8 @@
     <MESSAGE value="main js    реплики  -  отображается  для многих" />
     <MESSAGE value="обновил news2" />
     <MESSAGE value="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил" />
-    <option name="LAST_COMMIT_MESSAGE" value="не  работают  стрелки  свернуть в  редакторе  из за  того  что переменная определена с  var   поправил" />
+    <MESSAGE value="bootstrap &#10;news(2).json&#10;лайки с  задержкой &#10; дата  поста" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap &#10;news(2).json&#10;лайки с  задержкой &#10; дата  поста" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -382,13 +389,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/main.js</url>
-          <line>218</line>
+          <line>245</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/main.js</url>
-          <line>195</line>
+          <line>222</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="57" />
         </line-breakpoint>
