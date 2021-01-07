@@ -44,7 +44,7 @@
     });
     var input = document.getElementById("select");
 
-    function selectTheme() {
+    selectTheme = function () {
         var theme = input.options[input.selectedIndex].textContent;
         editor.setOption("theme", theme);
         location.hash = "#" + theme;
@@ -126,29 +126,20 @@
                     that.root_comm_id = root_comm_id;
                     that.data = data;
                     that.ul_replies = 'replies';
+                    that.defaultcolor = '';
                     Object.assign(that, json);
 //добавляет li в ul
                     that.Add = function (ul) {
                         this.ul = (document.getElementById(this.root_comm_id) ? document.getElementById(this.root_comm_id).querySelector('ul.replies') : null) || ul || document.getElementById(this.ul);
                         let date;
                         if (this.data) {
-                            if (typeof this.data.date == 'undefined') {
-                                date = '';
-                            } else {
-                                date = new Date(this.data.date * 1000);
-                                if (date) {
-                                    date = date.toLocaleString();
-                                    D = document.createElement('span');
-                                    D.setAttribute('class', 'date text-muted');
-                                    D.innerHTML = date;
-                                    date = D.outerHTML
-
-                                }
-                            }
+                            content = this.Extract();
                         }
                         let str, li;
-                        str = '<b>' + this['num']['smiles'] + '</b> ' + date + ' <code>' + this.text + '</code>';
+                        str = '<b>' + this['num']['smiles'] + '</b> ' + content.date + ' ' + content.nick + ' <code>' + this.text + '</code>';
                         li = document.createElement('li');
+                        if (content.bg_color)
+                            li.style.backgroundColor = '#' + content.bg_color;
                         li.innerHTML = str;
 
                         if ('id' in this) {
@@ -156,7 +147,43 @@
                         }
                         this.ul.appendChild(li);
 
+                    }// выбирает значения из  data
+                    that.Extract = function () {
+                        if (typeof this.data.date == 'undefined') {
+                            date = '';
+                        } else {
+                            date = new Date(this.data.date * 1000);
+                            if (date) {
+                                date = date.toLocaleString();
+                                D = document.createElement('span');
+                                D.setAttribute('class', 'date text-muted');
+                                D.innerHTML = date;
+                                date = D.outerHTML
+
+                            }
+                        }
+                        if (typeof this.data.user.nick == 'undefined') {
+                            nick = '';
+                        } else {
+                            nick = this.data.user.nick;
+                            if (nick) {
+                                N = document.createElement('span');
+                                N.setAttribute('class', 'date text-info');
+                                N.innerHTML = nick;
+                                nick = N.outerHTML
+
+                            }
+                        }
+
+                        if (typeof this.data.content.bg_color == 'undefined') {
+                            bg_color = this.defaultcolor;
+                        } else {
+                            bg_color = this.data.content.bg_color;
+
+                        }
+                        return {"date": date, "nick": nick, "bg_color": bg_color};
                     }
+
                     that.Smile = function () {
                         if (this.Exists()) {
                             let smiles = this.el.querySelector('b');
@@ -248,4 +275,24 @@
             _alert('Request failed' + error, true);
             console.error('Request failed', error);
         });
+
 })(window, document);
+window.onload = function () {
+    jQuery(function () {
+        $(document).on('click', '#toogleColor', function (event, el) {
+            $('#ul li').each(function (e, el) {
+                if (c = $(el)[0].style.backgroundColor) {
+                    $(el).attr('data-bg_color', c);
+                    $(el).css('backgroundColor', '');
+
+                } else {
+
+                    $(el).css('backgroundColor', $(el).attr('data-bg_color'));
+                }
+            })
+            event.preventDefault();
+        })
+
+    })
+
+}

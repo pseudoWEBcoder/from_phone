@@ -181,6 +181,7 @@ function findSequence(goal) {
             <option>zenburn</option>
         </select>
         <a href="#" id="src">load src</a>
+        <a href="#" id="toogleColor">toogleColor</a>
     </p>
     <ol id="ul"></ol>
     <script src="main.js">
