@@ -44,7 +44,7 @@
     });
     var input = document.getElementById("select");
 
-    function selectTheme() {
+    selectTheme = function () {
         var theme = input.options[input.selectedIndex].textContent;
         editor.setOption("theme", theme);
         location.hash = "#" + theme;
@@ -136,7 +136,7 @@
                             content = this.Extract();
                         }
                         let str, li;
-                        str = '<b>' + this['num']['smiles'] + '</b> ' + content.date + content.nick + ' <code>' + this.text + '</code>';
+                        str = '<b>' + this['num']['smiles'] + '</b> ' + content.date + ' ' + content.nick + ' <code>' + this.text + '</code>';
                         li = document.createElement('li');
                         if (content.bg_color)
                             li.style.backgroundColor = '#' + content.bg_color;
@@ -275,4 +275,24 @@
             _alert('Request failed' + error, true);
             console.error('Request failed', error);
         });
+
 })(window, document);
+window.onload = function () {
+    jQuery(function () {
+        $(document).on('click', '#toogleColor', function (event, el) {
+            $('#ul li').each(function (e, el) {
+                if (c = $(el)[0].style.backgroundColor) {
+                    $(el).attr('data-bg_color', c);
+                    $(el).css('backgroundColor', '');
+
+                } else {
+
+                    $(el).css('backgroundColor', $(el).attr('data-bg_color'));
+                }
+            })
+            event.preventDefault();
+        })
+
+    })
+
+}
