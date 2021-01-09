@@ -1,45 +1,70 @@
-usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           <command> [<args>]
+Usage: grep [OPTION]... PATTERN [FILE]...
+Search for PATTERN in each FILE.
+Example: grep -i 'hello world' menu.h main.c
 
-These are common Git commands used in various situations:
+Pattern selection and interpretation:
+  -E, --extended-regexp     PATTERN is an extended regular expression
+  -F, --fixed-strings       PATTERN is a set of newline-separated strings
+  -G, --basic-regexp        PATTERN is a basic regular expression (default)
+  -P, --perl-regexp         PATTERN is a Perl regular expression
+  -e, --regexp=PATTERN      use PATTERN for matching
+  -f, --file=FILE           obtain PATTERN from FILE
+  -i, --ignore-case         ignore case distinctions
+  -w, --word-regexp         force PATTERN to match only whole words
+  -x, --line-regexp         force PATTERN to match only whole lines
+  -z, --null-data           a data line ends in 0 byte, not newline
 
-start a working area (see also: git help tutorial)
-   clone             Clone a repository into a new directory
-   init              Create an empty Git repository or reinitialize an existing one
+Miscellaneous:
+  -s, --no-messages         suppress error messages
+  -v, --invert-match        select non-matching lines
+  -V, --version             display version information and exit
+      --help                display this help text and exit
 
-work on the current change (see also: git help everyday)
-   add               Add file contents to the index
-   mv                Move or rename a file, a directory, or a symlink
-   restore           Restore working tree files
-   rm                Remove files from the working tree and from the index
-   sparse-checkout   Initialize and modify the sparse-checkout
+Output control:
+  -m, --max-count=NUM       stop after NUM selected lines
+  -b, --byte-offset         print the byte offset with output lines
+  -n, --line-number         print line number with output lines
+      --line-buffered       flush output on every line
+  -H, --with-filename       print file name with output lines
+  -h, --no-filename         suppress the file name prefix on output
+      --label=LABEL         use LABEL as the standard input file name prefix
+  -o, --only-matching       show only the part of a line matching PATTERN
+  -q, --quiet, --silent     suppress all normal output
+      --binary-files=TYPE   assume that binary files are TYPE;
+                            TYPE is 'binary', 'text', or 'without-match'
+  -a, --text                equivalent to --binary-files=text
+  -I                        equivalent to --binary-files=without-match
+  -d, --directories=ACTION  how to handle directories;
+                            ACTION is 'read', 'recurse', or 'skip'
+  -D, --devices=ACTION      how to handle devices, FIFOs and sockets;
+                            ACTION is 'read' or 'skip'
+  -r, --recursive           like --directories=recurse
+  -R, --dereference-recursive  likewise, but follow all symlinks
+      --include=FILE_PATTERN  search only files that match FILE_PATTERN
+      --exclude=FILE_PATTERN  skip files and directories matching FILE_PATTERN
+      --exclude-from=FILE   skip files matching any file pattern from FILE
+      --exclude-dir=PATTERN  directories that match PATTERN will be skipped.
+  -L, --files-without-match  print only names of FILEs with no selected lines
+  -l, --files-with-matches  print only names of FILEs with selected lines
+  -c, --count               print only a count of selected lines per FILE
+  -T, --initial-tab         make tabs line up (if needed)
+  -Z, --null                print 0 byte after FILE name
 
-examine the history and state (see also: git help revisions)
-   bisect            Use binary search to find the commit that introduced a bug
-   diff              Show changes between commits, commit and working tree, etc
-   grep              Print lines matching a pattern
-   log               Show commit logs
-   show              Show various types of objects
-   status            Show the working tree status
+Context control:
+  -B, --before-context=NUM  print NUM lines of leading context
+  -A, --after-context=NUM   print NUM lines of trailing context
+  -C, --context=NUM         print NUM lines of output context
+  -NUM                      same as --context=NUM
+      --color[=WHEN],
+      --colour[=WHEN]       use markers to highlight the matching strings;
+                            WHEN is 'always', 'never', or 'auto'
+  -U, --binary              do not strip CR characters at EOL (MSDOS/Windows)
 
-grow, mark and tweak your common history
-   branch            List, create, or delete branches
-   commit            Record changes to the repository
-   merge             Join two or more development histories together
-   rebase            Reapply commits on top of another base tip
-   reset             Reset current HEAD to the specified state
-   switch            Switch branches
-   tag               Create, list, delete or verify a tag object signed with GPG
+When FILE is '-', read standard input.  With no FILE, read '.' if
+recursive, '-' otherwise.  With fewer than two FILEs, assume -h.
+Exit status is 0 if any line is selected, 1 otherwise;
+if any error occurs and -q is not given, the exit status is 2.
 
-collaborate (see also: git help workflows)
-   fetch             Download objects and refs from another repository
-   pull              Fetch from and integrate with another repository or a local branch
-   push              Update remote refs along with associated objects
-
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+Report bugs to: bug-grep@gnu.org
+GNU grep home page: <http://www.gnu.org/software/grep/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
