@@ -26,8 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="справка cmd  в  цвете&#10;+ шаблон bootstrap 4 &#10;+ справка от   grep в файле  help.txt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/help.txt" beforeDir="false" afterPath="$PROJECT_DIR$/help.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/config/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/config/db.php" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +80,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -159,7 +159,7 @@
       <workItem from="1596469655078" duration="1466000" />
       <workItem from="1607289917069" duration="194000" />
       <workItem from="1607290465913" duration="27228000" />
-      <workItem from="1610208896521" duration="2519000" />
+      <workItem from="1610208896521" duration="2785000" />
     </task>
     <task id="LOCAL-00001" summary="сделал   просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
       <created>1594294893348</created>
