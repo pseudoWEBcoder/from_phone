@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "helptext".
@@ -12,9 +12,15 @@ use Yii;
  * @property int|null $created
  * @property int|null $updated
  * @property string|null $help
+ * @property string|null $decr
+ * @property string|null $example
+ * @property string|null $parsed
  * @property string|null $source
+ * @property string|null $device
+ * @property string|null $dop_info
+ * @property int|null $weight
  */
-class Helptext extends \yii\db\ActiveRecord
+class Helptext extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -30,8 +36,8 @@ class Helptext extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['command', 'help', 'source'], 'string'],
-            [['created', 'updated'], 'integer'],
+            [['command', 'help', 'decr', 'example', 'parsed', 'source', 'device', 'dop_info'], 'string'],
+            [['created', 'updated', 'weight'], 'integer'],
         ];
     }
 
@@ -46,7 +52,13 @@ class Helptext extends \yii\db\ActiveRecord
             'created' => 'Created',
             'updated' => 'Updated',
             'help' => 'Help',
+            'decr' => 'Decr',
+            'example' => 'Example',
+            'parsed' => 'Parsed',
             'source' => 'Source',
+            'device' => 'Device',
+            'dop_info' => 'Dop Info',
+            'weight' => 'Weight',
         ];
     }
 }

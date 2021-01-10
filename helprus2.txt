@@ -1,0 +1,484 @@
+https://eternalhost.net/blog/sozdanie-saytov/osnovnye-komandy-linux
+<div class="post">
+
+
+    <div class="post-pane mt-0">
+                <div class="post-date">10 июня 2019</div>
+        <div class="post-tag"><a href="https://eternalhost.net/blog/sozdanie-saytov">Создание сайтов</a></div>
+                    <div class="post-views">12 469</div>
+
+        <a href="#respond" class="post-comments scroll">9</a>
+                    <div class="post-readtime">Время чтения ≈ 22 минуты</div>
+
+
+    </div>
+
+    <div class="post-img-preview mb-3"><img src="https://eternalhost.net/wp-content/uploads/2019/06/Spravochnik-70-osnovnyh-komand-Linux-850x280.png" class=" wp-post-image" alt="Справочник основных команд Linux" loading="lazy" srcset="https://eternalhost.net/wp-content/uploads/2019/06/Spravochnik-70-osnovnyh-komand-Linux-850x280.png 850w, https://eternalhost.net/wp-content/uploads/2019/06/Spravochnik-70-osnovnyh-komand-Linux-768x252.png 768w, https://eternalhost.net/wp-content/uploads/2019/06/Spravochnik-70-osnovnyh-komand-Linux.png 862w" sizes="(max-width: 850px) 100vw, 850px"></div>
+        <p><strong>Содержание:</strong></p>
+<ul class="list-circle">
+<li><a href="#p1">Справки</a></li>
+<li><a href="#p2">Права суперпользователя</a></li>
+<li><a href="#p3">Файлы и каталоги</a></li>
+<li><a href="#p4">Навигация</a></li>
+<li><a href="#p5">Сеть</a></li>
+<li><a href="#p6">Процессы</a></li>
+<li><a href="#p7">Архивирование</a></li>
+<li><a href="#p8">Текст</a></li>
+<li><a href="#p9">Окружение пользователя</a></li>
+<li><a href="#p10">Пакетные менеджеры</a></li>
+<li><a href="#p11">Заключение</a></li>
+</ul>
+<p>Одним из коренных отличий семейства ОС Linux от ОС Windows является ведущая роль командной строки или терминала в администрировании системы. Для успешной работы с «Линукс» одного графического интерфейса недостаточно. Полноценное управление тут возможно только через терминал. А в работе с терминалом никак не обойтись без изучения основных команд Linux.</p>
+<p>В Linux насчитывается несколько сотен основных команд и их модификаций. Они группируются по нескольким категориям. По расположению — могут быть утилитами командной строки или встроенной функцией командной оболочки. По частоте применения – используемыми постоянно, эпизодически и редко. По типам действий – от получения справки до управления файлами и процессами. Именно третья, функциональная составляющая и станет основой группировки утилит в этой статье.</p>
+<p>В обзоре собраны все важнейшие команды Linux, которые могут пригодиться для администрирования ОС Linux. Статья рассчитана как на новичков, так и на продвинутых пользователей, уже знакомых с основным функционалом терминала. Эту своеобразную шпаргалку можно смело добавлять в закладки всем, кто хочет извлечь из «Линукс» максимум полезных свойств и повысить свою продуктивность в несколько раз.</p>
+<h2 id="p1">Справочная информация / документация</h2>
+<ol>
+<li>
+<h4>man</h4>
+<p>(Manual). Показывает <strong>инструкцию</strong> к программам и командам&nbsp;Linux. Чтобы получить руководство для программы, наберите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">man имя_программы</span></div></div></div><div class="enlighter-raw">man имя_программы</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">man имя_программы</pre>
+<p>Для инструкции по команде, введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">man имя_команды</span></div></div></div><div class="enlighter-raw">man имя_команды</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">man имя_команды</pre>
+</li>
+<li>
+<h4>whatis</h4>
+<p>Выводит <strong>краткое описание</strong> программы. Пример:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">whatis имя_программы</span></div></div></div><div class="enlighter-raw">whatis имя_программы</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">whatis имя_программы</pre>
+</li>
+<li>
+<h4>whereis</h4>
+<p>Показывает <strong>полный путь</strong> к исполняемому файлу и другим файлам программы. Пример:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">whereis имя_программы</span></div></div></div><div class="enlighter-raw">whereis имя_программы</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">whereis имя_программы</pre>
+<p>Также даёт информацию о связанной с программой справочной информации.</p></li>
+<li>
+<h4>file</h4>
+<p>Показывает <strong>к какому типу относится файл</strong>. Особенность Linux в том, что рабочие файлы могут и не иметь расширения. Поэтому у пользователя могут возникнуть проблемы с идентификацией файлов, которые снимает эта команда.</p></li>
+<li>
+<h4>—help</h4>
+<p>Вся необходимая информация о команде будет доступна, если набрать:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">имя_программы --help</span></div></div></div><div class="enlighter-raw">имя_программы --help</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">имя_программы --help</pre>
+</li>
+<li>
+<h4>whoami</h4>
+<p>Команда показывает действительный <strong>идентификатор пользователя</strong> (UID).</p></li>
+<li>
+<h4>TAB</h4>
+<p>Показывает варианты <strong>автозавершения команды</strong>. Нажатие клавиши табуляция после определённой команды или их последовательности выводит подсказку с вариантами возможного продолжения команды.</p></li>
+<li>
+<h4>Ctrl + R</h4>
+<p>Это сочетание клавиш помогает запустить <strong>обратный поиск</strong> по всем параметрам, связанным с указанной командой. Достаточно лишь указать ключевое слово для поиска. Есть серьёзный минус – за раз можно увидеть только 1 результат. Выйти из режима реверсивного поиска поможет комбинация <span style="color: #ff0000;">Ctrl + C</span>.</p></li>
+</ol>
+<h2 id="p2">Права суперпользователя</h2>
+<p>Большое число базовых команд Linux, например, установка программ или создание файлов в корневой системе, требуют для исполнения права пользователя root или суперпользователя. Применение данного режима несёт серьёзные изменения для операционной системы, поэтому нужно точно понимать, как сработает запущенная команда.</p>
+<h3>Способы получить права root в Linux</h3>
+<ul class="list-circle">
+<li>Вход от имени суперпользователя в виртуальной консоли, введя логин и пароль пользователя root.</li>
+<li>Разовое переключение на роль суперпользователя в терминале с помощью специальных утилит.</li>
+</ul>
+<p>О втором варианте расскажем подробнее.</p>
+<ol start="9">
+<li>
+<h4 data-enlighter-linenumbers="false" data-enlighter-theme="classic">sudo</h4>
+<p>(Super User Do). Позволяет <strong>исполнять команды с правами суперпользователя</strong>. Перед переходом в режим root администратора система выполнит запрос пароля и логина root.&nbsp;Пример:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo имя_команды</span></div></div></div><div class="enlighter-raw">sudo имя_команды</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo имя_команды</pre>
+</li>
+<li>
+<h4>sudo su</h4>
+<p>Инструмент применяется, когда нужно запустить <strong>несколько</strong> «суперпользовательских» команд. Все следующие вводимые команды будут запускаться в режиме суперпользователя до закрытия командной строки.</p></li>
+<li>
+<h4>sudo gksudo</h4>
+<p>Осуществляет запуска приложений от имени суперпользователя, использующих не терминал, а <strong>графический интерфейс</strong>. В дистрибутиве Kubuntu имя этой команды выглядит несколько иначе — <span style="color: #ff0000;">sudo kdesudo</span>.</p></li>
+<li>
+<h4>sudo !!</h4>
+<p>Команда применяется, если нужно перезапустить с правами root уже <strong>отданную</strong> (от имени обычного пользователя) команду.</p></li>
+</ol>
+<blockquote><p>Максимальную производительность приложений Linux зависит от правильного подбора платформы для ОС. Мощный <a href="https://eternalhost.net/vps?utm_medium=blog&amp;utm_campaign=osnovnye-komandy-linux&amp;utm_content=intext&amp;utm_term=1" target="_blank" rel="noopener">виртуальный сервер от Eternalhost</a> обеспечит интернет-ресурсу стабильную работу и пространство для развития.</p></blockquote>
+<h2 id="p3">Управления файлами и каталогами</h2>
+<ol start="13">
+<li>
+<h4>ls</h4>
+<p>(List). С помощью этой утилиты можно посмотреть, <strong>что содержится в папке</strong>. Без указания конкретного пути показывает текущий каталог. Если путь указан, то переход совершиться в конечный его каталог. Чтобы вывести каталог в виде списка с дополнительной поясняющей информацией введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">ls -l</span></div></div></div><div class="enlighter-raw">ls -l</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-linenumbers="false" data-enlighter-theme="enlighter">ls -l</pre>
+<p>Для показа скрытых файлов:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">ls -a</span></div></div></div><div class="enlighter-raw">ls -a</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">ls -a</pre>
+</li>
+<li>
+<h4>ll</h4>
+<p>Команда для просмотра <strong>содержимого директорий</strong>. Более современная альтернатива этой утилиты <span style="color: #ff0000;">ls -l</span> может работать не во всех дистрибутивах Linux.</p></li>
+<li>
+<h4>cat</h4>
+<p>(Concatenate / Catenate). Команда двойного назначения. Показывает на экране <strong>что содержит файл</strong> или стандартный ввод. Также к <strong>«склеивает»</strong> несколько переданных подряд файлов в один. Если нужно посмотреть содержимое одного файла, вводим:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cat имя_файла</span></div></div></div><div class="enlighter-raw">cat имя_файла</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cat имя_файла</pre>
+<p>Если нужно узнать содержимое нескольких файлов подряд:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cat файл_№1 файл_№2 файл_№3</span></div></div></div><div class="enlighter-raw">cat файл_№1 файл_№2 файл_№3</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cat файл_№1 файл_№2 файл_№3</pre>
+<p>Для «склейки» файлов, вводим:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cat файл_№1 файл_№2 </span><span class="enlighter-g1">&gt;</span><span class="enlighter-text"> файл_№3</span></div></div></div><div class="enlighter-raw">cat файл_№1 файл_№2 &gt; файл_№3</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cat файл_№1 файл_№2 &gt; файл_№3</pre>
+<p>Чтобы задать нужное количество строк в показанном:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cat -n</span></div></div></div><div class="enlighter-raw">cat -n</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cat -n</pre>
+</li>
+<li>
+<h4>cd</h4>
+<p>(Change Directory). <strong>Меняет</strong> текущий<strong> каталог</strong>, в котором работает терминал на указанный. Когда терминал запущен, он использует по умолчанию корневой каталог (root), вернуться в который можно, набрав:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cd ~</span></div></div></div><div class="enlighter-raw">cd ~</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cd ~</pre>
+<p>Чтобы указать другую папку для работы с файлами, нужно ввести:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cd адрес_папки</span></div></div></div><div class="enlighter-raw">cd адрес_папки</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cd адрес_папки</pre>
+<p>Чтобы подняться по древу каталогов на уровень вверх набираем:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cd ..</span></div></div></div><div class="enlighter-raw">cd ..</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cd ..</pre>
+<p>Чтобы вернуться к предыдущей директории:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cd -</span></div></div></div><div class="enlighter-raw">cd -</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cd -</pre>
+</li>
+<li>
+<h4>&amp;&amp;</h4>
+<p>Двойной амперсанд – не полноценная команда, а управляющий оператор. Он предназначен для выполнения последовательного <strong>ряда команд</strong>. Чтобы терминал выполнил команды одну за другой, нужно разделить их следующим образом:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">команда_№1 &amp;&amp; команда_№2 &amp;&amp; команда_№3</span></div></div></div><div class="enlighter-raw">команда_№1 &amp;&amp; команда_№2 &amp;&amp; команда_№3</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">команда_№1 &amp;&amp; команда_№2 &amp;&amp; команда_№3</pre>
+<p>Число команд в такой последовательности не ограничено.</p></li>
+<li>
+<h4>mkdir</h4>
+<p>(Make Directory). Создаёт <strong>новую директорию</strong>. Можно также создать полную структуру подкаталогов, если ввести сочетание:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">mkdir –p</span></div></div></div><div class="enlighter-raw">mkdir –p</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">mkdir –p</pre>
+</li>
+<li>
+<h4>cp</h4>
+<p>(Copy). Утилита, позволяющая <strong>скопировать</strong> файл или каталог. Копирование файлов и каталогов. Чтобы копирование прошло рекурсивно, т. е. включало все поддиректории и файлы в них, надо добавить к команде:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cp -r</span></div></div></div><div class="enlighter-raw">cp -r</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cp -r</pre>
+<p>А если надо дополнить рекурсивное копирование сохранением всех атрибутов, сведения о владельце и временный штамп, добавляем «архивную» опцию -a, чтобы получилось:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">cp –r –a</span></div></div></div><div class="enlighter-raw">cp –r –a</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">cp&nbsp;–r&nbsp;–a</pre>
+</li>
+<li>
+<h4>mv</h4>
+<p>(Move). Эта команда в Linux одновременно отвечает за <strong>перемещение</strong> и <strong>переименование</strong> файла или каталога. При переименовании файл перемещается в ту же папку, но уже названную по-новому.</p></li>
+<li>
+<h4>rm</h4>
+<p>(Remove). Отвечает за <strong>удаление </strong>папок и файлов. Использовать оператор rm следует крайне осторожно. В Linux файлы удаляются не в корзину, откуда их можно восстановить, а стираются безвозвратно. Для рекурсивного удаления используйте сочетание:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">rm -r</span></div></div></div><div class="enlighter-raw">rm -r</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">rm -r</pre>
+</li>
+<li>
+<h4>ln</h4>
+<p>(Link). Создаёт программные <strong>ссылки </strong>на файлы. По функционалу это похоже на ярлыки в Windows.</p>
+<h3>Типы ссылок Linux</h3>
+</li>
+</ol>
+<ul class="list-circle">
+<li>символические (<span style="color: #ff0000;">-s</span>) – указание на адрес файла ил папки без метаданных;</li>
+<li>твёрдые или жёсткие (<span style="color: #ff0000;">-P</span>) – содержат сведения о физическом адресе на диске, где хранится файл.<br>
+Удалить ссылку в Linux можно при помощи атрибута <span style="color: #ff0000;">–f</span>.</li>
+</ul>
+<ol start="23">
+<li>
+<h4>chmod</h4>
+<p>(Change Mode). Изменяет <strong>разрешения доступа</strong> к файлу. Под доступом имеется в виду классическая триада: чтение r, изменение w и запуск x. Общий вид:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">chmod разрешения имя_файла</span></div></div></div><div class="enlighter-raw">chmod разрешения имя_файла</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">chmod разрешения имя_файла</pre>
+<p>При этом, «разрешения» могут быть указаны буквенным, символьным (rwx) или цифровым кодом. Кроме того, эта переменная может включать информацию о владельце (<span style="color: #ff0000;">u</span> / <span style="color: #ff0000;">g</span> / <span style="color: #ff0000;">o</span> / <span style="color: #ff0000;">a</span>) и операции с правами (<span style="color: #ff0000;">+</span> / <span style="color: #ff0000;">—</span> / <span style="color: #ff0000;">=</span>).</p></li>
+</ol>
+<h3>Популярные комбинации разрешений для команды chmod</h3>
+<div class="table-responsive"><table class="table" width="409">
+<tbody>
+<tr>
+<td width="203"><strong>Вид разрешения </strong></td>
+<td width="108"><strong>Символьный код</strong></td>
+<td width="99"><strong>Числовой код</strong></td>
+</tr>
+<tr>
+<td width="203">Нет допуска</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;—</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;0</span></td>
+</tr>
+<tr>
+<td width="203">Чтение</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;r—</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;4</span></td>
+</tr>
+<tr>
+<td width="203">Изменение</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;-w-</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;2</span></td>
+</tr>
+<tr>
+<td width="203">Запуск</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;—x</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;1</span></td>
+</tr>
+<tr>
+<td width="203">Запуск + Изменение</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;-wx</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;3</span></td>
+</tr>
+<tr>
+<td width="203">Чтение + Запуск</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;r-x</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;5</span></td>
+</tr>
+<tr>
+<td width="203">Чтение + Изменение</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;rw-</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;6</span></td>
+</tr>
+<tr>
+<td width="203">Запуск + Изменение + Запуск</td>
+<td width="108"><span style="color: #ff0000;">&nbsp;rwx</span></td>
+<td width="99"><span style="color: #ff0000;">&nbsp;7</span></td>
+</tr>
+</tbody>
+</table></div>
+<ol start="24">
+<li>
+<h4>chown</h4>
+<p>(Change Owner). Команда для <strong>смены владельца</strong> файла и его группы. Для смены владельца используем синтаксис:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">chown новый_владелец имя_файла</span></div></div></div><div class="enlighter-raw">chown новый_владелец имя_файла</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">chown новый_владелец имя_файла</pre>
+<p>Для смены группы файла:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">chown новая_группа имя_файла</span></div></div></div><div class="enlighter-raw">chown новая_группа имя_файла</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">chown новая_группа имя_файла</pre>
+<p>Если надо поменять оба параметра:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">chown новый_владелец :новая_группа имя_файла</span></div></div></div><div class="enlighter-raw">chown новый_владелец :новая_группа имя_файла</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">chown новый_владелец :новая_группа имя_файла</pre>
+<p>Команду можно применить только с правами суперпользователя. Чтобы изменить владельца/группу рекурсивно добавляем:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">chown –R</span></div></div></div><div class="enlighter-raw">chown –R</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">chown –R</pre>
+</li>
+<li>
+<h4>chgrp</h4>
+<p>(Change Group). <strong>Меняет группу</strong> файла. В отличие от chown, эта команда позволяет менять группы, только тем, кто в ней состоит.</p></li>
+<li>
+<h4>dd</h4>
+<p>(Dataset Definition). Позволяет <strong>скопировать данные</strong> на двоичном уровне из одного места в другое. Данные могут быть любого размера — от образа CD/ DVD до целого жёсткого диска.<br>
+Утилита перемещает блоки данных из указанного источника — <span style="color: #ff0000;">if имя_файла</span> в пункт назначения — <span style="color: #ff0000;">of имя_файла</span>, который может быть устройством или файлом. Для копирования нескольких файлов применяется утилита cp.<br>
+С данной командой надо обращаться крайне осторожно, о чём свидетельствует её альтернативное название «Data Destroyer». Ошибка в вводе данных может легко стать причиной потери данных на диске.</p></li>
+<li>
+<h4>df</h4>
+<p>(Disk Free). Даёт полную информацию о <strong>свободном пространстве </strong>на диске. Анализ включает перечисление файловых систем смонтированных разделов, обзор занятого и свободного места на диске. Для более удобного вывода информации, лучше применять сочетание:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">df –h</span></div></div></div><div class="enlighter-raw">df –h</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">df –h</pre>
+</li>
+<li>
+<h4>du</h4>
+<p>(Disk Usage). Позволяет <strong>определить размер</strong> файла или каталога. Применяется в вместе с дополнительными операторами:</p></li>
+</ol>
+<ul class="list-circle">
+<li><span style="color: #ff0000;">df –h</span> — представляет данные о размере в удобном для восприятия формате;</li>
+<li><span style="color: #ff0000;">df –s</span> — даёт необходимый минимум данных;</li>
+<li><span style="color: #ff0000;">df –d</span> — задаёт глубину рекурсии для каталогов.</li>
+</ul>
+<ol start="29">
+<li>
+<h4>mount / umount</h4>
+<p>Команды Linux для <strong>монтажа и отключения</strong> любых файловых систем — от CD-диска и USB-флешки до ядер ОС. Тип файловой системы обычно определяется командой самостоятельно, путём чтения суперблока. Опция используется только с правами суперпользователя.</p></li>
+</ol>
+<h2 id="p4">Навигация</h2>
+<ol start="30">
+<li>
+<h4>find</h4>
+<p>Осуществляет <strong>поиск </strong>в файловой системе, файлах и папках. Для результатов поиска можно выполнять дополнительные команды.</p></li>
+<li>
+<h4>pwd</h4>
+<p>Отображает на экране <strong>текущий каталог</strong>.</p></li>
+<li>
+<h4>clear</h4>
+<p>Команда <strong>полной очистки</strong> окна терминала удаляет все ранее выведенные сообщения.</p></li>
+<li>
+<h4>history</h4>
+<p>Показывает <strong>ранее введённые</strong> пользователем команды. Перемещаться по списку введённых команд можно, нажимая на клавиатуре «Вверх» и «Вниз».</p></li>
+<li>
+<h4>locate</h4>
+<p><strong>Быстрый поиск</strong> файлов по базе данных <span style="color: #ff0000;">updatedb</span> для шаблонов имён файлов. Эта БД работает со снимком файловой системы, что многократно ускоряет процесс поиска. Но тут есть и существенный минус. Точность поиска зависит от того, насколько актуальны данные о файловой системе в текущей версии снимка.</p></li>
+<li>
+<h4>zcat / zless / zmore</h4>
+<p>Утилиты для просмотра<strong> сжатых файлов</strong>. С помощью <span style="color: #ff0000;">zcat</span> можно найти увидеть список сжатых файлов, <span style="color: #ff0000;">zless</span> выводит их списком постранично с возможностью листать вперёд и назад, а <span style="color: #ff0000;">zmore</span> — только вперёд.</p></li>
+<li>
+<h4>;</h4>
+<p>Точка с запятой — ещё один оператор для <strong>последовательного запуска</strong> нескольких команд в одной строке. Если нужно, чтобы команды выполнялись параллельно, используйте оператор так:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-g1">(</span><span class="enlighter-text">команда_№1 &amp;</span><span class="enlighter-g1">)</span><span class="enlighter-text">; </span><span class="enlighter-g1">(</span><span class="enlighter-text">команда_№2 &amp;</span><span class="enlighter-g1">)</span><span class="enlighter-text">; </span><span class="enlighter-g1">(</span><span class="enlighter-text">команда_№3 &amp;</span><span class="enlighter-g1">)</span></div></div></div><div class="enlighter-raw">(команда_№1 &amp;); (команда_№2 &amp;); (команда_№3 &amp;)</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">(команда_№1 &amp;); (команда_№2 &amp;); (команда_№3 &amp;)</pre>
+</li>
+</ol>
+<h2 id="p5">Управление сетью</h2>
+<ol start="37">
+<li>
+<h4>ip</h4>
+<p>(Internet Protocol). Утилита выводит полный список параметров для <strong>настройки работы с сетью</strong>. Среди них:</p></li>
+</ol>
+<ul class="list-circle">
+<li><span style="color: #ff0000;">link</span> — сетевое устройство;</li>
+<li><span style="color: #ff0000;">address</span> — IP-адрес сетевого устройства;</li>
+<li><span style="color: #ff0000;">monitor</span> — мониторинг устройства;</li>
+<li><span style="color: #ff0000;">route</span> — маршрутизация;</li>
+<li><span style="color: #ff0000;">tunnel</span>&nbsp;— туннелированные.<br>
+Каждый из выводимых объектов можно изменять при помощи дополнительных команд: <span style="color: #ff0000;">add</span>, <span style="color: #ff0000;">change</span>, <span style="color: #ff0000;">del</span>, <span style="color: #ff0000;">save</span> и т.д.</li>
+</ul>
+<ol start="38">
+<li>
+<h4>ping</h4>
+<p>Команда проверяет <strong>наличие и качество интернет-подключения</strong>.</p></li>
+<li>
+<h4>nethogs</h4>
+<p>Утилита <strong>мониторинга сетевой активности</strong> устройств в системе. Чтобы задать сетевой интерфейс, введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">nethogs -i</span></div></div></div><div class="enlighter-raw">nethogs -i</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">nethogs -i</pre>
+</li>
+<li>
+<h4>traceroute</h4>
+<p>Утилита <strong>отслеживания интернет-подключения</strong>, отслеживая маршруты следования пакетов данных в сетях TCP/IP. Более совершенный инструмент для отслеживания проблем с подключением к Сети, чем упомянутая выше команда ping. Запускается только с правами суперпользователя.</p></li>
+</ol>
+<h2 id="p6">Работа с процессами</h2>
+<ol start="41">
+<li>
+<h4>kill / xkill / pkill / killall</h4>
+<p>Вариации команды для <strong>завершения операций</strong>. Основное различие между ними — способ идентификации.</p></li>
+</ol>
+<ul class="list-circle">
+<li><span style="color: #ff0000;">kill</span> — прекращает операцию, находя ее через идентификатор процесса (PID).</li>
+<li><span style="color: #ff0000;">xkill</span> — графический способ. После ввода команды курсор превращается в крестик, который при клике на окно открытого процесса, останавливает его;</li>
+<li><span style="color: #ff0000;">pkill</span> — завершает конкретный процесс, находя его по имени.</li>
+<li><span style="color: #ff0000;">killall&nbsp;</span>— прекращает все процессы с указанным именем.</li>
+</ul>
+<ol start="42">
+<li>
+<h4>Ctrl +C</h4>
+<p>Данное сочетание клавиш — еще один быстрый способ <strong>завершить</strong> выполнение любого процесса в терминале Linux.</p></li>
+<li>
+<h4>Ctrl +Z</h4>
+<p>Комбинация ставит любой запущенный в консоли процесс <strong>на паузу</strong>. Снова запустить его можно, введя <span style="color: #ff0000;">%</span>.</p></li>
+<li>
+<h4>ps / pgrep</h4>
+<p>(Process Status / Process-ID Global Regular Expressions Print). Команды находят по заданным параметрам и выводят информацию об <strong>активных процессах</strong>. Самый доступный способ найти идентификатор процесса (PID). Модификация <span style="color: #ff0000;">pstree</span> показывает весь список («древо») исполняемых процессов.</p></li>
+<li>
+<h4>top / htop / atop</h4>
+<p>(Table of Processes). Три варианта команды, вызывающую консольную программу <strong>мониторинга активных процессов</strong> в системе. Информация отображается в виде таблицы со списком процессов в реальном времени. Рекомендуется использовать две последних модификации программы – в них больше возможностей и продвинутых функций.</p></li>
+<li>
+<h4>crontab</h4>
+<p>Выполнение Cron (Command Run ON) — <strong>задач по расписанию</strong> в Linux.</p></li>
+<li>
+<h4>time</h4>
+<p>Команда-секундомер, позволяющая <strong>подсчитать время</strong> исполнения процесса. Результатом измерения станет блок данных с тремя важнейшими параметрами:</p></li>
+</ol>
+<ul class="list-circle">
+<li><span style="color: #ff0000;">real</span>— общее время исполнения;</li>
+<li><span style="color: #ff0000;">user</span> — сколько времени пользователь занял у CPU;</li>
+<li><span style="color: #ff0000;">sys</span> — сколько времени CPU было потрачено системой.</li>
+</ul>
+<blockquote><p>Сделать время исполнения процесса ОС Linux минимальным поможет <a href="https://eternalhost.net/vps?utm_medium=blog&amp;utm_campaign=osnovnye-komandy-linux&amp;utm_content=intext&amp;utm_term=2" target="_blank" rel="noopener">VPS сервер от Eternalhost</a>! Универсальное решение по доступной цене!</p></blockquote>
+<h2 id="p7">Работа с архивами</h2>
+<ol start="48">
+<li>
+<h4>gzip</h4>
+<p>Создаёт <strong>архивы</strong> со сжатыми файлами. Архивный файл будет иметь расширение <span style="color: #ff0000;">.gz</span>.</p></li>
+<li>
+<h4>gunzip</h4>
+<p>Команда-<strong>распаковщик для zip-архивов</strong>. Извлекает сжатые файлы и удаляет архивный файл <span style="color: #ff0000;">.gz</span>.</p></li>
+<li>
+<h4>tar</h4>
+<p>Сохраняет <strong>файлы и каталоги в архив</strong> с расширением <span style="color: #ff0000;">.tar</span>. Удобная утилита для создания резервных копий или надёжной архивации данных.</p></li>
+</ol>
+<h2 id="p8">Управление пользователями</h2>
+<ol start="51">
+<li>
+<h4>useradd / userdel / usermod</h4>
+<p>Команды <strong>управления учётными записями</strong> пользователей. Позволяют добавлять, удалять и редактировать пользовательские профили. Пример:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">useradd имя_пользователя.</span></div></div></div><div class="enlighter-raw">useradd имя_пользователя.</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">useradd имя_пользователя.</pre>
+</li>
+<li>
+<h4>passwd</h4>
+<p>Позволяет <strong>менять пароли учётных записей</strong>. Обычный пользователь может поменять только пароль, связанный с его именем: passwd имя_пользователя.В режиме суперпользователя можно «вслепую» сбросить все пользовательские пароли в системе.</p></li>
+</ol>
+<h2 id="p8">Работа с текстом</h2>
+<ol start="53">
+<li>
+<h4>Ctrl + A / Ctrl + E</h4>
+<p>Клавиши быстрого <strong>перехода в начало</strong> (<span style="color: #ff0000;">А</span>) и <strong>конец</strong> (<span style="color: #ff0000;">E</span>) строки.</p></li>
+<li>
+<h4>Ctrl + Shift + C / Ctrl + Shift + V</h4>
+<p>Это сочетание клавиш в Linux позволит быстро <strong>скопировать</strong> (<span style="color: #ff0000;">C</span>) и <strong>вставить</strong> (<span style="color: #ff0000;">V</span>) текст в терминале.</p></li>
+<li>
+<h4>more / less</h4>
+<p>Две команды для облегчения <strong>просмотра больших текстов</strong>, не умещающихся на одном экране эмулятора терминала. Т.к. функционально команды одинаковы, но <span style="color: #ff0000;">less</span> — новее и поддерживает больше опций, рекомендуется использовать именно её.</p></li>
+<li>
+<h4>head / tail</h4>
+<p>Пара дополняющих друг друга команд для просмотра на одном экране <strong>начала и конца текста</strong>. Команда <span style="color: #ff0000;">head</span> выдаёт 10 (по умолчанию) первых строк текста,<span style="color: #ff0000;"> tail</span> — последних. Число строк в обоих случаях меняется с помощью аргумента <span style="color: #ff0000;">-n</span>. Оператор -f позволяет отслеживать на экране изменения в файле. Чтобы лог (журнал) файла отображался в режиме реального времени, ввести команду:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">tail –nf,</span></div></div></div><div class="enlighter-raw">tail –nf,</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">tail –nf,</pre>
+<p>Для отслеживания логов нескольких файлов применяется модификация команды — <span style="color: #ff0000;">multitail</span>.</p></li>
+<li>
+<h4>grep</h4>
+<p>(Global Regular Expression and Print). <strong>Ищет текст</strong> по заданному шаблону. Это очень полезно, когда надо проанализировать работу команды, которая сопровождается большим объёмом текстовой информации. Шаблон может заполняться строкой или регулярным выражением. Пример:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">alias старое_название новое_название</span></div></div></div><div class="enlighter-raw">alias старое_название новое_название</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">alias старое_название новое_название</pre>
+</li>
+<li>
+<h4>sort</h4>
+<p><strong>Сортировка</strong> текстовой информации по заданным показателям. Дополнительные переменные позволяют:</p></li>
+</ol>
+<ul class="list-circle">
+<li><span style="color: #ff0000;">-n</span> ­— сортировать строки текста по числовому значению;</li>
+<li><span style="color: #ff0000;">du</span> ­— по размеру;</li>
+<li><span style="color: #ff0000;">-r</span> ­— применять обратную сортировку;</li>
+<li><span style="color: #ff0000;">-u</span> ­— удалять дубликаты при сортировке.</li>
+</ul>
+<ol start="59">
+<li>
+<h4>wc</h4>
+<p>(Word Count). Программа для <strong>подсчета заданных параметров</strong> в тексте. Считает такие показатели, как символы, слова, строки и байты.</p></li>
+<li>
+<h4>diff</h4>
+<p>(Difference). Производит построчное <strong>сравнение двух текстовых файлов</strong>, выводя различия между ними. Алгоритм работы:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">diff файл_№1 файл_№2</span></div></div></div><div class="enlighter-raw">diff файл_№1 файл_№2</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">diff файл_№1 файл_№2</pre>
+<p>Различия между двумя версиями файлов отмечают такие символы, как:</p></li>
+</ol>
+<ul class="list-circle">
+<li><span style="color: #ff0000;">c</span> — изменённые строки;</li>
+<li><span style="color: #ff0000;">d</span> — удалённые строки;</li>
+<li><span style="color: #ff0000;">а</span> —новые строки.</li>
+</ul>
+<h2 id="p9">Окружение пользователя</h2>
+<ol start="61">
+<li>
+<h4>su / sudo</h4>
+<p>(Switch User / Substitute User &amp; Do). Две команды для запуска процессов <strong>от имени другого пользователя</strong> без завершения текущего сеанса. При использовании <span style="color: #ff0000;">su</span> по умолчанию происходит переход на пользователя root. Команда <span style="color: #ff0000;">sudo</span> способна не только активировать режим суперпользователя (о чём упоминалось выше), но и выполнить команду от имени другого пользователя без реального переключения на него. Поэтому второй вариант считается более безопасным.</p></li>
+<li>
+<h4>date</h4>
+<p>Команда Linux, сообщающая <strong>информацию о времени</strong>. Отдельными переменными можно задать удобный формат вывода и число отображаемых параметров, вплоть до миллисекунд.</p></li>
+<li>
+<h4>alias</h4>
+<p>Команда для <strong>создания синонимов</strong> названий незаменяемых команд для их сокращения. Она изменяет длинное название на удобное пользователю короткое или аббревиатуру. Пример:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">alias старое_название новое_название</span></div></div></div><div class="enlighter-raw">alias старое_название новое_название</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">alias старое_название новое_название</pre>
+<p>Этот же приём отлично подойдёт для <strong>устранения опечаток</strong> в командах. Отменить действие утилиты переименования поможет команда <span style="color: #ff0000;">unalias</span>.</p></li>
+<li>
+<h4>uname</h4>
+<p>Утилита, выводящая <strong>информацию об операционной системе</strong>. Без дополнительных параметров она выдаст только название ядра. Чтобы получить всю возможную системную информацию, введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">uname -a</span></div></div></div><div class="enlighter-raw">uname -a</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">uname -a</pre>
+</li>
+<li>
+<h4>uptime</h4>
+<p>Показывает аптайм – <strong>время непрерывной работы</strong> системы.</p></li>
+<li>
+<h4>sleep</h4>
+<p>Задаёт <strong>таймер выключения</strong> системы.</p></li>
+<li>
+<h4>yes</h4>
+<p>Утилита автозаполнения <strong>поля согласия</strong> в команде или скрипте. Введите: <span style="color: #ff0000;">yes название_команды</span> и вам не придётся делать подтверждение вручную, когда этого потребует сценарий взаимодействия программы с пользователем.</p></li>
+</ol>
+<h2 id="p10">Пакетные менеджеры</h2>
+<p>Пакетные менеджеры (ПМ) в Linux отвечают за установку, обновление и удаление приложений. Принцип их работы – загрузка программных пакетов из собственных сетевых репозитариев. Данные утилиты работают только с правами суперпользователя. Для различных дистрибутивов Linux существуют свои версии ПМ.</p>
+<ol start="68">
+<li>
+<h4>apt</h4>
+<p>ПМ для <strong>Debian</strong><strong>, </strong><strong>Ubuntu</strong><strong> и </strong><strong>Mint</strong>. Чтобы установить приложение, введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo apt install имя_пакета</span></div></div></div><div class="enlighter-raw">sudo apt install имя_пакета</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo apt install имя_пакета</pre>
+<p>Чтобы удалить приложение:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo apt remove имя_пакета</span></div></div></div><div class="enlighter-raw">sudo apt remove имя_пакета</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo apt remove имя_пакета</pre>
+</li>
+<li>
+<h4>dnf / yum</h4>
+<p>Два самых распространённых ПМ для операционных систем <strong>Red Hat, Fedora и CentOS</strong>. Чтобы установить приложение, введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo dnf install имя_пакета</span></div></div></div><div class="enlighter-raw">sudo dnf install имя_пакета</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo dnf install имя_пакета</pre>
+<p>Чтобы удалить:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo dnf remove имя_пакета</span></div></div></div><div class="enlighter-raw">sudo dnf remove имя_пакета</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo dnf remove имя_пакета</pre>
+</li>
+<li>
+<h4>pacman</h4>
+<p>Пакетный менеджер дистрибутивов <strong>Arch и Manjaro</strong>. Чтобы установить приложение, введите:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo pacman -S имя_пакета</span></div></div></div><div class="enlighter-raw">sudo pacman -S имя_пакета</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo pacman -S имя_пакета</pre>
+<p>Чтобы удалить приложение:</p>
+<div class="enlighter-default enlighter-v-standard enlighter-t-enlighter enlighter-hover "><div class="enlighter-toolbar-top enlighter-toolbar"><div class="enlighter-btn enlighter-btn-raw" title="Plain text"></div><div class="enlighter-btn enlighter-btn-copy" title="Copy to clipboard"></div><div class="enlighter-btn enlighter-btn-window" title="Open code in new window"></div><div class="enlighter-btn enlighter-btn-website" title="EnlighterJS 3 Syntax Highlighter"></div></div><div class="enlighter" style=""><div class=""><div><span class="enlighter-text">sudo pacman -R имя_пакета</span></div></div></div><div class="enlighter-raw">sudo pacman -R имя_пакета</div><div class="enlighter-toolbar-bottom enlighter-toolbar"></div></div><pre class="EnlighterJSRAW enlighter-origin" data-enlighter-language="php" data-enlighter-theme="enlighter" data-enlighter-linenumbers="false">sudo pacman -R имя_пакета</pre>
+</li>
+</ol>
+<h2 id="p11">Заключение</h2>
+<p>Полный список команд для дистрибутивов Linux — материал скорее для объемной книги, чем для одной статьи. Однако, в данном обзоре мы постарались собрать самые важные из них. Эти команды будут гарантированно полезны как в повседневных задачах, так и для раскрытия продвинутых возможностей этой операционной системы.</p>
+<p>У каждого пользователя Linux есть свой список must have команд. Наверняка и вам есть чем дополнить данный обзор? Делитесь своими любимыми командами Linux в комментариях!</p>
+<blockquote><p>Хотите, чтобы операционка работала как швейцарские часы? Надёжная и мощная платформа для развёртывания любых дистрибутивов Linux — <a href="https://eternalhost.net/vps?utm_medium=blog&amp;utm_campaign=osnovnye-komandy-linux&amp;utm_content=btm" target="_blank" rel="noopener">VDS от Eternalhost</a>!</p></blockquote>
+<script type="application/ld+json">{"@context":"http:\/\/schema.org\/","@type":"BlogPosting","datePublished":"2019-06-10T11:35:21+03:00","headline":"\u0421\u043f\u0440\u0430\u0432\u043e\u0447\u043d\u0438\u043a 70 \u043e\u0441\u043d\u043e\u0432\u043d\u044b\u0445 \u043a\u043e\u043c\u0430\u043d\u0434 Linux: \u043f\u043e\u043b\u043d\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0441 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u043c\u0438","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eternalhost.net\/blog\/sozdanie-saytov\/osnovnye-komandy-linux"},"author":{"@type":"Person","name":"Eternalhost"},"publisher":{"@type":"Organization","name":"","logo":{"@type":"ImageObject","url":"","width":0,"height":0}},"dateModified":"2019-11-12T09:06:42+03:00","image":{"@type":"ImageObject","url":"https:\/\/eternalhost.net\/wp-content\/uploads\/2019\/06\/Spravochnik-70-osnovnyh-komand-Linux.png","width":862,"height":283}}</script>    <div class="clearfix"></div>
+    <div class="pt-2"><div class="h4 float-left mr-3" style="color: #202737; font-weight: 400;">Оцените материал:</div><!--Yasr Visitor Votes Shortcode--><div id="yasr_visitor_votes_1796" class="yasr-visitor-votes"><div id="yasr-visitor-votes-rater-3cb49e47f5e2e" class="yasr-rater-stars-visitor-votes star-rating" data-rater-postid="1796" data-rating="4.5" data-rater-starsize="24" data-rater-readonly="false" data-rater-nonce="3cea196738" data-issingular="true" style="width: 120px; height: 24px; background-size: 24px;">
+        <div class="star-value" style="background-size: 24px; width: 90%;"></div></div><span id="yasr-visitor-votes-container-after-stars-3cb49e47f5e2e" class="yasr-visitor-votes-after-stars-class"><span class="yasr-total-average-container" id="yasr-total-average-text_1796">
+            [Всего голосов: 8 &nbsp; &nbsp;Средний: 4.5/5]
+            </span></span></div><!--End Yasr Visitor Votes Shortcode--></div>
+</div>

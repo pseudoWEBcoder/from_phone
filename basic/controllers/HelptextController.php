@@ -128,23 +128,39 @@ class HelptextController extends Controller
     public function actionGenerate()
     {
         $model = new Helptext();
-
+        $decr_url = 'https://habr.com/ru/post/481398/';
+        $russ = file_get_contents($file = '../../helprus.txt');
+        foreach ($arr = explode('<h2>', $russ) as $index => $item) {
+            if (preg_match('/^([a-zA-Z_-]+?)<\/h2>(.+?<br ?\/?>)(.+)$/ms', $item, $matches)) {
+                $command = trim($matches[1] ?? '');
+                $decr = trim(preg_replace('/<br ?\/?>/', '', trim($matches[2] ?? '')));
+                $example = trim($matches[3]);
+                $commands[$command] = ['command' => $command, 'decr' => $decr, 'example' => $example, 'weight' => $index];
+            }
+        }
+        $def = ['command' => '', 'decr' => '', 'example' => ''];
         $all = Helptext::deleteAll();
-        $commands = ['git', 'grep', 'ls', 'curl', 'man'];
-        sort($commands);
+        $commands_adv = ['git' => $def, 'grep' => $def, 'ls' => $def, 'curl' => $def, 'man' => $def];
+        $commands = array_merge($commands_adv, $commands);
+        ksort($commands);
         foreach ($commands as $index => $command) {
+            $command['command'] = mb_strlen($command['command']) ? $command['command'] : $index;
             ob_start();
-            $text = passthru($cm = $command . ' --help', $output);
+            $text = passthru($cm = $command['command'] . ' --help', $output);
             $content = ob_get_contents();
 
             $model = new Helptext([
-                'command' => $command,
+                'command' => $command['command'],
                 'created' => time(),
                 'updated' => time(),
                 'help' => $content,
+                'decr' => $command['decr'],
+                'example' => $command['example'],
                 'parsed' => $content,
                 'source' => $cm,
                 'device' => 'Notebook',
+                'dop_info' => json_encode(['decr_url' => $decr_url, 'parsed' => time(), 'from_file' => $file, 'executor' => 'passthru']),
+                'weight' => $command['weight'] * 1,
             ]);
             $saved = $model->save(false);
 

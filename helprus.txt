@@ -1,0 +1,939 @@
+<div class="post__text post__text-html post__text_v1" id="post-content-body"><h1>Предисловие</h1><br>
+Всем привет! Меня зовут Саша, и я больше шести лет занимаюсь тестированием бэкенда (сервисы Linux и API). Мысль о статье у меня появилась после очередной просьбы знакомого тестировщика подсказать ему, что можно почитать по командам Linux перед собеседованием. Обычно от кандидата на позицию QA инженера требуют знание основных команд (если, конечно, подразумевается работа с Linux), но как понять, про какие команды стоит почитать во время подготовки к собеседованию, если опыта работы с Linux мало или вовсе нет?<br>
+<br>
+Поэтому, хоть про это уже и много раз написано, я всё же решился написать ещё одну статью «Linux для новичков» и перечислить здесь базовые команды, которые нужно знать перед любым собеседованием в отдел (или компанию), где используют Linux. Я подумал, какие команды и утилиты и с какими параметрами я использую чаще всего, собрал фидбек от коллег, и скомпоновал это всё в одну статью. Статья условно делится на 3 части: сначала краткая информация об основах ввода-вывода в терминале Linux, затем обзор самых базовых команд, а в третьей части описывается решение типовых задач в Linux.<br>
+<a name="habracut"></a><br>
+<blockquote>У каждой команды есть много опций, здесь все они перечислены не будут. Всегда можно ввести `<i>man &lt;команда&gt;</i>` или `<i>&lt;команда&gt; --help</i>`, чтобы узнать о команде подробнее.<br>
+<br>
+Пример:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ mkdir --help
+Usage: mkdir [OPTION]... DIRECTORY...
+Create the DIRECTORY(ies), if they do not already exist.
+
+Mandatory arguments to long options are mandatory for short options too.
+&nbsp;&nbsp;-m, --mode=MODE &nbsp; set file mode (as in chmod), not a=rwx - umask
+&nbsp;&nbsp;-p, --parents &nbsp; &nbsp; no error if existing, make parent directories as needed
+&nbsp;&nbsp;-v, --verbose &nbsp; &nbsp; print a message for each created directory
+&nbsp;&nbsp;-Z &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set SELinux security context of each created directory
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to the default type
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--context[=CTX]&nbsp; like -Z, or if CTX is specified then set the SELinux
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or SMACK security context to CTX
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--help &nbsp; &nbsp; display this help and exit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--version&nbsp; output version information and exit
+
+GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+For complete documentation, run: info coreutils 'mkdir invocation'
+</code></pre><br>
+</blockquote><br>
+<blockquote>Если какая-то команда выполняется слишком долго, её можно завершить, нажав в консоли <i>Ctrl+C</i> (процессу посылается сигнал <i>SIGINT</i>).<br>
+</blockquote> <h1>Немного о выводе команд</h1><br>
+Когда запускается процесс в Linux, создаётся 3 стандартных потока данных для этого процесса: <i>stdin</i>, <i>stdout</i> и <i>stderr</i>. Они имеют номер 0, 1 и 2 соответственно. Но нас сейчас интересуют <i>stdout</i> и, в меньшей степени, <i>stderr</i>. Из названий несложно догадаться, что <i>stdout</i> используется для вывода данных, а <i>stderr</i> — для вывода сообщений об ошибках. По умолчанию при запуске команды в Linux <i>stdout</i> и <i>stderr</i> выводят всю информацию на консоль, однако, если вывод команды большой, может быть удобно перенаправить его в файл. Это можно сделать, например, так:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ man signal &gt; man_signal
+</code></pre><br>
+Если мы выведем содержимое файла <i>man_signal</i>, то мы увидим, что оно идентично тому, что было бы при простом запуске команды `<i>man signal</i>`.<br>
+<br>
+Операция перенаправления `<i>&gt;</i>` по умолчанию использует <i>stdout</i>. Можно указать о перенаправлении <i>stdout</i> явно: `<i>1&gt;</i>`. Аналогично можно указать о перенаправлении <i>stderr</i>: `<i>2&gt;</i>`. Можно эти операции скомбинировать и таким образом разделить обычный вывод команды и вывод сообщений об ошибках:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ man signal 1&gt; man_signal 2&gt; man_signal_error_log
+</code></pre><br>
+Перенаправить и <i>stdout</i>, и <i>stderr</i> в один файл можно следующим образом:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ man signal &gt; man_signal 2&gt;&amp;1
+</code></pre><br>
+Операция перенаправления `<i>2&gt;&amp;1</i>` означает перенаправление <i>stderr</i> туда же, куда направлен <i>stdout</i>.<br>
+<br>
+Еще один удобный инструмент для работы с вводом-выводом (а точнее, это удобное средство межпроцессного взаимодействия) — <i>pipe</i> (или <i>конвейер</i>). Конвейеры часто используются для связи нескольких команд: <i>stdout</i> команды перенаправляется в <i>stdin</i> следующей, и так по цепочке:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps aux | grep docker | tail -n 2
+root &nbsp; &nbsp; 1045894  0.0&nbsp; 0.0   7512  3704 ?&nbsp; &nbsp; &nbsp; &nbsp; Sl   16:04   0:00 docker-containerd-shim -namespace moby -workdir /var/lib/docker/containerd/daemon/io.containerd.runtime.v1.linux/moby/2fbfddaf91c1bb7b9a0a6f788f3505dd7266f1139ad381d5b51ec1f47e1e7b28 -address /var/run/docker/containerd/docker-containerd.sock -containerd-binary /usr/bin/docker-containerd -runtime-root /var/run/docker/runtime-runc
+531&nbsp; &nbsp; &nbsp; 1048313  0.0&nbsp; 0.0 110520  2084 pts/2&nbsp; &nbsp; S+   16:12   0:00 grep --color=auto docker
+</code></pre><br>
+<h1>Базовые команды Linux</h1><br>
+<h2>pwd</h2><br>
+Вывести текущую (рабочую) директорию.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ pwd
+/home/user
+</code></pre><br>
+<h2>date</h2><br>
+Вывести текущую дату и время системы.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ date
+Mon Dec 16 13:37:07 UTC 2019
+[user@testhost ~]$ date +%s
+1576503430
+</code></pre><br>
+<h2>w</h2><br>
+Данная команда показывает, кто залогинен в системе. Помимо этого также на экран выводится uptime и LA (load average).<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ w
+&nbsp;05:47:17 up 377 days, 17:57,&nbsp; 1 user,  load average: 0,00, 0,01, 0,05
+USER &nbsp; &nbsp; TTY      FROM &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LOGIN@   IDLE   JCPU   PCPU WHAT
+user &nbsp; &nbsp; pts/0    32.175.94.241&nbsp; &nbsp; 05:47    2.00s  0.01s  0.00s w
+</code></pre><br>
+<h2>ls</h2><br>
+Вывести содержимое директории. Если не передать путь, то выведется содержимое текущей директории.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ pwd
+/home/user
+[user@testhost ~]$ ls
+qqq
+[user@testhost ~]$ ls /home/user
+qqq
+[user@testhost ~]$ ls /
+bin&nbsp; boot  cgroup&nbsp; dev  etc  home&nbsp; lib  lib64  local&nbsp; lost+found  media  mnt&nbsp; opt  proc  root  run  sbin&nbsp; selinux  srv  swap  sys  tmp&nbsp; usr  var
+</code></pre><br>
+Лично я часто использую опции <i>-l</i> (long listing format — вывод в колонку с дополнительной информацией о файлах), <i>-t</i> (сортировка по времени изменения файла/директории) и <i>-r</i> (обратная сортировка — в сочетании с <i>-t</i> наиболее «свежие» файлы будут внизу):<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -ltr /
+total 4194416
+drwxr-xr-x&nbsp; &nbsp; 2 root root   &nbsp; &nbsp; 4096 Jan  6  2012 srv
+drwxr-xr-x&nbsp; &nbsp; 2 root root   &nbsp; &nbsp; 4096 Jan  6  2012 selinux
+drwxr-xr-x&nbsp; &nbsp; 2 root root   &nbsp; &nbsp; 4096 Jan  6  2012 mnt
+drwxr-xr-x&nbsp; &nbsp; 2 root root   &nbsp; &nbsp; 4096 Jan  6  2012 media
+drwx------&nbsp; &nbsp; 2 root root    &nbsp; 16384 Oct  1  2017 lost+found
+drwxr-xr-x&nbsp; &nbsp; 2 root root   &nbsp; &nbsp; 4096 Oct  1  2017 local
+drwxr-xr-x &nbsp; 13 root root &nbsp; &nbsp; &nbsp; 4096 Oct  1  2017 usr
+drwxr-xr-x &nbsp; 11 root root &nbsp; &nbsp; &nbsp; 4096 Apr 10  2018 cgroup
+drwxr-xr-x&nbsp; &nbsp; 4 root root   &nbsp; &nbsp; 4096 Apr 10  2018 run
+-rw-------&nbsp; &nbsp; 1 root root 4294967296 Sep 10&nbsp; 2018 swap
+dr-xr-xr-x &nbsp; 10 root root &nbsp; &nbsp; &nbsp; 4096 Dec 13  2018 lib
+drwxr-xr-x&nbsp; &nbsp; 6 root root   &nbsp; &nbsp; 4096 Mar  7  2019 opt
+drwxr-xr-x &nbsp; 20 root root &nbsp; &nbsp; &nbsp; 4096 Mar 19  2019 var
+dr-xr-xr-x &nbsp; 10 root root  &nbsp; &nbsp; 12288 Apr  9  2019 lib64
+dr-xr-xr-x&nbsp; &nbsp; 2 root root   &nbsp; &nbsp; 4096 Apr  9  2019 bin
+dr-xr-xr-x&nbsp; &nbsp; 4 root root   &nbsp; &nbsp; 4096 Apr  9  2019 boot
+dr-xr-xr-x&nbsp; &nbsp; 2 root root    &nbsp; 12288 Apr  9  2019 sbin
+dr-xr-xr-x 3229 root root&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 Jul  2 10:19 proc
+drwxr-xr-x &nbsp; 34 root root &nbsp; &nbsp; &nbsp; 4096 Oct 28 13:27 home
+drwxr-xr-x &nbsp; 93 root root &nbsp; &nbsp; &nbsp; 4096 Oct 30 16:00 etc
+dr-xr-x--- &nbsp; 11 root root &nbsp; &nbsp; &nbsp; 4096 Nov  1 13:02 root
+dr-xr-xr-x &nbsp; 13 root root  &nbsp; &nbsp; &nbsp; &nbsp; 0 Nov 13 20:28 sys
+drwxr-xr-x &nbsp; 16 root root &nbsp; &nbsp; &nbsp; 2740 Nov 26 08:55 dev
+drwxrwxrwt&nbsp; &nbsp; 3 root root   &nbsp; &nbsp; 4096 Nov 26 08:57 tmp
+</code></pre><br>
+Есть 2 специальных имени директории: "<i>.</i>" и "<i>..</i>". Первое означает текущую директорию, второе — родительскую директорию. Их бывает удобно использовать в различных командах, в частности, <i>ls</i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost home]$ pwd
+/home
+[user@testhost home]$ ls ..
+bin&nbsp; boot  cgroup&nbsp; dev  etc  home&nbsp; lib  lib64  local&nbsp; lost+found  media  mnt&nbsp; opt  proc  root  run  sbin&nbsp; selinux  srv  swap  sys  tmp&nbsp; usr  var
+[user@testhost home]$ ls ../home/user/
+qqq
+</code></pre><br>
+Также есть полезная опция для вывода скрытых файлов (начинаются на "<i>.</i>") — <i>-a</i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -a
+.&nbsp; ..  1&nbsp; .bash_history&nbsp; .bash_logout  .bash_profile&nbsp; .bashrc  .lesshst  man_signal&nbsp; man_signal_error_log  .mongorc.js&nbsp; .ssh  temp  test  .viminfo
+</code></pre><br>
+И еще можно использовать опцию <i>-h</i> — вывод в human readable формате (обратите внимание на размеры файлов):<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -ltrh
+total 16K
+-rwxrwx--x 1 user user   31 Nov 26 11:09 temp
+-rw-rw-r-- 1 user user 6.0K Dec  3 16:02 1
+drwxrwxr-x 2 user user 4.0K Dec  4 10:39 test
+</code></pre><br>
+<h2>cd</h2><br>
+Изменить текущую директорию.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ pwd
+/home/user
+[user@testhost ~]$ cd /home/
+[user@testhost home]$ pwd
+/home
+</code></pre><br>
+Если не передавать имя директории в качестве аргумента, будет использоваться переменная окружения <i>$HOME</i>, то есть домашняя директория. Также может быть удобно использовать `<i>~</i>` — специальный символ, означающий <i>$HOME</i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost etc]$ pwd
+/etc
+[user@testhost etc]$ cd ~/test/
+[user@testhost test]$ pwd
+/home/user/test
+</code></pre><br>
+<h2>mkdir</h2><br>
+Создать директорию.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ mkdir test
+[user@testhost ~]$ ls -ltr
+total 38184
+-rw-rw-r-- 1 user user 39091284 Nov 22 14:14 qqq
+drwxrwxr-x 2 user user &nbsp; &nbsp; 4096 Nov 26 10:29 test
+</code></pre><br>
+Иногда нужно создать определенную структуру директорий: например, директорию в директории, которой не существует. Чтобы не вводить несколько раз подряд <i>mkdir</i>, можно использовать опцию <i>-p</i> — она позволяет создать все недостающие директории в иерархии. Также с этой опцией <i>mkdir</i> не вернет ошибку, если директория существует.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls
+qqq&nbsp; test
+[user@testhost ~]$ mkdir test2/subtest
+mkdir: cannot create directory ‘test2/subtest’: No such file or directory
+[user@testhost ~]$ mkdir -p test2/subtest
+[user@testhost ~]$ ls
+qqq&nbsp; test  test2
+[user@testhost ~]$ ls test2/
+subtest
+[user@testhost ~]$ mkdir test2/subtest
+mkdir: cannot create directory ‘test2/subtest’: File exists
+[user@testhost ~]$ mkdir -p test2/subtest
+[user@testhost ~]$ ls test2/
+subtest
+</code></pre><br>
+<h2>rm</h2><br>
+Удалить файл.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls
+qqq&nbsp; test  test2
+[user@testhost ~]$ rm qqq
+[user@testhost ~]$ ls
+test&nbsp; test2
+</code></pre><br>
+Опция <i>-r</i> позволяет рекурсивно удалять директории со всем их содержимым, опция <i>-f</i> позволяет игнорировать ошибки при удалении (например, о несуществующем файле). Эти опции позволяют, грубо говоря, гарантированно удалить всю иерархию файлов и директорий (если на это есть права у пользователя), поэтому, их нужно использовать с осторожностью (классический пример-шутка — "<i>rm -rf /</i>", при определенных обстоятельствах удалит вам если не всю систему, то очень много важных для её работоспособности файлов).<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls
+test&nbsp; test2
+[user@testhost ~]$ ls -ltr test2/
+total 4
+-rw-rw-r-- 1 user user&nbsp; &nbsp; 0 Nov 26 10:40 temp
+drwxrwxr-x 2 user user 4096 Nov 26 10:40 temp_dir
+[user@testhost ~]$ rm -rf test2
+[user@testhost ~]$ ls
+test
+</code></pre><br>
+<h2>cp</h2><br>
+Копировать файл или директорию.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls
+temp&nbsp; test
+[user@testhost ~]$ cp temp temp_clone
+[user@testhost ~]$ ls
+temp&nbsp; temp_clone&nbsp; test
+</code></pre><br>
+У этой команды также есть опции <i>-r</i> и <i>-f</i>, их можно использовать, чтобы гарантированно скопировать иерархию директорий и папок в другое место.<br>
+<br>
+<h2>mv</h2><br>
+Переместить или переименовать файл или директорию.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -ltr
+total 4
+drwxrwxr-x 2 user user 4096 Nov 26 10:29 test
+-rw-rw-r-- 1 user user&nbsp; &nbsp; 0 Nov 26 10:45 temp
+-rw-rw-r-- 1 user user&nbsp; &nbsp; 0 Nov 26 10:46 temp_clone
+[user@testhost ~]$ ls test
+[user@testhost ~]$ mv test test_renamed
+[user@testhost ~]$ mv temp_clone test_renamed/
+[user@testhost ~]$ ls
+temp&nbsp; test_renamed
+[user@testhost ~]$ ls test_renamed/
+temp_clone
+</code></pre><br>
+<h2>cat</h2><br>
+Вывести содержимое файла (или файлов).<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ cat temp
+Content of a file.
+Lalalala...
+</code></pre><br>
+Также стоит обратить внимание на команды <i>head</i> (вывести <i>n</i> первых строк или байт файла) и <i>tail</i> (о ней — далее).<br>
+<br>
+<h2>tail</h2><br>
+Вывести <i>n</i> последних строк или байт файла.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ tail -1 temp
+Lalalala...
+</code></pre><br>
+Очень полезной является опция <i>-f</i> — она позволяет выводить новые данные в файле в реальном времени.<br>
+<br>
+<h2>less</h2><br>
+Иногда текстовый файл слишком большой, и неудобно выводить его командой <i>cat</i>. Тогда можно открыть его с помощью команды <i>less</i>: файл будет выводиться по частям, доступна навигация по этим частям, поиск и прочий простой функционал.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ less temp
+</code></pre><br>
+Также может оказаться удобным вариант использования <i>less</i> с конвейером (<i>pipe</i>):<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ grep "ERROR" /tmp/some.log | less
+</code></pre><br>
+<h2>ps</h2><br>
+Вывести список процессов.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps
+&nbsp;&nbsp;&nbsp;&nbsp;PID TTY&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TIME CMD
+&nbsp;761020 pts/2&nbsp; &nbsp; 00:00:00 bash
+&nbsp;809720 pts/2&nbsp; &nbsp; 00:00:00 ps
+</code></pre><br>
+Я сам обычно использую BSD опции "<i>aux</i>" — вывести все процессы в системе (так как процессов может быть много, я вывел только первые 5 из них, использовав конвейер (<i>pipe</i>) и команду <i>head</i>):<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps aux | head -5
+USER &nbsp; &nbsp; &nbsp; &nbsp; PID %CPU %MEM&nbsp; &nbsp; VSZ   RSS TTY    &nbsp; STAT START   TIME COMMAND
+root &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1  0.0  0.0  19692&nbsp; 2600 ?        Ss   Jul02 &nbsp; 0:10 /sbin/init
+root &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2  0.0  0.0    &nbsp; 0     0 ?        S&nbsp; &nbsp; Jul02   0:03 [kthreadd]
+root &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4  0.0  0.0    &nbsp; 0     0 ?        I&lt; &nbsp; Jul02   0:00 [kworker/0:0H]
+root &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 6  0.0  0.0    &nbsp; 0     0 ?        I&lt; &nbsp; Jul02   0:00 [mm_percpu_wq]
+</code></pre><br>
+Многие также используют BSD опции "<i>axjf</i>", что позволяет вывести дерево процессов (здесь я убрал часть вывода для демонстрации):<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps axjf
+&nbsp;&nbsp;&nbsp;PPID &nbsp; &nbsp; PID    PGID &nbsp; &nbsp; SID TTY        TPGID STAT &nbsp; UID   TIME COMMAND
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp; &nbsp; &nbsp; 2       0 &nbsp; &nbsp; &nbsp; 0 ?             -1 S&nbsp; &nbsp; &nbsp; &nbsp; 0   0:03 [kthreadd]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp; &nbsp; &nbsp; 4       0 &nbsp; &nbsp; &nbsp; 0 ?             -1 I&lt; &nbsp; &nbsp; &nbsp; 0   0:00  \_ [kworker/0:0H]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp; &nbsp; &nbsp; 6       0 &nbsp; &nbsp; &nbsp; 0 ?             -1 I&lt; &nbsp; &nbsp; &nbsp; 0   0:00  \_ [mm_percpu_wq]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 &nbsp; &nbsp; &nbsp; 7       0 &nbsp; &nbsp; &nbsp; 0 ?             -1 S&nbsp; &nbsp; &nbsp; &nbsp; 0   4:08  \_ [ksoftirqd/0]
+...
+...
+...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp; &nbsp; 4293  &nbsp; 4293    4293 tty6&nbsp; &nbsp; &nbsp; &nbsp; 4293 Ss+      0   0:00 /sbin/mingetty /dev/tty6
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp; 532967&nbsp; 532964  532964 ? &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -1 Sl     495   0:00 /opt/td-agent/embedded/bin/ruby /usr/sbin/td-agent --log /var/log/td-agent/td-agent.log --use-v1-config --group td-agent --daemon /var/run/td-agent/td-agent.pid
+&nbsp;532967&nbsp; 532970  532964&nbsp; 532964 ?         &nbsp; &nbsp; -1 Sl     495 803:06  \_ /opt/td-agent/embedded/bin/ruby /usr/sbin/td-agent --log /var/log/td-agent/td-agent.log --use-v1-config --group td-agent --daemon /var/run/td-agent/td-agent.pid
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp; 537162&nbsp; 533357  532322 ? &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -1 Sl       0 5067:43 /usr/bin/dockerd --default-ulimit nofile=262144:262144 --dns=172.17.0.1
+&nbsp;537162&nbsp; 537177  537177&nbsp; 537177 ?         &nbsp; &nbsp; -1 Ssl      0 4649:28&nbsp; \_ docker-containerd --config /var/run/docker/containerd/containerd.toml
+&nbsp;537177&nbsp; 537579  537579&nbsp; 537177 ?         &nbsp; &nbsp; -1 Sl       0   4:48  | &nbsp; \_ docker-containerd-shim -namespace moby -workdir /var/lib/docker/containerd/daemon/io.containerd.runtime.v1.linux/moby/0ee89b20deb3cf08648cd92e1f3e3c661ccffef7a0971
+&nbsp;537579&nbsp; 537642  537642&nbsp; 537642 ?         &nbsp; &nbsp; -1 Ss    1000  32:11  | &nbsp; |   \_ /usr/bin/python /usr/bin/supervisord -c /etc/supervisord/api.conf
+&nbsp;537642&nbsp; 539764  539764&nbsp; 537642 ?         &nbsp; &nbsp; -1 S     1000   0:00  | &nbsp; |       \_ sh -c echo "READY"; while read -r line; do echo "$line"; supervisorctl shutdown; done
+&nbsp;537642&nbsp; 539767  539767&nbsp; 537642 ?         &nbsp; &nbsp; -1 S     1000   5:09  | &nbsp; |       \_ php-fpm: master process (/etc/php73/php-fpm.conf)
+&nbsp;539767&nbsp; 783097  539767&nbsp; 537642 ?         &nbsp; &nbsp; -1 S     1000   0:00  | &nbsp; |       |   \_ php-fpm: pool test
+&nbsp;539767&nbsp; 783131  539767&nbsp; 537642 ?         &nbsp; &nbsp; -1 S     1000   0:00  | &nbsp; |       |   \_ php-fpm: pool test
+&nbsp;539767&nbsp; 783185  539767&nbsp; 537642 ?         &nbsp; &nbsp; -1 S     1000   0:00  | &nbsp; |       |   \_ php-fpm: pool test
+...
+...
+...
+</code></pre><br>
+У этой команды много различных опций, так что при активном использовании рекомендую ознакомиться с документацией. Для большинства же случаев хватит просто знать "<i>ps aux</i>".<br>
+<br>
+<h2>kill</h2><br>
+Послать сигнал процессу. По умолчанию посылается сигнал <i>SIGTERM</i>, который завершает процесс.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps ux
+USER &nbsp; &nbsp; &nbsp; &nbsp; PID %CPU %MEM&nbsp; &nbsp; VSZ   RSS TTY    &nbsp; STAT START   TIME COMMAND
+531&nbsp; &nbsp; &nbsp; 1027147  0.0&nbsp; 0.0 119956  4260 ?&nbsp; &nbsp; &nbsp; &nbsp; S    14:51   0:00 sshd: user@pts/1
+531&nbsp; &nbsp; &nbsp; 1027149  0.0&nbsp; 0.0 115408  3396 pts/1&nbsp; &nbsp; Ss   14:51   0:00 -bash
+531&nbsp; &nbsp; &nbsp; 1027170  0.0&nbsp; 0.0 119956  4136 ?&nbsp; &nbsp; &nbsp; &nbsp; R    14:51   0:00 sshd: user@pts/2
+531&nbsp; &nbsp; &nbsp; 1027180  0.0&nbsp; 0.0 115408  3564 pts/2&nbsp; &nbsp; Ss   14:51   0:00 -bash
+531&nbsp; &nbsp; &nbsp; 1033727  0.0&nbsp; 0.0 107960   708 pts/1&nbsp; &nbsp; S+   15:17   0:00 sleep 300
+531&nbsp; &nbsp; &nbsp; 1033752  0.0&nbsp; 0.0 117264  2604 pts/2&nbsp; &nbsp; R+   15:17   0:00 ps ux
+[user@testhost ~]$ kill 1033727
+[user@testhost ~]$ ps ux
+USER &nbsp; &nbsp; &nbsp; &nbsp; PID %CPU %MEM&nbsp; &nbsp; VSZ   RSS TTY    &nbsp; STAT START   TIME COMMAND
+531&nbsp; &nbsp; &nbsp; 1027147  0.0&nbsp; 0.0 119956  4260 ?&nbsp; &nbsp; &nbsp; &nbsp; S    14:51   0:00 sshd: user@pts/1
+531&nbsp; &nbsp; &nbsp; 1027149  0.0&nbsp; 0.0 115408  3396 pts/1&nbsp; &nbsp; Ss+  14:51   0:00 -bash
+531&nbsp; &nbsp; &nbsp; 1027170  0.0&nbsp; 0.0 119956  4136 ?&nbsp; &nbsp; &nbsp; &nbsp; R    14:51   0:00 sshd: user@pts/2
+531&nbsp; &nbsp; &nbsp; 1027180  0.0&nbsp; 0.0 115408  3564 pts/2&nbsp; &nbsp; Ss   14:51   0:00 -bash
+531&nbsp; &nbsp; &nbsp; 1033808  0.0&nbsp; 0.0 117268  2492 pts/2&nbsp; &nbsp; R+   15:17   0:00 ps ux
+</code></pre><br>
+Так как процесс может иметь обработчики сигналов, <i>kill</i> не всегда приводит к ожидаемому результату — моментальному завершению процесса. Чтобы «убить» процесс наверняка, нужно послать процессу сигнал <i>SIGKILL</i>. Однако это может привести к потере данных (например, если процесс перед завершением должен сохранить какую-то информацию на диск), так что нужно пользоваться такой командой осторожно. Номер сигнала <i>SIGKILL</i> — 9, поэтому короткий вариант команды выглядит так:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps ux | grep sleep
+531&nbsp; &nbsp; &nbsp; 1034930  0.0&nbsp; 0.0 107960   636 pts/1&nbsp; &nbsp; S+   15:21   0:00 sleep 300
+531&nbsp; &nbsp; &nbsp; 1034953  0.0&nbsp; 0.0 110516  2104 pts/2&nbsp; &nbsp; S+   15:21   0:00 grep --color=auto sleep
+[user@testhost ~]$ kill -9 1034930
+[user@testhost ~]$ ps ux | grep sleep
+531&nbsp; &nbsp; &nbsp; 1035004  0.0&nbsp; 0.0 110516  2092 pts/2&nbsp; &nbsp; S+   15:22   0:00 grep --color=auto sleep
+</code></pre><br>
+Помимо упомянутых <i>SIGTERM</i> и <i>SIGKILL</i> существует еще множество различных сигналов, их список можно легко найти в интернете. И не забывайте, что сигналы <i>SIGKILL</i> и <i>SIGSTOP</i> не могут быть перехвачены или проигнорированы.<br>
+<br>
+<h2>ping</h2><br>
+Послать хосту ICMP пакет <i>ECHO_REQUEST</i>.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ping google.com
+PING google.com (172.217.15.78) 56(84) bytes of data.
+64 bytes from iad23s63-in-f14.1e100.net (172.217.15.78): icmp_seq=1 ttl=47 time=1.85 ms
+64 bytes from iad23s63-in-f14.1e100.net (172.217.15.78): icmp_seq=2 ttl=47 time=1.48 ms
+64 bytes from iad23s63-in-f14.1e100.net (172.217.15.78): icmp_seq=3 ttl=47 time=1.45 ms
+64 bytes from iad23s63-in-f14.1e100.net (172.217.15.78): icmp_seq=4 ttl=47 time=1.46 ms
+64 bytes from iad23s63-in-f14.1e100.net (172.217.15.78): icmp_seq=5 ttl=47 time=1.45 ms
+^C
+--- google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 1.453/1.541/1.850/0.156 ms
+</code></pre><br>
+По умолчанию <i>ping</i> работает, пока его не завершить вручную. Поэтому может быть полезна опция <i>-c</i> — количество пакетов, после отправки которых <i>ping</i> завершится самостоятельно. Ещё одна опция, которую я иногда использую — <i>-i</i>, интервал между посылками пакетов.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ping -c 3 -i 5 google.com
+PING google.com (172.217.5.238) 56(84) bytes of data.
+64 bytes from iad30s07-in-f238.1e100.net (172.217.5.238): icmp_seq=1 ttl=47 time=1.55 ms
+64 bytes from iad30s07-in-f14.1e100.net (172.217.5.238): icmp_seq=2 ttl=47 time=1.17 ms
+64 bytes from iad30s07-in-f14.1e100.net (172.217.5.238): icmp_seq=3 ttl=47 time=1.16 ms
+
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 10006ms
+rtt min/avg/max/mdev = 1.162/1.295/1.551/0.181 ms
+</code></pre><br>
+<h2>ssh</h2><br>
+OpenSSH SSH клиент, позволяет подключаться к удаленному хосту.<br>
+<br>
+<pre><code class="plaintext hljs">MacBook-Pro-User:~ user$ ssh user@11.11.22.22
+Last login: Tue Nov 26 11:27:39 2019 from another_host
+[user@testhost ~]$ hostname
+testhost
+</code></pre><br>
+Есть много нюансов в использовании SSH, также этот клиент обладает большим количеством возможностей, поэтому при желании (или необходимости) можно почитать про это <a href="https://habr.com/ru/post/435546/">более подробно</a>.<br>
+<br>
+<h2>scp</h2><br>
+Копировать файлы между хостами (для этого используется <i>ssh</i>).<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ pwd
+/home/user
+[user@testhost ~]$ ls
+temp&nbsp; test_renamed
+[user@testhost ~]$ exit
+logout
+Connection to 11.11.22.22 closed.
+MacBook-Pro-Aleksandr:~ user$ scp user@11.11.22.22:/home/user/temp Downloads/
+temp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 100%   31     0.2KB/s   00:00
+MacBook-Pro-Aleksandr:~ user$ cat Downloads/temp
+Content of a file.
+Lalalala...
+</code></pre><br>
+<h2>rsync</h2><br>
+Также для синхронизации директорий между хостами можно использовать <i>rsync</i> (<i>-a</i> — archive mode, позволяет скопировать полностью всё содержимое директории «как есть», <i>-v</i> — вывод на консоль дополнительной информации):<br>
+<br>
+<pre><code class="plaintext hljs">MacBook-Pro-User:~ user$ ls Downloads/user
+ls: Downloads/user: No such file or directory
+MacBook-Pro-User:~ user$ rsync -av user@testhost:/home/user Downloads
+receiving file list ... done
+user/
+user/.bash_history
+user/.bash_logout
+user/.bash_profile
+user/.bashrc
+user/.lesshst
+user/.mongorc.js
+user/.viminfo
+user/1
+user/man_signal
+user/man_signal_error_log
+user/temp
+user/.ssh/
+user/.ssh/authorized_keys
+user/test/
+user/test/created_today
+user/test/temp_clone
+
+sent 346 bytes&nbsp; received 29210 bytes&nbsp; 11822.40 bytes/sec
+total size is 28079&nbsp; speedup is 0.95
+MacBook-Pro-User:~ user$ ls -a Downloads/user
+.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .bash_history        .bash_profile&nbsp; &nbsp; &nbsp; &nbsp; .lesshst             .ssh                 1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; man_signal_error_log test
+.. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .bash_logout         .bashrc&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .mongorc.js          .viminfo             man_signal &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; temp
+</code></pre><br>
+<h2>echo</h2><br>
+Вывести на экран строку текста.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ echo "Hello"
+Hello
+</code></pre><br>
+Здесь заслуживают внимания опции <i>-n</i> — не дополнять строку переносом строки в конце, и <i>-e</i> — включить интерпретацию экранирования с помощью "\".<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ echo "\tHello\n"
+\tHello\n
+[user@testhost ~]$ echo -n "\tHello\n"
+\tHello\n[user@testhost ~]$
+[user@testhost ~]$ echo -ne "\tHello\n"
+	Hello
+</code></pre><br>
+Также с помощью этой команды можно выводить значения переменных. Например, в Linux exit code последней завершенной команды хранится в специальной переменной <i>$?</i>, и таким образом можно узнать, какая именно ошибка произошла в последнем запущенном приложении:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls&nbsp; &nbsp; # ошибки не будет
+1&nbsp; man_signal&nbsp; man_signal_error_log&nbsp; temp  test
+[user@testhost ~]$ echo $?&nbsp; &nbsp; # получим 0 — ошибки не было
+0
+[user@testhost ~]$ ls qwerty&nbsp; &nbsp; # будет ошибка
+ls: cannot access qwerty: No such file or directory
+[user@testhost ~]$ echo $?&nbsp; &nbsp; # получим 2 — Misuse of shell builtins (according to Bash documentation)
+2
+[user@testhost ~]$ echo $?&nbsp; &nbsp; # последний echo отработал без ошибок, получим 0
+0
+</code></pre><br>
+<h2>telnet</h2><br>
+Клиент для протокола TELNET. Используется для коммуникации с другим хостом.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ telnet example.com 80
+Trying 93.184.216.34...
+Connected to example.com.
+Escape character is '^]'.
+GET / HTTP/1.1
+Host: example.com
+
+HTTP/1.1 200 OK
+Cache-Control: max-age=604800
+Content-Type: text/html; charset=UTF-8
+Date: Tue, 26 Nov 2019 11:59:18 GMT
+Etag: "3147526947+gzip+ident"
+Expires: Tue, 03 Dec 2019 11:59:18 GMT
+Last-Modified: Thu, 17 Oct 2019 07:18:26 GMT
+Server: ECS (dcb/7F3B)
+Vary: Accept-Encoding
+X-Cache: HIT
+Content-Length: 1256
+
+... здесь было тело ответа, которое я вырезал руками ...
+</code></pre><br>
+Если нужно использовать протокол TLS (напомню, что SSL давно устарел), то <i>telnet</i> для этих целей не подойдёт. Зато подойдёт клиент <i>openssl</i>:<br>
+<br>
+<div class="spoiler"><b class="spoiler_title">Пример использования openssl с выводом ответа на GET запрос</b><div class="spoiler_text"><pre><code class="plaintext hljs">[user@testhost ~]$ openssl s_client -connect example.com:443
+CONNECTED(00000003)
+depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root CA
+verify return:1
+depth=1 C = US, O = DigiCert Inc, CN = DigiCert SHA2 Secure Server CA
+verify return:1
+depth=0 C = US, ST = California, L = Los Angeles, O = Internet Corporation for Assigned Names and Numbers, OU = Technology, CN = www.example.org
+verify return:1
+---
+Certificate chain
+&nbsp;0 s:/C=US/ST=California/L=Los Angeles/O=Internet Corporation for Assigned Names and Numbers/OU=Technology/CN=www.example.org
+&nbsp;&nbsp;&nbsp;i:/C=US/O=DigiCert Inc/CN=DigiCert SHA2 Secure Server CA
+&nbsp;1 s:/C=US/O=DigiCert Inc/CN=DigiCert SHA2 Secure Server CA
+&nbsp;&nbsp;&nbsp;i:/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA
+&nbsp;2 s:/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA
+&nbsp;&nbsp;&nbsp;i:/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root CA
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIHQDCCBiigAwIBAgIQD9B43Ujxor1NDyupa2A4/jANBgkqhkiG9w0BAQsFADBN
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMScwJQYDVQQDEx5E
+aWdpQ2VydCBTSEEyIFNlY3VyZSBTZXJ2ZXIgQ0EwHhcNMTgxMTI4MDAwMDAwWhcN
+MjAxMjAyMTIwMDAwWjCBpTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3Ju
+aWExFDASBgNVBAcTC0xvcyBBbmdlbGVzMTwwOgYDVQQKEzNJbnRlcm5ldCBDb3Jw
+b3JhdGlvbiBmb3IgQXNzaWduZWQgTmFtZXMgYW5kIE51bWJlcnMxEzARBgNVBAsT
+ClRlY2hub2xvZ3kxGDAWBgNVBAMTD3d3dy5leGFtcGxlLm9yZzCCASIwDQYJKoZI
+hvcNAQEBBQADggEPADCCAQoCggEBANDwEnSgliByCGUZElpdStA6jGaPoCkrp9vV
+rAzPpXGSFUIVsAeSdjF11yeOTVBqddF7U14nqu3rpGA68o5FGGtFM1yFEaogEv5g
+rJ1MRY/d0w4+dw8JwoVlNMci+3QTuUKf9yH28JxEdG3J37Mfj2C3cREGkGNBnY80
+eyRJRqzy8I0LSPTTkhr3okXuzOXXg38ugr1x3SgZWDNuEaE6oGpyYJIBWZ9jF3pJ
+QnucP9vTBejMh374qvyd0QVQq3WxHrogy4nUbWw3gihMxT98wRD1oKVma1NTydvt
+hcNtBfhkp8kO64/hxLHrLWgOFT/l4tz8IWQt7mkrBHjbd2XLVPkCAwEAAaOCA8Ew
+ggO9MB8GA1UdIwQYMBaAFA+AYRyCMWHVLyjnjUY4tCzhxtniMB0GA1UdDgQWBBRm
+mGIC4AmRp9njNvt2xrC/oW2nvjCBgQYDVR0RBHoweIIPd3d3LmV4YW1wbGUub3Jn
+ggtleGFtcGxlLmNvbYILZXhhbXBsZS5lZHWCC2V4YW1wbGUubmV0ggtleGFtcGxl
+Lm9yZ4IPd3d3LmV4YW1wbGUuY29tgg93d3cuZXhhbXBsZS5lZHWCD3d3dy5leGFt
+cGxlLm5ldDAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsG
+AQUFBwMCMGsGA1UdHwRkMGIwL6AtoCuGKWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNv
+bS9zc2NhLXNoYTItZzYuY3JsMC+gLaArhilodHRwOi8vY3JsNC5kaWdpY2VydC5j
+b20vc3NjYS1zaGEyLWc2LmNybDBMBgNVHSAERTBDMDcGCWCGSAGG/WwBATAqMCgG
+CCsGAQUFBwIBFhxodHRwczovL3d3dy5kaWdpY2VydC5jb20vQ1BTMAgGBmeBDAEC
+AjB8BggrBgEFBQcBAQRwMG4wJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2lj
+ZXJ0LmNvbTBGBggrBgEFBQcwAoY6aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29t
+L0RpZ2lDZXJ0U0hBMlNlY3VyZVNlcnZlckNBLmNydDAMBgNVHRMBAf8EAjAAMIIB
+fwYKKwYBBAHWeQIEAgSCAW8EggFrAWkAdwCkuQmQtBhYFIe7E6LMZ3AKPDWYBPkb
+37jjd80OyA3cEAAAAWdcMZVGAAAEAwBIMEYCIQCEZIG3IR36Gkj1dq5L6EaGVycX
+sHvpO7dKV0JsooTEbAIhALuTtf4wxGTkFkx8blhTV+7sf6pFT78ORo7+cP39jkJC
+AHYAh3W/51l8+IxDmV+9827/Vo1HVjb/SrVgwbTq/16ggw8AAAFnXDGWFQAABAMA
+RzBFAiBvqnfSHKeUwGMtLrOG3UGLQIoaL3+uZsGTX3MfSJNQEQIhANL5nUiGBR6g
+l0QlCzzqzvorGXyB/yd7nttYttzo8EpOAHYAb1N2rDHwMRnYmQCkURX/dxUcEdkC
+wQApBo2yCJo32RMAAAFnXDGWnAAABAMARzBFAiEA5Hn7Q4SOyqHkT+kDsHq7ku7z
+RDuM7P4UDX2ft2Mpny0CIE13WtxJAUr0aASFYZ/XjSAMMfrB0/RxClvWVss9LHKM
+MA0GCSqGSIb3DQEBCwUAA4IBAQBzcIXvQEGnakPVeJx7VUjmvGuZhrr7DQOLeP4R
+8CmgDM1pFAvGBHiyzvCH1QGdxFl6cf7wbp7BoLCRLR/qPVXFMwUMzcE1GLBqaGZM
+v1Yh2lvZSLmMNSGRXdx113pGLCInpm/TOhfrvr0TxRImc8BdozWJavsn1N2qdHQu
+N+UBO6bQMLCD0KHEdSGFsuX6ZwAworxTg02/1qiDu7zW7RyzHvFYA4IAjpzvkPIa
+X6KjBtpdvp/aXabmL95YgBjT8WJ7pqOfrqhpcmOBZa6Cg6O1l4qbIFH/Gj9hQB5I
+0Gs4+eH6F9h3SojmPTYkT+8KuZ9w84Mn+M8qBXUQoYoKgIjN
+-----END CERTIFICATE-----
+subject=/C=US/ST=California/L=Los Angeles/O=Internet Corporation for Assigned Names and Numbers/OU=Technology/CN=www.example.org
+issuer=/C=US/O=DigiCert Inc/CN=DigiCert SHA2 Secure Server CA
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Server Temp Key: ECDH, P-256, 256 bits
+---
+SSL handshake has read 4643 bytes and written 415 bytes
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+&nbsp;&nbsp;&nbsp;&nbsp;Protocol&nbsp; : TLSv1.2
+&nbsp;&nbsp;&nbsp;&nbsp;Cipher&nbsp; &nbsp; : ECDHE-RSA-AES128-GCM-SHA256
+&nbsp;&nbsp;&nbsp;&nbsp;Session-ID: 91950DC50FADB57BF026D2661E6CFAA1F522E5CA60D2310E106EE0E0FD6E70BD
+&nbsp;&nbsp;&nbsp;&nbsp;Session-ID-ctx:
+&nbsp;&nbsp;&nbsp;&nbsp;Master-Key: 704E9145253EEB4E9DC47E3DC6725D296D4A470EA296D54F71D65E74EAC09EB096EA1305CBEDD9E7020B8F72FD2B68A5
+&nbsp;&nbsp;&nbsp;&nbsp;Key-Arg &nbsp; : None
+&nbsp;&nbsp;&nbsp;&nbsp;Krb5 Principal: None
+&nbsp;&nbsp;&nbsp;&nbsp;PSK identity: None
+&nbsp;&nbsp;&nbsp;&nbsp;PSK identity hint: None
+&nbsp;&nbsp;&nbsp;&nbsp;TLS session ticket lifetime hint: 7200 (seconds)
+&nbsp;&nbsp;&nbsp;&nbsp;TLS session ticket:
+&nbsp;&nbsp;&nbsp;&nbsp;0000 - 68 84 4e 77 be e3 f5 00-49 c5 44 40 53 4d b9 61 &nbsp; h.Nw....I.D@SM.a
+&nbsp;&nbsp;&nbsp;&nbsp;0010 - c9 fe df e4 05 51 d0 53-ae cf 89 4c b6 ef 6c 9e &nbsp; .....Q.S...L..l.
+&nbsp;&nbsp;&nbsp;&nbsp;0020 - fe 12 9a f0 e8 e5 4e 87-42 89 ac af ca e5 4a 85 &nbsp; ......N.B.....J.
+&nbsp;&nbsp;&nbsp;&nbsp;0030 - 38 08 26 e3 22 89 08 b5-62 c0 8b 7e b8 05 d3 54 &nbsp; 8.&amp;."...b..~...T
+&nbsp;&nbsp;&nbsp;&nbsp;0040 - 8c 24 91 a7 b4 4f 79 ad-36 59 7c 69 2d e5 7f 62 &nbsp; .$...Oy.6Y|i-..b
+&nbsp;&nbsp;&nbsp;&nbsp;0050 - f6 73 a3 8b 92 63 c1 e3-df 78 ba 8c 5a cc 82 50 &nbsp; .s...c...x..Z..P
+&nbsp;&nbsp;&nbsp;&nbsp;0060 - 33 4e 13 4b 10 e4 97 31-cc b4 13 65 45 60 3e 13 &nbsp; 3N.K...1...eE`&gt;.
+&nbsp;&nbsp;&nbsp;&nbsp;0070 - ac 9e b1 bb 4b 18 d9 16-ea ce f0 9b 5b 0c 8b bf &nbsp; ....K.......[...
+&nbsp;&nbsp;&nbsp;&nbsp;0080 - fd 78 74 a0 1a ef c2 15-2a 0a 14 8d d1 3f 52 7a &nbsp; .xt.....*....?Rz
+&nbsp;&nbsp;&nbsp;&nbsp;0090 - 12 6b c7 81 15 c4 c4 af-7e df c2 20 a8 dd 4b 93 &nbsp; .k......~.. ..K.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Start Time: 1574769867
+&nbsp;&nbsp;&nbsp;&nbsp;Timeout &nbsp; : 300 (sec)
+&nbsp;&nbsp;&nbsp;&nbsp;Verify return code: 0 (ok)
+---
+GET / HTTP/1.1
+Host: example.com
+
+HTTP/1.1 200 OK
+Cache-Control: max-age=604800
+Content-Type: text/html; charset=UTF-8
+Date: Tue, 26 Nov 2019 12:04:38 GMT
+Etag: "3147526947+ident"
+Expires: Tue, 03 Dec 2019 12:04:38 GMT
+Last-Modified: Thu, 17 Oct 2019 07:18:26 GMT
+Server: ECS (dcb/7EC8)
+Vary: Accept-Encoding
+X-Cache: HIT
+Content-Length: 1256
+
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Example Domain&lt;/title&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="utf-8" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta http-equiv="Content-type" content="text/html; charset=utf-8" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;style type="text/css"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;body {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: #f0f0f2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;div {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 600px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 5em auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 2em;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: #fdfdff;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-radius: 0.5em;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;box-shadow: 2px 3px 7px 2px rgba(0,0,0,0.02);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;a:link, a:visited {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #38488f;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration: none;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;@media (max-width: 700px) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;div {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 0 auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: auto;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Example Domain&lt;/h1&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;This domain is for use in illustrative examples in documents. You may use this
+&nbsp;&nbsp;&nbsp;&nbsp;domain in literature without prior coordination or asking for permission.&lt;/p&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;&lt;a href="https://www.iana.org/domains/example"&gt;More information...&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><br>
+</div></div><br>
+<h1>Решение типовых задач в Linux</h1><br>
+<h2>Изменить владельца файла</h2><br>
+Изменить владельца файла или директории можно с помощью команды <i><b>chown</b></i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ chown user:user temp
+[user@testhost ~]$ ls -l temp
+-rw-rw-r-- 1 user user 31 Nov 26 11:09 temp
+</code></pre><br>
+В параметр этой команде нужно отдать нового владельца и группу (опционально), разделенных двоеточием. Также при изменении владельца директории может быть полезна опция <i>-R</i> — тогда владельцы изменятся и у всего содержимого директории.<br>
+<br>
+<h2>Изменить права доступа файла</h2><br>
+Эта задача решается с помощью команды <i><b>chmod</b></i>. В качестве примера приведу установку прав «владельцу разрешено чтение, запись и исполнение, группе разрешено чтение и запись, всем остальным — ничего»:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -l temp
+-rw-rw-r-- 1 user user 31 Nov 26 11:09 temp
+[user@testhost ~]$ chmod 760 temp
+[user@testhost ~]$ ls -l temp
+-rwxrw---- 1 user user 31 Nov 26 11:09 temp
+</code></pre><br>
+Первая 7 (это 0b111 в битовом представлении) в параметре означает «все права для владельца», вторая 6 (это 0b110 в битовом представлении) — «чтение и запись», ну и 0 — это ничего для остальных. Битовая маска состоит из трёх битов: самый младший («правый») бит отвечает за исполнение, следующий за ним («средний») — за запись, и самый старший («левый») — за чтение.<br>
+Также можно выставлять права с помощью специальных символов (<i>мнемонический синтаксис</i>). Например, в следующем примере сначала убираются права на исполнение для текущего пользователя, а затем возвращаются обратно:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -l temp
+-rwxrw---- 1 user user 31 Nov 26 11:09 temp
+[user@testhost ~]$ chmod -x temp
+[user@testhost ~]$ ls -l temp
+-rw-rw---- 1 user user 31 Nov 26 11:09 temp
+[user@testhost ~]$ chmod +x temp
+[user@testhost ~]$ ls -l temp
+-rwxrwx--x 1 user user 31 Nov 26 11:09 temp
+</code></pre><br>
+У этой команды есть много вариантов использования, поэтому советую прочитать про неё подробнее (особенно про мнемонический синтаксис, например, <a href="https://vps.ua/wiki/change-permissions/" rel="nofollow">здесь</a>).<br>
+<br>
+<h2>Вывести содержимое бинарного файла</h2><br>
+Это можно сделать с помощью утилиты <i><b>hexdump</b></i>. Ниже приведены примеры её использования.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ cat temp
+Content of a file.
+Lalalala...
+[user@testhost ~]$ hexdump -c temp
+0000000 &nbsp; C   o   n &nbsp; t   e   n   t &nbsp; &nbsp; &nbsp; o   f       a       f &nbsp; i   l
+0000010 &nbsp; e   .  \n &nbsp; L   a   l   a &nbsp; l   a   l   a   . &nbsp; .   .  \n
+000001f
+[user@testhost ~]$ hexdump -x temp
+0000000&nbsp; &nbsp; 6f43    746e&nbsp; &nbsp; 6e65    2074    666f&nbsp; &nbsp; 6120    6620    6c69
+0000010&nbsp; &nbsp; 2e65    4c0a&nbsp; &nbsp; 6c61    6c61    6c61&nbsp; &nbsp; 2e61    2e2e    000a
+000001f
+[user@testhost ~]$ hexdump -C temp
+00000000&nbsp; 43 6f 6e 74 65 6e 74 20&nbsp; 6f 66 20 61 20 66 69 6c  |Content of a fil|
+00000010&nbsp; 65 2e 0a 4c 61 6c 61 6c&nbsp; 61 6c 61 2e 2e 2e 0a     |e..Lalalala....|
+0000001f
+</code></pre><br>
+С помощью этой утилиты можно вывести данные и в других форматах, однако наиболее часто могут пригодиться именно такие варианты её использования.<br>
+<br>
+<h2>Искать файлы</h2><br>
+Найти файл по части имени в дереве каталогов можно с помощью команды <i><b>find</b></i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ find test_dir/ -name "*le*"
+test_dir/file_1
+test_dir/file_2
+test_dir/subdir/file_3
+</code></pre><br>
+Также доступны другие опции и фильтры поиска. Например, так можно найти файлы в папке <i>test</i>, созданные более 5 дней назад:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ls -ltr test
+total 0
+-rw-rw-r-- 1 user user 0 Nov 26 10:46 temp_clone
+-rw-rw-r-- 1 user user 0 Dec&nbsp; 4 10:39 created_today
+[user@testhost ~]$ find test/ -type f -ctime +5
+test/temp_clone
+</code></pre><br>
+<h2>Искать текст в файлах</h2><br>
+Справиться с этой задачей поможет команда <i><b>grep</b></i>. У неё есть множество вариантов использования, здесь в качестве примера указан самый простой.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ grep -nr "content" test_dir/
+test_dir/file_1:1:test content for file_1
+test_dir/file_2:1:test content for file_2
+test_dir/subdir/file_3:1:test content for file_3
+</code></pre><br>
+Один из популярных способов использования команды <i>grep</i> — использование её в конвейере (<i>pipe</i>):<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ sudo tail -f /var/log/test.log | grep "ERROR"
+</code></pre><br>
+Опция <i>-v</i> позволяет сделать эффект <i>grep</i>'а обратным — будут выводиться только строки, не содержащие паттерн, переданный в <i>grep</i>.<br>
+<br>
+<h2>Смотреть установленные пакеты</h2><br>
+Универсальной команды нет, потому что всё зависит от дистрибутива Linux и используемого пакетного менеджера. Скорее всего вам поможет одна из следующих команд:<br>
+<br>
+<pre><code class="plaintext hljs">yum list installed
+apt list --installed
+zypper se —installed-only
+pacman -Qqe
+dpkg -l
+rpm -qa
+</code></pre><br>
+<h2>Посмотреть, сколько места занимает дерево директорий</h2><br>
+Один из вариантов использования команды <i><b>du</b></i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ du -h -d 1 test_dir/
+8,0K test_dir/subdir
+20K test_dir/
+</code></pre><br>
+Можно менять значение параметра <i>-d</i>, чтобы получать более подробную информацию о дереве директорий. Также можно использовать команду в комбинации с <i>sort</i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ du -h -d 1 test_dir/ | sort -h
+8,0K test_dir/subdir
+16K test_dir/subdir_2
+36K test_dir/
+[user@testhost ~]$ du -h -d 1 test_dir/ | sort -h -r
+36K test_dir/
+16K test_dir/subdir_2
+8,0K test_dir/subdir
+</code></pre><br>
+Опция <i>-h</i> у команды <i>sort</i> позволяет сортировать размеры, записанные в human readable формате (например, 1K, 2G), опция <i>-r</i> позволяет отсортировать данные в обратном порядке.<br>
+<br>
+<h2>«Найти и заменить» в файле, в файлах в директории</h2><br>
+Данная операция выполняется с помощью утилиты <i><b>sed</b></i> (без флага <i>g</i> в конце заменится только первое вхождение «old-text» в строке):<br>
+<br>
+<pre><code class="plaintext hljs">sed -i 's/old-text/new-text/g' input.txt
+</code></pre><br>
+Можно использовать её для нескольких файлов сразу:<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ cat test_dir/file_*
+test content for file_1
+test content for file_2
+[user@testhost ~]$ sed -i 's/test/edited/g' test_dir/file_*
+[user@testhost ~]$ cat test_dir/file_*
+edited content for file_1
+edited content for file_2
+</code></pre><br>
+<h2>Вывести колонку из вывода</h2><br>
+Справиться с этой задачей поможет <i><b>awk</b></i>. В данном примере выводится вторая колонка вывода команды `<i>ps ux</i>`:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ps ux | awk '{print $2}'
+PID
+11023
+25870
+25871
+25908
+25909
+</code></pre><br>
+При этом надо иметь ввиду, что <i>awk</i> обладает гораздо более богатым функционалом, так что при необходимости работы с текстом в командной строке стоит почитать об этой команде подробнее.<br>
+<br>
+<h2>Узнать IP адрес по имени хоста</h2><br>
+С этим поможет одна из следующих команд:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ host ya.ru
+ya.ru has address 87.250.250.242
+ya.ru has IPv6 address 2a02:6b8::2:242
+ya.ru mail is handled by 10 mx.yandex.ru.
+
+[user@testhost ~]$ dig +short ya.ru
+87.250.250.242
+
+[user@testhost ~]$ nslookup ya.ru
+Server: 8.8.8.8
+Address: 8.8.8.8#53
+
+Non-authoritative answer:
+Name: ya.ru
+Address: 87.250.250.242
+</code></pre><br>
+<h2>Сетевая информация</h2><br>
+Можно использовать <i><b>ifconfig</b></i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ifconfig
+eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu 1500
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inet 47.89.93.67&nbsp; netmask 255.255.224.0&nbsp; broadcast 47.89.95.255
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inet6 fd90::302:57ff:fe79:1&nbsp; prefixlen 64  scopeid 0x20&lt;link&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ether 04:01:57:79:00:01&nbsp; txqueuelen 1000  (Ethernet)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RX packets 11912135&nbsp; bytes 9307046034 (8.6 GiB)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RX errors 0&nbsp; dropped 0  overruns 0&nbsp; frame 0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TX packets 14696632&nbsp; bytes 2809191835 (2.6 GiB)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TX errors 0&nbsp; dropped 0 overruns 0&nbsp; carrier 0  collisions 0
+
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;&nbsp; mtu 65536
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inet 127.0.0.1&nbsp; netmask 255.0.0.0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inet6 ::1&nbsp; prefixlen 128&nbsp; scopeid 0x10&lt;host&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loop&nbsp; txqueuelen 0&nbsp; (Local Loopback)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RX packets 10&nbsp; bytes 866 (866.0 B)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RX errors 0&nbsp; dropped 0  overruns 0&nbsp; frame 0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TX packets 10&nbsp; bytes 866 (866.0 B)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TX errors 0&nbsp; dropped 0 overruns 0&nbsp; carrier 0  collisions 0
+</code></pre><br>
+А можно и <i><b>ip</b></i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+&nbsp;&nbsp;&nbsp;&nbsp;link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+&nbsp;&nbsp;&nbsp;&nbsp;inet 127.0.0.1/8 scope host lo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid_lft forever preferred_lft forever
+&nbsp;&nbsp;&nbsp;&nbsp;inet6 ::1/128 scope host
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+&nbsp;&nbsp;&nbsp;&nbsp;link/ether 04:01:57:79:00:01 brd ff:ff:ff:ff:ff:ff
+&nbsp;&nbsp;&nbsp;&nbsp;inet 47.89.93.67/19 brd 47.89.95.255 scope global eth0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid_lft forever preferred_lft forever
+&nbsp;&nbsp;&nbsp;&nbsp;inet6 fd90::302:57ff:fe79:1/64 scope link
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid_lft forever preferred_lft forever
+3: ip_vti0: &lt;NOARP&gt; mtu 1500 qdisc noop state DOWN group default
+&nbsp;&nbsp;&nbsp;&nbsp;link/ipip 0.0.0.0 brd 0.0.0.0
+</code></pre><br>
+При этом, если, например, вас интересует только IPv4, то можно добавить опцию <i>-4</i>:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ ip -4 a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default
+&nbsp;&nbsp;&nbsp;&nbsp;inet 127.0.0.1/8 scope host lo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+&nbsp;&nbsp;&nbsp;&nbsp;inet 47.89.93.67/19 brd 47.89.95.255 scope global eth0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid_lft forever preferred_lft forever
+</code></pre><br>
+<h2>Посмотреть открытые порты</h2><br>
+Для этого используют утилиту <i><b>netstat</b></i>. Например, чтобы посмотреть все слушающие TCP и UDP порты с отображением PID'а процесса, слушающего порт, и с числовым представлением порта, нужно использовать ее со следующими опциями:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ netstat -lptnu
+</code></pre><br>
+<h2>Информация о системе</h2><br>
+Получить данную информацию можно с помощью команды <i><b>uname</b></i>.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ uname -a
+Linux alexander 3.10.0-123.8.1.el7.x86_64 #1 SMP Mon Sep 22 19:06:58 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre><br>
+Чтобы понять, в каком формате производится вывод, можно обратиться к <i>help</i>'у данной команды:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ uname --help
+Использование: uname [КЛЮЧ]…
+Печатает определенные сведения о системе.&nbsp; Если КЛЮЧ не задан,
+подразумевается -s.
+
+&nbsp;&nbsp;-a, --all&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; напечатать всю информацию, в следующем порядке,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;кроме -p и -i, если они неизвестны:
+&nbsp;&nbsp;-s, --kernel-name&nbsp; напечатать имя ядра
+&nbsp;&nbsp;-n, --nodename &nbsp; &nbsp; напечатать имя машины в сети
+&nbsp;&nbsp;-r, --release&nbsp; &nbsp; &nbsp; напечатать номер выпуска операционной системы
+&nbsp;&nbsp;-v, --kernel-version &nbsp; &nbsp; напечатать версию ядра
+&nbsp;&nbsp;-m, --machine&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; напечатать тип оборудования машины
+&nbsp;&nbsp;-p, --processor&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; напечатать тип процессора или «неизвестно»
+&nbsp;&nbsp;-i, --hardware-platform&nbsp; напечатать тип аппаратной платформы или «неизвестно»
+&nbsp;&nbsp;-o, --operating-system &nbsp; напечатать имя операционной системы
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--help &nbsp; &nbsp; показать эту справку и выйти
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--version&nbsp; показать информацию о версии и выйти
+</code></pre><br>
+<h2>Информация о памяти</h2><br>
+Чтобы понять, сколько оперативной памяти занято или свободно, можно воспользоваться командой <i><b>free</b></i>.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ free -h
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total&nbsp; &nbsp; &nbsp; &nbsp; used        free&nbsp; &nbsp; &nbsp; shared  buff/cache   available
+Mem: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3,9G        555M&nbsp; &nbsp; &nbsp; &nbsp; 143M         56M        3,2G&nbsp; &nbsp; &nbsp; &nbsp; 3,0G
+Swap:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0B          0B    &nbsp; &nbsp; &nbsp; 0B
+</code></pre><br>
+<h2>Информация о файловых системах (свободное место на дисках)</h2><br>
+Команда <i><b>df</b></i> позволяет посмотреть, сколько места свободно и занято на примонтированных файловых системах.<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ df -hT
+Файловая система Тип&nbsp; &nbsp; &nbsp; Размер Использовано  Дост Использовано% Cмонтировано в
+/dev/vda1&nbsp; &nbsp; &nbsp; &nbsp; ext4        79G  &nbsp; &nbsp; &nbsp; &nbsp; 21G   55G           27% /
+devtmpfs &nbsp; &nbsp; &nbsp; &nbsp; devtmpfs   2,0G  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0  2,0G            0% /dev
+tmpfs&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tmpfs      2,0G  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0  2,0G            0% /dev/shm
+tmpfs&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tmpfs      2,0G  &nbsp; &nbsp; &nbsp; &nbsp; 57M  1,9G            3% /run
+tmpfs&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tmpfs      2,0G  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0  2,0G            0% /sys/fs/cgroup
+tmpfs&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tmpfs      396M  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0  396M            0% /run/user/1001
+</code></pre><br>
+Опция <i>-T</i> указывает, что нужно выводить тип файловой системы.<br>
+<br>
+<h2>Информация о задачах и различной статистике по системе</h2><br>
+Для этого используется команда <i><b>top</b></i>. Она способна вывести разную информацию: например, топ процессов по использованию оперативной памяти или топ процессов по использованию процессорного времени. Также она выводит информацию о памяти, CPU, uptime и LA (load average).<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ top | head -10
+top - 17:19:13 up 154 days,&nbsp; 6:59,  3 users,  load average: 0.21, 0.21, 0.27
+Tasks: 2169 total, &nbsp; 2 running, 2080 sleeping, &nbsp; 0 stopped,   0 zombie
+Cpu(s):&nbsp; 1.7%us,  0.7%sy,&nbsp; 0.0%ni, 97.5%id,  0.0%wa,&nbsp; 0.0%hi,  0.1%si,  0.0%st
+Mem:&nbsp; 125889960k total, 82423048k used, 43466912k free, 16026020k buffers
+Swap:&nbsp; &nbsp; &nbsp; &nbsp; 0k total,    &nbsp; &nbsp; 0k used,        0k free, 31094516k cached
+
+&nbsp;&nbsp;&nbsp;&nbsp;PID USER&nbsp; &nbsp; &nbsp; PR  NI  VIRT  RES&nbsp; SHR S %CPU %MEM    TIME+&nbsp; COMMAND
+&nbsp;&nbsp;25282 user&nbsp; &nbsp; &nbsp; 20   0 16988 3936 1964 R&nbsp; 7.3  0.0   0:00.04 top
+&nbsp;&nbsp;&nbsp;4264 telegraf&nbsp; 20   0 2740m 240m&nbsp; 22m S  1.8  0.2  23409:39 telegraf
+&nbsp;&nbsp;&nbsp;6718 root&nbsp; &nbsp; &nbsp; 20   0 35404 4768 3024 S&nbsp; 1.8  0.0   0:01.49 redis-server
+</code></pre><br>
+Эта утилита обладает богатым функционалом, так что если вам надо часто ей пользоваться, лучше ознакомиться с её документацией.<br>
+<br>
+<h2>Дамп сетевого трафика</h2><br>
+Для перехвата сетевого трафика в Linux используется утилита <i><b>tcpdump</b></i>. Чтобы сдампить трафик на порте 12345, можно воспользоваться следующей командой:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ sudo tcpdump -i any -A port 12345
+</code></pre><br>
+Опция <i>-A</i> говорит о том, что мы ходим видеть вывод в ASCII (поэтому это хорошо для текстовых протоколов), <i>-i any</i> указывает, что нас не интересует сетевой интерфейс, <i>port</i> — трафик какого порта дампить. Вместо <i>port</i> можно использовать <i>host</i>, либо комбинацию <i>host</i> и <i>port</i> (<i>host A and port X</i>). И еще полезной может оказаться опция <i>-n</i> — не конвертировать адреса в хостнеймы в выводе.<br>
+Что если трафик бинарный? Тогда нам поможет опция <i>-X</i> — выводить данные в hex и ASCII:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ sudo tcpdump -i any -X port 12345
+</code></pre><br>
+При этом надо учитывать, что в обоих вариантах использования будут выводиться IP пакеты, поэтому в начале каждого из них будут бинарные заголовки IP и TCP. Вот пример вывода для запроса "<i>123</i>" посланного в сервер, слушающий порт 12345:<br>
+<br>
+<pre><code class="plaintext hljs">[user@testhost ~]$ sudo tcpdump -i any -X port 12345
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on any, link-type LINUX_SLL (Linux cooked), capture size 262144 bytes
+14:27:13.224762 IP localhost.49794 &gt; localhost.italk: Flags [P.], seq 2262177478:2262177483, ack 3317210845, win 342, options [nop,nop,TS val 3196604972 ecr 3196590131], length 5
+&nbsp;&nbsp;&nbsp;&nbsp;0x0000:&nbsp; 4510 0039 dfb6 4000 4006 5cf6 7f00 0001&nbsp; E..9..@.@.\.....
+&nbsp;&nbsp;&nbsp;&nbsp;0x0010:&nbsp; 7f00 0001 c282 3039 86d6 16c6 c5b8 9edd&nbsp; ......09........
+&nbsp;&nbsp;&nbsp;&nbsp;0x0020:&nbsp; 8018 0156 fe2d 0000 0101 080a be88 522c&nbsp; ...V.-........R,
+&nbsp;&nbsp;&nbsp;&nbsp;0x0030:&nbsp; be88 1833 3132 330d 0a00 0000 0000 0000&nbsp; ...3123.........
+&nbsp;&nbsp;&nbsp;&nbsp;0x0040:&nbsp; 0000 0000 0000 0000 00 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .........
+</code></pre><br>
+<h1>Вместо вывода</h1><br>
+Конечно, в Linux есть еще много интересных вещей, о которых можно прочитать на Хабре, StackOverflow и других сайтах (в качестве примера приведу <a href="https://github.com/jlevy/the-art-of-command-line" rel="nofollow">The Art of a Command Line</a>, которая есть и <a href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-ru.md" rel="nofollow">в переводе</a>). Системные администраторы и DevOps используют гораздо больше команд и утилит для конфигурации серверов, но даже тестировщикам может не хватить перечисленных команд. Может потребоваться проверить корректность какого-то хитрого таймаута клиента к серверу или работа сервера при отсутствии свободного места на диске. Я уже не говорю про, например, Docker, который сейчас активно используется многими компаниями. Было бы интересно в рамках продолжения этой справочной статьи разобрать несколько примеров использования различных консольных утилит Linux в процессе тестирования сервисов? Также делитесь своим топом команд в комментариях :)</div>
