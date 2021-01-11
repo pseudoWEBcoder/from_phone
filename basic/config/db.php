@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'sqlite:'. realpath('../../helper.sqlite3'),
+    'dsn' => 'mysql:host=localhost;dbname=helptext',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',

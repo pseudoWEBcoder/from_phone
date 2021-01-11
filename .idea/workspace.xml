@@ -26,15 +26,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="распарсил  + дамп">
+      <change afterPath="$PROJECT_DIR$/basic/controllers/HelptextNiceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/models/searches/HelptextNiceSearch.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/_form.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/_search.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/update.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/view.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/basic/views/helptext/nice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/controllers/HelptextController.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/controllers/HelptextController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/models/searches/HelptextSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/models/searches/HelptextSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/views/helptext/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/views/helptext/_search.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/_search.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/views/helptext/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/views/helptext/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/helper.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/config/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/config/db.php" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -169,6 +171,7 @@
       <workItem from="1607289917069" duration="194000" />
       <workItem from="1607290465913" duration="27228000" />
       <workItem from="1610208896521" duration="13661000" />
+      <workItem from="1610381899040" duration="1337000" />
     </task>
     <task id="LOCAL-00001" summary="сделал   просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
       <created>1594294893348</created>
