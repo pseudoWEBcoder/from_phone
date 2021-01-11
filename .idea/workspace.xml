@@ -25,12 +25,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="распарсил  + дамп">
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext-nice/itemView.php" afterDir="false" />
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="нормальное  отображение">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/models/Helptext.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/models/Helptext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/views/helptext-nice/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext-nice/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/views/helptext-nice/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext-nice/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/basic/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/basic/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/helptext-nice/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext-nice/_form.php" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +164,7 @@
       <workItem from="1607289917069" duration="194000" />
       <workItem from="1607290465913" duration="27228000" />
       <workItem from="1610208896521" duration="13661000" />
-      <workItem from="1610381899040" duration="2658000" />
+      <workItem from="1610381899040" duration="4394000" />
     </task>
     <task id="LOCAL-00001" summary="сделал   просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
       <created>1594294893348</created>
@@ -314,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610383783748</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="нормальное  отображение">
+      <created>1610385139973</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1610385139973</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,6 +364,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="сделал   просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php" />
     <MESSAGE value="переделал     просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php" />
     <MESSAGE value="  теперь не  распазнает отдельные символы" />
@@ -381,7 +388,11 @@
     <MESSAGE value="автогенератор  справки&#10;+  crud" />
     <MESSAGE value="распарсил  + дамп" />
     <MESSAGE value="переделал на MySQL&#10; добавил дамп helptext-mysql.sql&#10; &#10;helptext-nice свежесгенерил" />
-    <option name="LAST_COMMIT_MESSAGE" value="переделал на MySQL&#10; добавил дамп helptext-mysql.sql&#10; &#10;helptext-nice свежесгенерил" />
+    <MESSAGE value="нормальное  отображение" />
+    <option name="LAST_COMMIT_MESSAGE" value="нормальное  отображение" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
