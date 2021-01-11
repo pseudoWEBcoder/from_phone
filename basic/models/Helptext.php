@@ -48,17 +48,17 @@ class Helptext extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'command' => 'Command',
-            'created' => 'Created',
-            'updated' => 'Updated',
-            'help' => 'Help',
-            'decr' => 'Decr',
-            'example' => 'Example',
-            'parsed' => 'Parsed',
-            'source' => 'Source',
-            'device' => 'Device',
-            'dop_info' => 'Dop Info',
-            'weight' => 'Weight',
+            'command' => 'команда',
+            'created' => 'создан',
+            'updated' => 'обновлен',
+            'help' => 'справка',
+            'decr' => 'описание',
+            'example' => 'пример',
+            'parsed' => 'парсеный',
+            'source' => 'источник',
+            'device' => 'устройство',
+            'dop_info' => 'доп инфо',
+            'weight' => 'вес',
         ];
     }
 }
