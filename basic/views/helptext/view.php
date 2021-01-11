@@ -35,7 +35,13 @@ YiiAsset::register($this);
             'created',
             'updated',
             'help:ntext',
+            'decr:ntext',
+            'example:ntext',
+            'parsed:ntext',
             'source:ntext',
+            'device:ntext',
+            'dop_info:ntext',
+            'weight',
         ],
     ]) ?>
 

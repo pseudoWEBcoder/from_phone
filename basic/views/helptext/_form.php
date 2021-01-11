@@ -20,7 +20,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'help')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'decr')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'example')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'parsed')->textarea(['rows' => 6]) ?>
+
     <?= $form->field($model, 'source')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'device')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'dop_info')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'weight')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

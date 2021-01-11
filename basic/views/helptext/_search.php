@@ -25,7 +25,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'help') ?>
 
+    <?php // echo $form->field($model, 'decr') ?>
+
+    <?php // echo $form->field($model, 'example') ?>
+
+    <?php // echo $form->field($model, 'parsed') ?>
+
     <?php // echo $form->field($model, 'source') ?>
+
+    <?php // echo $form->field($model, 'device') ?>
+
+    <?php // echo $form->field($model, 'dop_info') ?>
+
+    <?php // echo $form->field($model, 'weight') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -17,8 +17,8 @@ class HelptextSearch extends Helptext
     public function rules()
     {
         return [
-            [['id', 'created', 'updated'], 'integer'],
-            [['command', 'help', 'source'], 'safe'],
+            [['id', 'created', 'updated', 'weight'], 'integer'],
+            [['command', 'help', 'decr', 'example', 'parsed', 'source', 'device', 'dop_info'], 'safe'],
         ];
     }
 
@@ -61,11 +61,17 @@ class HelptextSearch extends Helptext
             'id' => $this->id,
             'created' => $this->created,
             'updated' => $this->updated,
+            'weight' => $this->weight,
         ]);
 
         $query->andFilterWhere(['like', 'command', $this->command])
             ->andFilterWhere(['like', 'help', $this->help])
-            ->andFilterWhere(['like', 'source', $this->source]);
+            ->andFilterWhere(['like', 'decr', $this->decr])
+            ->andFilterWhere(['like', 'example', $this->example])
+            ->andFilterWhere(['like', 'parsed', $this->parsed])
+            ->andFilterWhere(['like', 'source', $this->source])
+            ->andFilterWhere(['like', 'device', $this->device])
+            ->andFilterWhere(['like', 'dop_info', $this->dop_info]);
 
         return $dataProvider;
     }

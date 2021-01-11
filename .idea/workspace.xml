@@ -25,19 +25,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="автогенератор  справки&#10;+  crud">
-      <change afterPath="$PROJECT_DIR$/basic/models/searches/HelptextSearch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext/_form.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext/_search.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext/create.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext/update.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/views/helptext/view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helprus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helprus2.txt" afterDir="false" />
+    <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="распарсил  + дамп">
+      <change afterPath="$PROJECT_DIR$/basic/views/helptext/nice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic/controllers/HelptextController.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/controllers/HelptextController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/models/Helptext.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/models/Helptext.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/models/searches/HelptextSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/models/searches/HelptextSearch.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/helptext/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/helptext/_search.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/_search.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/helptext/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/helptext/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext/view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/helper.sqlite3" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
@@ -98,13 +94,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;JavaScript&#10;XML" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/basic/views/helptext" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\trash\basic\views\helptext" />
       <recent name="C:\OSPanel\domains\trash" />
     </key>
   </component>
@@ -171,7 +168,7 @@
       <workItem from="1596469655078" duration="1466000" />
       <workItem from="1607289917069" duration="194000" />
       <workItem from="1607290465913" duration="27228000" />
-      <workItem from="1610208896521" duration="11677000" />
+      <workItem from="1610208896521" duration="13661000" />
     </task>
     <task id="LOCAL-00001" summary="сделал   просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
       <created>1594294893348</created>
@@ -306,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610215190053</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="распарсил  + дамп">
+      <created>1610302080349</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1610302080349</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +376,8 @@
     <MESSAGE value="higscore&#10;+  вырезанные  данные" />
     <MESSAGE value="справка cmd  в  цвете&#10;+ шаблон bootstrap 4 &#10;+ справка от   grep в файле  help.txt" />
     <MESSAGE value="автогенератор  справки&#10;+  crud" />
-    <option name="LAST_COMMIT_MESSAGE" value="автогенератор  справки&#10;+  crud" />
+    <MESSAGE value="распарсил  + дамп" />
+    <option name="LAST_COMMIT_MESSAGE" value="распарсил  + дамп" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -443,13 +448,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/basic/controllers/HelptextController.php</url>
-          <line>129</line>
+          <line>143</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <condition expression="$command['command']  =='pwd'" language="PHP" />
           <url>file://$PROJECT_DIR$/basic/controllers/HelptextController.php</url>
-          <line>148</line>
+          <line>162</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

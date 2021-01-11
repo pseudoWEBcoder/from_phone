@@ -31,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'created',
             'updated',
             'help:ntext',
+            //'decr:ntext',
+            //'example:ntext',
+            //'parsed:ntext',
             //'source:ntext',
+            //'device:ntext',
+            //'dop_info:ntext',
+            //'weight',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

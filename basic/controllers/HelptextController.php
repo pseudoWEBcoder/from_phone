@@ -45,6 +45,21 @@ class HelptextController extends Controller
     }
 
     /**
+     * Lists all Helptext models.
+     * @return mixed
+     */
+    public function actionNice()
+    {
+        $searchModel = new HelptextSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('nice', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single Helptext model.
      * @param integer $id
      * @return mixed
