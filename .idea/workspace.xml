@@ -26,10 +26,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96c42d3-4574-43cc-bcda-d46d072ab11b" name="Default Changelist" comment="нормальное  отображение">
+      <change afterPath="$PROJECT_DIR$/news (last).json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phones.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/basic/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/basic/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basic/views/helptext-nice/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext-nice/_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/helptext-nice/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/helptext-nice/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/basic/views/layouts/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
     <list id="49e336a3-68d3-4149-9a2a-a5af34818d65" name="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;" comment="Revert &quot;вау так лучше потомучто в ответе понятнре сообщение об ошибке&quot;&#10;&#10;This reverts commit 97004cdf" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +54,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpDebugGeneral" break_at_first_line="true" />
   <component name="PhpServers">
     <servers>
       <server host="trash" id="a0305393-1c18-4061-9819-0c977aaa52a8" name="trash" use_path_mappings="true">
@@ -87,9 +92,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;JavaScript&#10;XML" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML&#10;JSON&#10;JavaScript&#10;XML" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testovoe" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -165,6 +170,9 @@
       <workItem from="1607290465913" duration="27228000" />
       <workItem from="1610208896521" duration="13661000" />
       <workItem from="1610381899040" duration="4394000" />
+      <workItem from="1610387323433" duration="14243000" />
+      <workItem from="1610716548753" duration="249000" />
+      <workItem from="1610718214051" duration="1630000" />
     </task>
     <task id="LOCAL-00001" summary="сделал   просмотрщик  титлов  кейвордов  по  адресу  страницы  curl.php">
       <created>1594294893348</created>
@@ -320,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610385139973</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="TiniMCE  но он не  отображает переносы строк в  полях  справки !">
+      <created>1610387696015</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1610387696015</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,7 +404,8 @@
     <MESSAGE value="распарсил  + дамп" />
     <MESSAGE value="переделал на MySQL&#10; добавил дамп helptext-mysql.sql&#10; &#10;helptext-nice свежесгенерил" />
     <MESSAGE value="нормальное  отображение" />
-    <option name="LAST_COMMIT_MESSAGE" value="нормальное  отображение" />
+    <MESSAGE value="TiniMCE  но он не  отображает переносы строк в  полях  справки !" />
+    <option name="LAST_COMMIT_MESSAGE" value="TiniMCE  но он не  отображает переносы строк в  полях  справки !" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -468,6 +484,21 @@
           <url>file://$PROJECT_DIR$/basic/controllers/HelptextController.php</url>
           <line>162</line>
           <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/basic/views/helptext-nice/view.php</url>
+          <line>47</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/basic/views/helptext-nice/view.php</url>
+          <line>39</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/basic/web/index.php</url>
+          <line>9</line>
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/main.js</url>

@@ -1,5 +1,6 @@
 <?php
 
+use h0rseduck\tuieditor\TuiEditor;
 use yii\helpers\Html;
 use yii\web\YiiAsset;
 use yii\widgets\DetailView;
@@ -18,13 +19,22 @@ YiiAsset::register($this);
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?php echo Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]);
+
+        $tui = [
+            'editorOptions' => [
+                'initialEditType' => 'markdown',
+                'previewStyle' => 'vertical',
+                'height' => '500px',
+
+            ] ,  'model'=>$model
+        ] ?>
     </p>
 
     <?= DetailView::widget([
@@ -35,9 +45,10 @@ YiiAsset::register($this);
             'created:datetime',
             'decr:ntext',
             'updated:datetime',
-            'help:ntext',
+            ['attribute' => 'help', 'value' => TuiEditor::widget(array_merge($tui,['attribute'=>'help'])),'encode'=>false,  'format'=>'raw'],
+
             'example:html',
-            'parsed:ntext',
+            ['attribute' => 'parsed', 'value' => TuiEditor::widget(array_merge($tui,['attribute'=>'parsed'])),'encode'=>false,  'format'=>'raw'],
             'source:ntext',
             'device:ntext',
             'dop_info:ntext',

@@ -74,7 +74,7 @@
     editor.setOption("fullScreen", true);
     a = document.getElementById('src');
     url = '/trash/i3_formatted.json (1)';
-    url = '/trash/news (2).json';
+    url = '/news (last).json';
     a.href = url;
     a.innerHTML = url;
     fetch(url)
